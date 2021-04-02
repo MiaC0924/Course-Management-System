@@ -3,6 +3,8 @@ package com.TeamProject.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.time.LocalDate;
 
 public class PersonSuite {
@@ -12,14 +14,14 @@ public class PersonSuite {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
         Student Mia = new Student("Mia","Female","123 Ottawa St",BOD,"MATH");
-        assertEquals(100000001,Mia.getStudentNumber());
+        assertEquals(100000001, Mia.getStudentNumber());
         assertEquals(BOD, Mia.getBirthDay());
 
         Student John = new Student();
-        assertEquals(100000002,John.getStudentNumber());
+        assertEquals(100000002, John.getStudentNumber());
 
         John.setMajor("COMP");
-        assertEquals("COMP",John.getMajor());
+        assertEquals("COMP", John.getMajor());
     }
 
     @DisplayName("Professor test case")
@@ -30,13 +32,13 @@ public class PersonSuite {
         Professor Mia = new Professor("Mia","Female","123 Ottawa St",BOD,"MATH");
         assertEquals(9001,Mia.getProfID());
         assertEquals(BOD, Mia.getBirthDay());
-        assertEquals("MATH",Mia.getFaculty());
+        assertEquals("MATH", Mia.getFaculty());
 
         Professor John = new Professor();
-        assertEquals(9002,John.getProfID());
+        assertEquals(9002, John.getProfID());
 
         John.setGender("Male");
-        assertEquals("Male",John.getGender());
+        assertEquals("Male", John.getGender());
     }
 
     @DisplayName("Admin test case")
@@ -49,9 +51,11 @@ public class PersonSuite {
         assertEquals("123 Ottawa St", Mia.getAddress());
 
         Admin John = new Admin();
-        assertEquals(102,John.getAdminID());
+        assertEquals(102, John.getAdminID());
 
         John.setName("John");
-        assertEquals("John",John.getName());
+        assertEquals("John", John.getName());
+        assertNotNull(John.getAddress());
+        assertEquals("", John.getAddress());
     }
 }
