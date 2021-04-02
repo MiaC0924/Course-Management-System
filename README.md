@@ -1,1 +1,58 @@
-# 3004Project
+# Comp3004 Project - Team 4
+
+### Team 4 member: ###
+Name          | Prefer        | Student Number | GitHub ID
+:------------ | :-----------: | :-------------:| :----------
+Wenwen Chen   | Mia           | 100882644      | MiaC0924
+Qinming Guo   | Allen         | 101085735      | qinmingguo
+Xiangfei Kong | Kevin         | 101117300      | DeusPio
+Chao Wu       | Charles       | 101042669      | ChaoWu0405
+
+---------
+### How to run the "HelloWorld" demo: ###
+1. clone repositories by HTTP URL <pre> https://github.com/MiaC0924/3004Project.git </pre>
+2. open "main" branch  
+   `$ git checkout main`
+3. run "CmsApplication.java", which could be found by  
+   `/3004Project/src/main/java/com/TeamProject/CmsApplication.java`
+4. open below link in your browser <pre>http://localhost:8080/hello</pre>
+
+--------
+### Introduction of classes packaging: ###
+1. Person  
+   - *Person*  
+   - Professor  
+   - Student  
+   - Admin
+   
+2. University  
+   - University  
+   - Department (ComputerScience, Mathematics, etc.)  
+   - Subject
+   
+3. Course - Abstract Factory Design Pattern  
+   - *CourseFactory*  
+      - CompFactory,  
+      - MathFactory, etc.
+   - *Lab*
+   - *Tutorial*
+   - *PreCondition*
+   - *Credit*
+   - Course
+   
+4. Evaluator - Visitor Design Pattern
+   - *Visitor*
+      - majorVisitor
+      - overallVisitor
+   - *Visitable*
+   
+5. DataAnalyst - Strategy/Decorator/Composite Design Pattern
+   - StrategyController
+   - *Strategy*
+      - DataStrategy
+      - AverageStrategy
+   - *CompositeStrategy*
+   - *DecoratorStrategy*
+      - OnlyMaleDecorator
+      - OnlyFemaleDecorator
+   - Data
