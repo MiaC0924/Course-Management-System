@@ -13,15 +13,15 @@ public class PersonSuite {
     void Student() {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
-        Student Mia = new Student("Mia","Female","123 Ottawa St",BOD,"MATH");
-        assertEquals(100000001, Mia.getStudentNumber());
-        assertEquals(BOD, Mia.getBirthDay());
+        Student mia = new Student("Mia","Female","123 Ottawa St",BOD,"MATH");
+        assertEquals(100000001, mia.getStudentNumber());
+        assertEquals(BOD, mia.getBirthDay());
 
-        Student John = new Student();
-        assertEquals(100000002, John.getStudentNumber());
+        Student john = new Student();
+        assertEquals(100000002, john.getStudentNumber());
 
-        John.setMajor("COMP");
-        assertEquals("COMP", John.getMajor());
+        john.setMajor("COMP");
+        assertEquals("COMP", john.getMajor());
     }
 
     @DisplayName("Professor test case")
@@ -29,16 +29,16 @@ public class PersonSuite {
     void Professor() {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
-        Professor Mia = new Professor("Mia","Female","123 Ottawa St",BOD,"MATH");
-        assertEquals(9001,Mia.getProfID());
-        assertEquals(BOD, Mia.getBirthDay());
-        assertEquals("MATH", Mia.getFaculty());
+        Professor mia = new Professor("Mia","Female","123 Ottawa St",BOD,"MATH");
+        assertEquals(9001,mia.getProfID());
+        assertEquals(BOD, mia.getBirthDay());
+        assertEquals("MATH", mia.getFaculty());
 
-        Professor John = new Professor();
-        assertEquals(9002, John.getProfID());
+        Professor john = new Professor();
+        assertEquals(9002, john.getProfID());
 
-        John.setGender("Male");
-        assertEquals("Male", John.getGender());
+        john.setGender("Male");
+        assertEquals("Male", john.getGender());
     }
 
     @DisplayName("Admin test case")
@@ -46,16 +46,16 @@ public class PersonSuite {
     void Admin() {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
-        Admin Mia = new Admin("Mia","Female","123 Ottawa St",BOD);
-        assertEquals(101,Mia.getAdminID());
-        assertEquals("123 Ottawa St", Mia.getAddress());
+        Admin mia = new Admin("Mia","Female","123 Ottawa St",BOD);
+        assertEquals(101,mia.getAdminID());
+        assertEquals("123 Ottawa St", mia.getAddress());
 
-        Admin John = new Admin();
-        assertEquals(102, John.getAdminID());
+        Admin john = new Admin();
+        assertEquals(102, john.getAdminID());
 
-        John.setName("John");
-        assertEquals("John", John.getName());
-        assertNotNull(John.getAddress());
-        assertEquals("", John.getAddress());
+        john.setName("John");
+        assertEquals("John", john.getName());
+        assertNotNull(john.getAddress());
+        assertEquals("", john.getAddress());
     }
 }
