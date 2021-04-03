@@ -6,9 +6,6 @@ import com.TeamProject.Person.Student;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CourseSuite {
