@@ -29,4 +29,8 @@ public abstract class Person {
     public String    getAddress() { return address; }
     public LocalDate getBirthDay(){ return birthDay;}
 
+    public String toString(){
+        return "Name: " + name + " Gender: " + gender;
+    }
+
 }
