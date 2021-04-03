@@ -44,4 +44,8 @@ public abstract class Person  implements Observer {
         return inputPw.equals(password);
     }
 
+    public String toString(){
+        return "Name: " + name + " Gender: " + gender;
+    }
+
 }
