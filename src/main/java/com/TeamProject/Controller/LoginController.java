@@ -13,6 +13,7 @@ public class LoginController {
     @RequestMapping("/user/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
+                        @RequestParam("btnradio") String btnradio,
                         Model model, HttpSession session){
 
         //need database

@@ -40,11 +40,20 @@
     <img class="mb-4" src="/img/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="btn-group mb-3" role="group" aria-label="Basic mixed styles example">
-      <button type="button" class="btn btn-danger">Left</button>
-      <button type="button" class="btn btn-warning">Middle</button>
-      <button type="button" class="btn btn-success">Right</button>
+
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  value="Student" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio1">Student</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Professor" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio2">Professor</label>
+
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" value="Admin" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio3">Admin</label>
     </div>
+
+
+
 
     <p style="color:red" th:text="${msg}"></p>
 
@@ -63,7 +72,7 @@
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017â€?2021</p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017ï¿½?2021</p>
   </form>
 </main>
 
