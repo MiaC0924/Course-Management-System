@@ -14,7 +14,8 @@ public class AdminLoginHandlerInterceptor implements HandlerInterceptor {
         String loginP = (String)request.getSession().getAttribute("loginP");
 
         if(!loginP.equals("Admin")){
-            response.sendRedirect("/404");
+            request.setAttribute("msg", "Not Allow Access");
+            request.getRequestDispatcher("/index.html").forward(request,response);
             return false;
         }else{
             return true;

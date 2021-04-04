@@ -15,7 +15,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 
         if(loginUser == null){
             request.setAttribute("msg", "Please login first");
-            request.getRequestDispatcher("index.html").forward(request,response);
+            request.getRequestDispatcher("/index.html").forward(request,response);
             return false;
         }else{
             return true;
