@@ -1,5 +1,7 @@
 package com.TeamProject.Person;
 
+import com.TeamProject.Observer.Subject;
+
 import java.time.LocalDate;
 
 public class Admin extends Person{
@@ -22,4 +24,10 @@ public class Admin extends Person{
     }
 
     public int getAdminID()    { return adminID;  }
+
+
+    @Override
+    public void update(Subject s) {
+        //NOTHING;
+    }
 }
