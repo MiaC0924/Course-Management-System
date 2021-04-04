@@ -9,12 +9,15 @@ public abstract class Course {
     PreCondition preCondition;
 
 
-    public void setName(String name) {
-        this.name = name;
+
+    public Course(int code) {
+        this.code = code;
     }
+
     abstract void create();
+
     public String toStirng(){
-        String r = name + "have "+tutorial+" and have "+preCondition;
+        String r = name + code + "have "+tutorial+" and have ";
         return r;
     }
 
@@ -22,7 +25,11 @@ public abstract class Course {
     public String getCourseName(){ return name + code; }
     public int    getCode()      { return code;         }
     public String getMajor() { return name; }
+    public PreCondition getPreCondition() { return preCondition; }
 
+    //setter
+    public void setMajor(String name) { this.name = name; }
+    public void setPreCondition(PreCondition preCondition) { this.preCondition = preCondition; }
 
     public boolean match(Course inputCourse){
         if(name == inputCourse.getMajor() && code == inputCourse.getCode())

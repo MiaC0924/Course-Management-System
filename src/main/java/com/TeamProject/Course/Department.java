@@ -2,19 +2,19 @@ package com.TeamProject.Course;
 
 public class Department extends CourseBuilding{
     @Override
-    protected Course makeCourse(String type) {
+    protected Course makeCourse(String type,int code) {
         Course theCourse = null;
 
-        if(type.equals("math")){
+        if(type.equals("MATH")){
             CourseFactory courseFactory = new MathFactory();
-            theCourse = new MathCourse(courseFactory);
-            theCourse.setName("math course");
+            theCourse = new MathCourse(courseFactory,code);
+            theCourse.setMajor("MATH");
         }
         else{
-            if(type.equals("comp")){
+            if(type.equals("COMP")){
                 CourseFactory courseFactory = new CompFactory();
-                theCourse = new CompCourse(courseFactory);
-                theCourse.setName("comp course");
+                theCourse = new CompCourse(courseFactory,code);
+                theCourse.setMajor("COMP");
             }
         }
         return theCourse;

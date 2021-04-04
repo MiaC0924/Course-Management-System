@@ -12,20 +12,26 @@ public class CourseSuite {
     @DisplayName("Course test case")
     @Test
     void Course() {
-        Course comp3004A = new Course("COMP", 3004);
-        Course comp3004B = new Course("COMP", 3004);
-        Course math2000  = new Course("MATH", 2000);
+        //Course comp3004A = new Course("COMP", 3004);
+        //Course comp3004B = new Course("COMP", 3004);
+        CourseBuilding department = new Department();
+        //Course object
+        Course math2107 = department.orderTheCourse("MATH",2107);
+        Course comp3004A = department.orderTheCourse("COMP",3004);
+        Course comp3004B = department.orderTheCourse("COMP",3004);
+        Course math1007 = department.orderTheCourse("MATH",1007);
+
 
         assertEquals("COMP3004", comp3004A.getCourseName());
         assertEquals(true, comp3004A.match(comp3004B));
-        assertEquals(false, comp3004A.match(math2000));
-        assertEquals("MATH", math2000.getMajor());
-        assertEquals(2000, math2000.getCode());
+        assertEquals(false, comp3004A.match(math2107));
+        assertEquals("MATH", math2107.getMajor());
+        assertEquals(2107, math2107.getCode());
 
-        comp3004A.addPreCondition(math2000);
+       // comp3004A.addPreCondition(math2000);
         ArrayList<Course> expect = new ArrayList<>();
-        expect.add(math2000);
-        assertEquals(expect, comp3004A.getPrecondition());
+        expect.add(math1007);
+        assertEquals(expect, math2107.getPreCondition().coursePre(2107));
     }
 
     @DisplayName("Section test case")
@@ -33,8 +39,11 @@ public class CourseSuite {
     void Section() {
         Student mia = new Student();
         Professor john = new Professor();
+        CourseBuilding department = new Department();
 
-        Course comp3004 = new Course("COMP", 3004);
+
+        Course comp3004 = department.orderTheCourse("COMP",3004);
+        //Course comp3004 = new Course("COMP", 3004);
         Term winter2021 = new Term(2021, "Winter");
         CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
 

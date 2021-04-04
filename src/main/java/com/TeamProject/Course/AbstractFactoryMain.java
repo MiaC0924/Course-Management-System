@@ -6,11 +6,12 @@ public class AbstractFactoryMain {
         //create the department object
         CourseBuilding department = new Department();
         //Course object
-        Course mathcourse = department.orderTheCourse("math");
-        System.out.println(mathcourse.toStirng());
+        Course mathcourse = department.orderTheCourse("MATH",2107);
+
+        System.out.println(mathcourse.getPreCondition().coursePre(mathcourse.getCode()).get(0).getCourseName());
 
 
-        Course compcourse = department.orderTheCourse("comp");
-        System.out.println(compcourse.toStirng());
+        //Course compcourse = department.orderTheCourse("comp",2000);
+        //System.out.println(compcourse.toStirng());
     }
 }
