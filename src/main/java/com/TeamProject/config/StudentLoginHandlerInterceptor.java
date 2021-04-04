@@ -7,14 +7,14 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LoginHandlerInterceptor implements HandlerInterceptor {
+public class StudentLoginHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //login success
-        String loginUser = (String)request.getSession().getAttribute("loginUser");
+        String loginP = (String)request.getSession().getAttribute("loginP");
 
-        if(loginUser == null){
-            request.setAttribute("msg", "Please login first");
+        if(!loginP.equals("Student")){
+            request.setAttribute("msg", "Not Allow Access");
             request.getRequestDispatcher("/index.html").forward(request,response);
             return false;
         }else{
