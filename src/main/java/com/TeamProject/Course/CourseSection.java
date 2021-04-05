@@ -44,6 +44,7 @@ public class CourseSection implements Subject {
 
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
+    public ArrayList<Observer> getObservers() { return observers; }
 
     public Professor getProfessor()            {
         Professor professor = null;
@@ -54,6 +55,7 @@ public class CourseSection implements Subject {
         }
         return professor;
     }
+
     public ArrayList<Student> getStudentList() {
         ArrayList<Student> student = new ArrayList<Student>();
         for(Observer o:observers){
@@ -78,12 +80,15 @@ public class CourseSection implements Subject {
 
     public void setState(int s){
         this.state=state;
-        notifyAllObserver();
     }
 
     @Override
     public void attachObserver(Observer o) {
+        if(observers.contains(o)){
+            return;
+        }
         observers.add(o);
+        o.update(this);
     }
 
     @Override

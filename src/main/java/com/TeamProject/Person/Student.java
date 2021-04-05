@@ -35,6 +35,7 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
+        courses = new ArrayList<CourseSection>();
     }
 
     //setters
@@ -42,12 +43,23 @@ public class Student extends Person implements Visitable {
     public void setMajorGPA(double gpa){ majorGPA = gpa; }
     public void setOverallGPA(double gpa){ overallGPA = gpa; }
     public void addFinalGrade(Character grade){ finalGrades.add(grade); }
+    public void addCourse(CourseSection s){
+        for(CourseSection c:courses){
+            if(c.getSectionID()==s.getSectionID()){
+                courses.remove(c);
+                courses.add(s);
+                return;
+            }
+        }
+        courses.add(s);
+    }
 
     //getters
     public int getStudentNumber(){ return studentNumber; }
     public String getMajor()     { return major;         }
     public double getMajorGPA()  { return majorGPA;      }
     public double getOverallGPA(){ return overallGPA;    }
+    public ArrayList<CourseSection> getCourses(){ return courses; }
     public ArrayList<Character> getFinalGrades(){ return finalGrades; }
 
     @Override
@@ -59,14 +71,12 @@ public class Student extends Person implements Visitable {
     @Override
     public void update(Subject s) {
         if(s instanceof CourseSection){
-            for(CourseSection c:courses){
-                if(c.getSectionID()==((CourseSection) s).getSectionID()){
-                    courses.remove(c);
-                    courses.add((CourseSection) s);
-                    return;
-                }
+            addCourse((CourseSection) s);
+        }
+        for(CourseSection c:courses){
+            if(c.getState()==-1){
+                courses.remove(c);
             }
-            courses.add((CourseSection) s);
         }
     }
 }

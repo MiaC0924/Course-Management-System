@@ -35,6 +35,7 @@ public class Professor extends Person implements Visitable{
         passRateOfCurr = 0;
         passRateOverAll = 0;
         ++countID;
+        course = new ArrayList<CourseSection>();
     }
 
     //setters
