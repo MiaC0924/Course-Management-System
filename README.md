@@ -56,3 +56,7 @@ Chao Wu       | Charles       | 101042669      | ChaoWu0405
       - OnlyMaleDecorator
       - OnlyFemaleDecorator
    - Data
+
+6. Observer - Observer Design Pattern
+   - *Observer*
+   - *Subject*
