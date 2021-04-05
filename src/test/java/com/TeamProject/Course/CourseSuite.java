@@ -14,12 +14,13 @@ public class CourseSuite {
     void Course() {
         //Course comp3004A = new Course("COMP", 3004);
         //Course comp3004B = new Course("COMP", 3004);
-        CourseBuilding department = new Department();
+        University university = new University("Carleton University");
+
         //Course object
-        Course math2107 = department.orderTheCourse("MATH",2107);
-        Course comp3004A = department.orderTheCourse("COMP",3004);
-        Course comp3004B = department.orderTheCourse("COMP",3004);
-        Course math1007 = department.orderTheCourse("MATH",1007);
+        Course math2107 = university.getDepartments().orderTheCourse("MATH",2107);
+        Course comp3004A = university.getDepartments().orderTheCourse("COMP",3004);
+        Course comp3004B = university.getDepartments().orderTheCourse("COMP",3004);
+        Course math1007 = university.getDepartments().orderTheCourse("MATH",1007);
 
 
         assertEquals("COMP3004", comp3004A.getCourseName());
@@ -31,7 +32,11 @@ public class CourseSuite {
        // comp3004A.addPreCondition(math2000);
         ArrayList<Course> expect = new ArrayList<>();
         expect.add(math1007);
-        assertEquals(expect, math2107.getPreCondition().coursePre(2107));
+
+        System.out.println(expect.get(0).getCourseName());
+        System.out.println(math2107.getPreCondition().coursePre(math2107.getCode()).get(0).getCourseName());
+        assertEquals(expect, math2107.getPreCondition().coursePre(math2107.getCode()));
+
     }
 
     @DisplayName("Section test case")
