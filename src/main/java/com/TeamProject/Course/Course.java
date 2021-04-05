@@ -2,28 +2,37 @@ package com.TeamProject.Course;
 
 import java.util.ArrayList;
 
-public class Course {
-    private String major;
+public abstract class Course {
+    private String name;
     private int code;
-    private ArrayList<Course> preCondition;
+    Tutorial tutorial;
+    PreCondition preCondition;
 
-    public Course(String inputMajor, int inputCode){
-        major = inputMajor;
-        code = inputCode;
-        preCondition = new ArrayList<Course>();
+
+
+    public Course(int code) {
+        this.code = code;
+    }
+
+    abstract void create();
+
+    public String toStirng(){
+        String r = name + code + "have "+tutorial+" and have ";
+        return r;
     }
 
     //getters
-    public String getCourseName(){ return major + code; }
+    public String getCourseName(){ return name + code; }
     public int    getCode()      { return code;         }
-    public String getMajor()     { return major;        }
-    public ArrayList<Course> getPrecondition() { return preCondition; }
+    public String getMajor() { return name; }
+    public PreCondition getPreCondition() { return preCondition; }
 
-    //setters
-    public void addPreCondition(Course c){ preCondition.add(c); }
+    //setter
+    public void setMajor(String name) { this.name = name; }
+    public void setPreCondition(PreCondition preCondition) { this.preCondition = preCondition; }
 
     public boolean match(Course inputCourse){
-        if(major == inputCourse.getMajor() && code == inputCourse.getCode())
+        if(name == inputCourse.getMajor() && code == inputCourse.getCode())
             return true;
         return false;
     }
