@@ -1,8 +1,10 @@
 package com.TeamProject.Person;
 
+import com.TeamProject.Observer.Observer;
+
 import java.time.LocalDate;
 
-public abstract class Person {
+public abstract class Person  implements Observer {
     protected String name, gender, address;
     protected LocalDate birthDay;
 

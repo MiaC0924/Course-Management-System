@@ -38,7 +38,6 @@ public class CourseSuite {
         Term winter2021 = new Term(2021, "Winter");
         CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
 
-        comp3004A.setProfessor(john);
         comp3004A.addStudent(mia);
         comp3004A.addGrade('A');
 

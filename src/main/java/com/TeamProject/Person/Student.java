@@ -1,7 +1,10 @@
 package com.TeamProject.Person;
 
+import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
+import com.TeamProject.Observer.Subject;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -12,6 +15,7 @@ public class Student extends Person implements Visitable {
     private int studentNumber;
     private String major;
     private ArrayList<Character> finalGrades = new ArrayList<>();
+    private ArrayList<CourseSection> courses;
     private double majorGPA, overallGPA;
 
     public Student(){
@@ -21,6 +25,7 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
+        courses = new ArrayList<CourseSection>();
     }
 
     public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputMajor){
@@ -30,6 +35,7 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
+        courses = new ArrayList<CourseSection>();
     }
 
     //setters
@@ -37,16 +43,40 @@ public class Student extends Person implements Visitable {
     public void setMajorGPA(double gpa){ majorGPA = gpa; }
     public void setOverallGPA(double gpa){ overallGPA = gpa; }
     public void addFinalGrade(Character grade){ finalGrades.add(grade); }
+    public void addCourse(CourseSection s){
+        for(CourseSection c:courses){
+            if(c.getSectionID()==s.getSectionID()){
+                courses.remove(c);
+                courses.add(s);
+                return;
+            }
+        }
+        courses.add(s);
+    }
 
     //getters
     public int getStudentNumber(){ return studentNumber; }
     public String getMajor()     { return major;         }
     public double getMajorGPA()  { return majorGPA;      }
     public double getOverallGPA(){ return overallGPA;    }
+    public ArrayList<CourseSection> getCourses(){ return courses; }
     public ArrayList<Character> getFinalGrades(){ return finalGrades; }
 
     @Override
     public double accept(Visitor visitor) {
         return visitor.visit(this);
+    }
+
+
+    @Override
+    public void update(Subject s) {
+        if(s instanceof CourseSection){
+            addCourse((CourseSection) s);
+        }
+        for(CourseSection c:courses){
+            if(c.getState()==-1){
+                courses.remove(c);
+            }
+        }
     }
 }
