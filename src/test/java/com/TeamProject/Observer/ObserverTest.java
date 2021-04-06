@@ -19,7 +19,6 @@ public class ObserverTest {
         University university = new University("Carleton University");
         Student s1 = new Student();
         Student s2 = new Student();
-        Student s3 = new Student();
         Professor p1 = new Professor();
         Admin a = new Admin();
         Term t = new Term(2020,"Fall");
@@ -37,7 +36,6 @@ public class ObserverTest {
 
         ArrayList<CourseSection> expects1 = new ArrayList<CourseSection>();
         ArrayList<CourseSection> expects2 = new ArrayList<CourseSection>();
-        ArrayList<CourseSection> expects3 = new ArrayList<CourseSection>();
 
         ArrayList<Observer> expectOs1 = new ArrayList<Observer>();
         ArrayList<Observer> expectOs2 = new ArrayList<Observer>();
@@ -46,18 +44,16 @@ public class ObserverTest {
         expects1.add(mathA);
         expects1.add(mathB);//[mathA,mathB]
         expects2.add(mathB);//[mathB]
-        //expects3 = [];
         expectOs1.add(s1);
         expectOs1.add(p1);
         expectOs1.add(a);//[s1,p1,a]
         expectOs2.add(s1);
         expectOs2.add(s2);//[s2,s1]
-        //expectOs3 = [];
 
         //check course correct store into observer;
-        assertEquals(expects1,s1.getCourses());//several added-in
-        assertEquals(expects2,s2.getCourses());//single added
-        assertEquals(expects3,s3.getCourses());//empty check
+        assertEquals(true,s1.containCourse(mathA));
+        assertEquals(true,s1.containCourse(mathB));//several added-in
+        assertEquals(true,s2.containCourse(mathB));//single added
 
         //check observer correct store into subject
         assertEquals(expectOs1,mathA.getObservers());//several added-in
@@ -67,9 +63,6 @@ public class ObserverTest {
         //Duplicate attach event;
         mathA.attachObserver(s1);
         mathA.attachObserver(s1);
-
-        //check duplicate course added-in;
-        assertEquals(expects1,s1.getCourses());
 
         //check duplicate observer added-in
         assertEquals(expectOs1,mathA.getObservers());//duplicate added-in no change.
@@ -117,8 +110,8 @@ public class ObserverTest {
         expectOs2.remove(s2);//[s2]
 
         //Simple detach event;
-        assertEquals(expects1,s1.getCourses());
-        assertEquals(expects2,s2.getCourses());
+        assertEquals(false,s1.containCourse(mathA));
+        assertEquals(false,s2.containCourse(mathB));
         assertEquals(expectOs1,mathA.getObservers());
         assertEquals(expectOs2,mathB.getObservers());
 
@@ -126,8 +119,6 @@ public class ObserverTest {
         mathA.detachObserver(s1);
         mathA.detachObserver(s1);
 
-        assertEquals(expects1,s1.getCourses());
-        assertEquals(expects2,s2.getCourses());
         assertEquals(expectOs1,mathA.getObservers());
         assertEquals(expectOs2,mathB.getObservers());
     }

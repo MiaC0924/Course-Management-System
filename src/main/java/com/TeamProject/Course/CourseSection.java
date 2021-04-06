@@ -35,12 +35,13 @@ public class CourseSection implements Subject {
 
         observers = new ArrayList<Observer>();
         gradeList = new ArrayList<>();
+        inputTerm.add(this);
     }
 
     //getters
     public int getSectionID()      { return sectionID; }
     public String getSectionName() { return course.getCourseName() + section; }
-    public String getTerm()        { return term.toString(); }
+    public Term getTerm()        { return term; }
 
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
