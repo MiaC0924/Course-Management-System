@@ -25,17 +25,17 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
-        courses = new ArrayList<CourseSection>();
+        courses = new ArrayList<>();
     }
 
-    public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputMajor){
-        super(inputName, inputGender, inputAddress, inputDOB);
+    public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputPW, String inputMajor){
+        super(inputName, inputGender, inputAddress, inputDOB, inputPW);
         studentNumber  = countID;
         major = inputMajor;
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
-        courses = new ArrayList<CourseSection>();
+        courses = new ArrayList<>();
     }
 
     //setters

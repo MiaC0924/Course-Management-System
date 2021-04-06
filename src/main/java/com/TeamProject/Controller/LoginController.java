@@ -1,5 +1,6 @@
 package com.TeamProject.Controller;
 
+import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 public class LoginController {
     @Autowired
     private StudentDao stuDao;
+    private AdminDao   admDao;
 
 
     @RequestMapping("/user/login")
@@ -29,7 +31,6 @@ public class LoginController {
         if("123456".equals(password)){
             session.setAttribute("loginUser",username);
             session.setAttribute("loginP",btnradio);
-            //stuDao.addStudent(new Student("Gura","F",username, LocalDate.now(),"MATH"));
 
             return "redirect:/"+ btnradio + "/main";
         }else{
@@ -37,4 +38,10 @@ public class LoginController {
             return "index";
         }
     }
+
+//    private boolean valid(String mood){
+//        if(mood == "Admin"){
+//
+//        }
+//    }
 }

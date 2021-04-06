@@ -13,7 +13,7 @@ public class PersonSuite {
     void Student() {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
-        Student mia = new Student("Mia","Female","123 Ottawa St",BOD,"MATH");
+        Student mia = new Student("Mia","Female","123 Ottawa St", BOD, "","MATH");
         assertEquals(100000001, mia.getStudentNumber());
         assertEquals(BOD, mia.getBirthDay());
 
@@ -29,7 +29,7 @@ public class PersonSuite {
     void Professor() {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
-        Professor mia = new Professor("Mia","Female","123 Ottawa St",BOD,"MATH");
+        Professor mia = new Professor("Mia","Female","123 Ottawa St", BOD, "","MATH");
         assertEquals(9001,mia.getProfID());
         assertEquals(BOD, mia.getBirthDay());
         assertEquals("MATH", mia.getFaculty());
@@ -46,16 +46,16 @@ public class PersonSuite {
     void Admin() {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
-        Admin mia = new Admin("Mia","Female","123 Ottawa St",BOD);
-        assertEquals(101,mia.getAdminID());
-        assertEquals("123 Ottawa St", mia.getAddress());
+        Admin mia = new Admin("Mia","Female","mia@fack.com", BOD, "");
+        assertEquals("101",mia.getAdminID());
+        assertEquals("mia@fack.com", mia.getEmail());
 
         Admin john = new Admin();
-        assertEquals(102, john.getAdminID());
+        assertEquals("102", john.getAdminID());
 
         john.setName("John");
         assertEquals("John", john.getName());
-        assertNotNull(john.getAddress());
-        assertEquals("", john.getAddress());
+        assertNotNull(john.getEmail());
+        assertEquals("", john.getEmail());
     }
 }
