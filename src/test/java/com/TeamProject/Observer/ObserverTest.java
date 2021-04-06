@@ -16,16 +16,17 @@ public class ObserverTest {
     @DisplayName("Observer test")
     @Test
     void ObserverAttachTest(){
+        University university = new University("Carleton University");
         Student s1 = new Student();
         Student s2 = new Student();
         Student s3 = new Student();
         Professor p1 = new Professor();
         Admin a = new Admin();
         Term t = new Term(2020,"Fall");
-        Course c = new Course("MATH",1001);
-        CourseSection mathA = new CourseSection(c,'A',t);
-        CourseSection mathB = new CourseSection(c,'B',t);
-        CourseSection mathC = new CourseSection(c,'C',t);
+        Course math = university.getDepartments().orderTheCourse("MATH",2004);
+        CourseSection mathA = new CourseSection(math,'A',t);
+        CourseSection mathB = new CourseSection(math,'B',t);
+        CourseSection mathC = new CourseSection(math,'C',t);
 
         //Simple attach event
         mathA.attachObserver(s1);
@@ -75,16 +76,15 @@ public class ObserverTest {
     }
 
     void ObserverDetachTest(){
+        University university = new University("Carleton University");
         Student s1 = new Student();
         Student s2 = new Student();
-        Student s3 = new Student();
         Professor p1 = new Professor();
         Admin a = new Admin();
         Term t = new Term(2020,"Fall");
-        Course c = new Course("MATH",1001);
-        CourseSection mathA = new CourseSection(c,'A',t);
-        CourseSection mathB = new CourseSection(c,'B',t);
-        CourseSection mathC = new CourseSection(c,'C',t);
+        Course math = university.getDepartments().orderTheCourse("MATH",3004);
+        CourseSection mathA = new CourseSection(math,'A',t);
+        CourseSection mathB = new CourseSection(math,'B',t);
 
         //Simple attach event
         mathA.attachObserver(s1);
