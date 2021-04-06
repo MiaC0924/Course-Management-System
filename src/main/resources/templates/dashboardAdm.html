@@ -6,11 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Dashboard Template · Bootstrap v5.0</title>
+    <title>Dashboard</title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 
     <style>
@@ -36,8 +36,8 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Admin</a>
+    <a class="navbar-brand fab fa-accessible-icon"> School</a>
+    <a class="navbar-brand  me-0 px-3" href="#">Admin</a>
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">[[${session.loginUser}]]</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -56,41 +56,36 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
-                            <span data-feather="home"></span>
-                            Create a course
+                        <a class="nav-link active" aria-current="page" href="/Admin/Courses">
+                            <i class="fas fa-book"></i>
+                            Courses
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file"></span>
-                            Orders
+                        <a class="nav-link" href="/Admin/Section">
+                            <i class="fas fa-project-diagram"></i>
+                            Section
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="shopping-cart"></span>
-                            Products
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="users"></span>
+                        <a class="nav-link" href="/Admin/Students">
+                            <i class="fas fa-user-graduate"></i>
                             Students
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Reports
+                        <a class="nav-link" href="/Admin/Professor">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            Professor
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Integrations
+                        <a class="nav-link" href="/Admin/Reports">
+                            <i class="fas fa-chart-bar"></i>
+                            Reports
                         </a>
                     </li>
+
                 </ul>
 
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -132,7 +127,18 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Dashboard</h1>
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Create a course</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/index.html'">  Create a course</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Delete a course</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Create a student</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Delete a student</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Create a professor</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Delete a professor</button>
+
+
+
+            <button type="submit" class="btn btn-primary">Submit Changes</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='https://www.baidu.com'"> Cancel </button>
+
 
             <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
@@ -270,7 +276,8 @@
 
 
 <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script th:src="@{javascript/dashboard.js}"></script>
 </body>
 </html>
