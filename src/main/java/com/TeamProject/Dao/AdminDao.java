@@ -37,9 +37,19 @@ public class AdminDao {
     }
 
     //update admin by adminID
-    public void updateTest(Admin admin) {
+    public void updateById(Admin admin) {
         Query adminQuery = new Query(Criteria.where("id").is(admin.getAdminID()));
-        Update update = new Update().set("name", admin.getName()).set("address", admin.getEmail());
+        Update update = new Update().set("name", admin.getName()).set("gender", admin.getGender());
+        //update the first result
+        mongoTemplate.updateFirst(adminQuery, update, Admin.class);
+        //update all found results
+        // mongoTemplate.updateMulti(adminQuery, update, Admin.class);
+    }
+
+    //update admin by email
+    public void updateByEmail(Admin admin) {
+        Query adminQuery = new Query(Criteria.where("email").is(admin.getEmail()));
+        Update update = new Update().set("name", admin.getName()).set("gender", admin.getGender());
         //update the first result
         mongoTemplate.updateFirst(adminQuery, update, Admin.class);
         //update all found results
