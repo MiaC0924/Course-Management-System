@@ -7,6 +7,7 @@ import com.TeamProject.Person.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CourseSection implements Subject {
@@ -21,7 +22,7 @@ public class CourseSection implements Subject {
     private String building;
 
     private ArrayList<Observer> observers;
-    private Map<String,Character> gradeList;
+    private Map<Student,Character> gradeList;
     private ArrayList<Deliverable> deliverables;
     private int state;
 
@@ -39,6 +40,7 @@ public class CourseSection implements Subject {
 
         observers = new ArrayList<Observer>();
         deliverables = new ArrayList<Deliverable>();
+        gradeList = new HashMap<Student,Character>();
         inputTerm.add(this);
     }
 
@@ -74,7 +76,7 @@ public class CourseSection implements Subject {
         }
         return student;
     }
-    public Map<String,Character> getGradeList() { return gradeList;   }
+    public Map<Student,Character> getGradeList() { return gradeList;   }
     public Character getGradeByName(String name){ return gradeList.get(name); }
 
     //setters
@@ -89,8 +91,8 @@ public class CourseSection implements Subject {
         }
     }
     public void addStudent(Student inputStu)      { observers.add(inputStu); }
-    public void addGrade(String Name,Character inputGrade)    { gradeList.put(Name,inputGrade); }
-    public void setGrade(String Name,Character inputGrade)    { gradeList.replace(Name,inputGrade); }
+    public void addGrade(Student s,Character inputGrade)    { gradeList.put(s,inputGrade); }
+    public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public void addDeliverable(LocalDate inputLocalDate)      { deliverables.add(new Deliverable(inputLocalDate)); }
 
 

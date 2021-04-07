@@ -53,7 +53,7 @@ public class CourseSuite {
         CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
 
         comp3004A.addStudent(mia);
-        comp3004A.addGrade(mia.getName(),'A');
+        comp3004A.addGrade(mia,'A');
 
         ArrayList<Student> expectStudent = new ArrayList<>();
         ArrayList<Character> expectGrade = new ArrayList<>();

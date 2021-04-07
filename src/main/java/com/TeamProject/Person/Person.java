@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public abstract class Person  implements Observer {
     protected String name, gender, address;
     protected LocalDate birthDay;
-    protected int username;
+    protected String username;
     protected String password;
 
     public Person(){
@@ -15,7 +15,7 @@ public abstract class Person  implements Observer {
         gender = "";
         address = "";
         birthDay = LocalDate.parse("9999-01-01");
-        username = 1;
+        username = "1";
         password = "123456";
     }
 
@@ -25,7 +25,7 @@ public abstract class Person  implements Observer {
         address  = inputAddress;
         birthDay = inputDOB;
 
-        username = 1;
+        username = "1";
         password = "123456";
     }
 
@@ -33,8 +33,9 @@ public abstract class Person  implements Observer {
     public void setGender(String inputGender)  { gender = inputGender;   }
     public void setAddress(String inputAddress){ address = inputAddress; }
     public void setPassword(String inputPassword){ password = inputPassword; }
+    public void setUsername(String inputUserName){ username = inputUserName; }
 
-    public int       getUsername(){ return username; }
+    public String    getUsername(){ return username; }
     public String    getName()    { return name;    }
     public String    getGender()  { return gender;  }
     public String    getAddress() { return address; }

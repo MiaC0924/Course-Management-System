@@ -1,5 +1,6 @@
 package com.TeamProject.Person;
 
+import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.Term;
 import com.TeamProject.Evaluator.Visitable;
@@ -8,6 +9,8 @@ import com.TeamProject.Observer.Subject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 //TODO: The ArrayList finalGrades should be changed to an ArrayList of CourseSection,
 // the list of final grade should be read from these sections
@@ -15,7 +18,7 @@ public class Student extends Person implements Visitable {
     private static int countID = 100000001;
     private int studentNumber;
     private String major;
-    private ArrayList<Character> finalGrades = new ArrayList<>();
+    private Map<CourseSection,Character> finalGrades;
     private ArrayList<Term> terms;
     private double majorGPA, overallGPA;
 
@@ -26,6 +29,7 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
+        finalGrades = new HashMap<CourseSection,Character>();
         terms = new ArrayList<Term>();
     }
 
@@ -43,7 +47,7 @@ public class Student extends Person implements Visitable {
     public void setMajor(String inputMajor){ major = inputMajor; }
     public void setMajorGPA(double gpa){ majorGPA = gpa; }
     public void setOverallGPA(double gpa){ overallGPA = gpa; }
-    public void addFinalGrade(Character grade){ finalGrades.add(grade); }
+    public void addFinalGrade(CourseSection c,Character grade){ finalGrades.put(c,grade); }
     public void addCourse(CourseSection s){
         for(Term t:terms){
             if(t.sameTerm(s.getTerm())){
@@ -82,7 +86,7 @@ public class Student extends Person implements Visitable {
     public double getMajorGPA()  { return majorGPA;      }
     public double getOverallGPA(){ return overallGPA;    }
     public ArrayList<Term> getTerms(){ return terms; }
-    public ArrayList<Character> getFinalGrades(){ return finalGrades; }
+    public Map<CourseSection,Character> getFinalGrades(){ return finalGrades; }
 
     @Override
     public double accept(Visitor visitor) {
