@@ -47,11 +47,11 @@ public class PersonSuite {
         LocalDate BOD = LocalDate.of(2000, 1, 1);
 
         Admin mia = new Admin("Mia","Female","mia@fack.com", BOD, "");
-        assertEquals("101",mia.getAdminID());
+        assertEquals(101,mia.getAdminID());
         assertEquals("mia@fack.com", mia.getEmail());
 
         Admin john = new Admin();
-        assertEquals("102", john.getAdminID());
+        assertEquals(102, john.getAdminID());
 
         john.setName("John");
         assertEquals("John", john.getName());

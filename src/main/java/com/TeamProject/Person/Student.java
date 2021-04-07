@@ -1,6 +1,7 @@
 package com.TeamProject.Person;
 
 import com.TeamProject.Course.CourseSection;
+import com.TeamProject.Course.Term;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
 import com.TeamProject.Observer.Subject;
@@ -15,7 +16,7 @@ public class Student extends Person implements Visitable {
     private int studentNumber;
     private String major;
     private ArrayList<Character> finalGrades = new ArrayList<>();
-    private ArrayList<CourseSection> courses;
+    private ArrayList<Term> terms;
     private double majorGPA, overallGPA;
 
     public Student(){
@@ -25,7 +26,7 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
-        courses = new ArrayList<>();
+        terms = new ArrayList<Term>();
     }
 
     public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputPW, String inputMajor){
@@ -35,7 +36,7 @@ public class Student extends Person implements Visitable {
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
-        courses = new ArrayList<>();
+        terms = new ArrayList<Term>();
     }
 
     //setters
@@ -44,14 +45,22 @@ public class Student extends Person implements Visitable {
     public void setOverallGPA(double gpa){ overallGPA = gpa; }
     public void addFinalGrade(Character grade){ finalGrades.add(grade); }
     public void addCourse(CourseSection s){
-        for(CourseSection c:courses){
-            if(c.getSectionID()==s.getSectionID()){
-                courses.remove(c);
-                courses.add(s);
+        for(Term t:terms){
+            if(t.sameTerm(s.getTerm())){
+                for(CourseSection c:t.getCourse()){
+                    if(c.getSectionName()==s.getSectionName()){
+                        t.remove(c);
+                        t.add(s);
+                        return;
+                    }
+                }
+                t.add(s);
                 return;
             }
         }
-        courses.add(s);
+        Term added = new Term(s.getTerm().getYear(),s.getTerm().getSeason());
+        added.add(s);
+        terms.add(added);
     }
 
     //getters
@@ -59,7 +68,7 @@ public class Student extends Person implements Visitable {
     public String getMajor()     { return major;         }
     public double getMajorGPA()  { return majorGPA;      }
     public double getOverallGPA(){ return overallGPA;    }
-    public ArrayList<CourseSection> getCourses(){ return courses; }
+    public ArrayList<Term> getTerms(){ return terms; }
     public ArrayList<Character> getFinalGrades(){ return finalGrades; }
 
     @Override
@@ -73,10 +82,19 @@ public class Student extends Person implements Visitable {
         if(s instanceof CourseSection){
             addCourse((CourseSection) s);
         }
-        for(CourseSection c:courses){
-            if(c.getState()==-1){
-                courses.remove(c);
+    }
+
+    //Test
+    public boolean containCourse(CourseSection c){
+        for(Term t:terms){
+            if(t.sameTerm(c.getTerm())){
+                for(CourseSection s:t.getCourse()){
+                    if(c.equals(s)){
+                        return true;
+                    }
+                }
             }
         }
+        return false;
     }
 }
