@@ -38,9 +38,9 @@ public class CourseSection implements Subject {
         room = 0;
         building = "";
 
-        observers = new ArrayList<Observer>();
-        deliverables = new ArrayList<Deliverable>();
-        gradeList = new HashMap<Student,Character>();
+        observers = new ArrayList<>();
+        deliverables = new ArrayList<>();
+        gradeList = new HashMap<>();
         inputTerm.add(this);
     }
 
@@ -51,6 +51,7 @@ public class CourseSection implements Subject {
 
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
+    public String getMajor() { return course.getMajor(); }
     public ArrayList<Observer> getObservers() { return observers; }
     public ArrayList<Deliverable> getDeliverables() { return deliverables; }
     public int getState(){
@@ -68,7 +69,7 @@ public class CourseSection implements Subject {
     }
 
     public ArrayList<Student> getStudentList() {
-        ArrayList<Student> student = new ArrayList<Student>();
+        ArrayList<Student> student = new ArrayList<>();
         for(Observer o:observers){
             if(o instanceof Student){
                 student.add((Student) o);
@@ -97,7 +98,7 @@ public class CourseSection implements Subject {
 
 
     public void setState(int s){
-        this.state=state;
+        state = s;
     }
 
     @Override

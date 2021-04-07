@@ -1,7 +1,11 @@
 package com.TeamProject.Evaluator;
 
+import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
+
+import java.util.Map;
+import java.util.HashMap;
 
 public class OverallVisitor implements Visitor{
 
@@ -50,21 +54,13 @@ public class OverallVisitor implements Visitor{
             inputStu.setMajorGPA(output);
             return output;
         }else {
-            for (Character grade : inputStu.getFinalGrades()) {
-                if (grade == 'A') {
-                    output += 4.0;
-                } else if (grade == 'B') {
-                    output += 3.0;
-                } else if (grade == 'C') {
-                    output += 2.0;
-                } else if (grade == 'D') {
-                    output += 1.0;
-                } else if (grade == 'F') {
-                    output += 0.0;
-                }
+            Map<CourseSection,Character> gradeMap = inputStu.getFinalGrades();
+
+            for (CourseSection key : gradeMap.keySet()) {
+                output += gradeCalculation(gradeMap.get(key));
             }
 
-            output = output / inputStu.getFinalGrades().size();
+            output = output / gradeMap.size();
 
             //means this student has all course fail
             if(output == 0){
@@ -74,5 +70,18 @@ public class OverallVisitor implements Visitor{
 
         inputStu.setMajorGPA(output);
         return output;
+    }
+
+    public double gradeCalculation(Character grade){
+        if (grade == 'A') {
+            return 4.0;
+        } else if (grade == 'B') {
+            return 3.0;
+        } else if (grade == 'C') {
+            return 2.0;
+        } else if (grade == 'D') {
+            return 1.0;
+        }
+        return 0.0;
     }
 }

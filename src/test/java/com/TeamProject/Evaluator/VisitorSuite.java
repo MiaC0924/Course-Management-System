@@ -48,4 +48,28 @@ public class VisitorSuite {
         double expect = (4.0+3.0+2.0)/3.0;
         assertEquals(expect, mia.accept(evaluator));
     }
+
+    @DisplayName("Major visitor test case of student")
+    @Test
+    void MajorStu(){
+        MajorVisitor evaluator = new MajorVisitor();
+
+        University university = new University("Carleton University");
+        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
+        Course math2000 = university.getDepartments().orderTheCourse("MATH",2000);
+        Term winter2021 = new Term(2021, "Winter");
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
+        CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
+        CourseSection comp3004C = new CourseSection(comp3004, 'B', winter2021);
+        CourseSection math2000A = new CourseSection(math2000, 'A', winter2021);
+        Student mia = new Student();
+        mia.setMajor("MATH");
+        mia.addFinalGrade(comp3004A,'C');
+        mia.addFinalGrade(comp3004B,'A');
+        mia.addFinalGrade(comp3004C,'B');
+        mia.addFinalGrade(math2000A,'A');
+
+        double expect = 4.0;
+        assertEquals(expect, mia.accept(evaluator));
+    }
 }
