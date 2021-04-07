@@ -63,6 +63,19 @@ public class Student extends Person implements Visitable {
         terms.add(added);
     }
 
+    public void removeCourse(CourseSection s){
+        for(Term t:terms){
+            if(t.sameTerm(s.getTerm())){
+                for(CourseSection c:t.getCourse()){
+                    if(c.getSectionName()==s.getSectionName()){
+                        t.remove(c);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     //getters
     public int getStudentNumber(){ return studentNumber; }
     public String getMajor()     { return major;         }
