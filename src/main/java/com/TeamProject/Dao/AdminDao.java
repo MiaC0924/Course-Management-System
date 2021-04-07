@@ -1,6 +1,8 @@
 package com.TeamProject.Dao;
 
 import com.TeamProject.Person.Admin;
+import com.TeamProject.Person.Student;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -15,15 +17,22 @@ public class AdminDao {
     private MongoTemplate mongoTemplate;
 
     //create
-    public void addAdmin(Admin admin){
-        if(findAdminById(admin.getAdminID()) == null) {
+    public boolean addAdmin(Admin admin){
+        if(findAdminByEmail(admin.getEmail()) == null) {
             mongoTemplate.save(admin);
+            return true;
         }
+        return false;
     }
 
     //find admin by adminID
     public Admin findAdminById (String id){
         Query adminQuery = new Query(Criteria.where("adminId").is(id));
+        return mongoTemplate.findOne(adminQuery, Admin.class);
+    }
+
+    public Admin findAdminByEmail (String email){
+        Query adminQuery = new Query(Criteria.where("email").is(email));
         return mongoTemplate.findOne(adminQuery, Admin.class);
     }
 
@@ -38,8 +47,8 @@ public class AdminDao {
     }
 
     //delete admin by adminID
-    public void deleteAdminById (int id){
-        Query adminQuery=new Query(Criteria.where("id").is(id));
+    public void deleteAdminByEmail (String email){
+        Query adminQuery=new Query(Criteria.where("email").is(email));
         mongoTemplate.remove(adminQuery, Admin.class);
     }
 
