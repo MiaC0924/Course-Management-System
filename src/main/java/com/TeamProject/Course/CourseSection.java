@@ -4,7 +4,11 @@ import com.TeamProject.Observer.Observer;
 import com.TeamProject.Observer.Subject;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CourseSection implements Subject {
     private static int count  = 100001;
@@ -18,7 +22,8 @@ public class CourseSection implements Subject {
     private String building;
 
     private ArrayList<Observer> observers;
-    private ArrayList<Character>  gradeList;
+    private Map<Student,Character> gradeList;
+    private ArrayList<Deliverable> deliverables;
     private int state;
 
     public CourseSection(Course inputCourse, Character inputSection, Term inputTerm){
@@ -34,7 +39,8 @@ public class CourseSection implements Subject {
         building = "";
 
         observers = new ArrayList<Observer>();
-        gradeList = new ArrayList<>();
+        deliverables = new ArrayList<Deliverable>();
+        gradeList = new HashMap<Student,Character>();
         inputTerm.add(this);
     }
 
@@ -46,6 +52,10 @@ public class CourseSection implements Subject {
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
     public ArrayList<Observer> getObservers() { return observers; }
+    public ArrayList<Deliverable> getDeliverables() { return deliverables; }
+    public int getState(){
+        return state;
+    }
 
     public Professor getProfessor()            {
         Professor professor = null;
@@ -66,18 +76,25 @@ public class CourseSection implements Subject {
         }
         return student;
     }
-    public ArrayList<Character> getGradeList() { return gradeList;   }
+    public Map<Student,Character> getGradeList() { return gradeList;   }
+    public Character getGradeByName(String name){ return gradeList.get(name); }
 
     //setters
     public void setBuilding(String inputBuilding) { building = inputBuilding;  }
     public void setRoom(int inputRoom)            { room = inputRoom;          }
-//    public void setProfessor(Professor inputProf) { professor = inputProf;     }
-    public void addStudent(Student inputStu)      { observers.add(inputStu); }
-    public void addGrade(Character inputGrade)    { gradeList.add(inputGrade); }
-
-    public int getState(){
-        return state;
+    public void setProfessor(Professor inputProf) {
+        for(Observer o:observers){
+            if(o instanceof Professor){
+                detachObserver(o);
+                attachObserver(inputProf);
+            }
+        }
     }
+    public void addStudent(Student inputStu)      { observers.add(inputStu); }
+    public void addGrade(Student s,Character inputGrade)    { gradeList.put(s,inputGrade); }
+    public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
+    public void addDeliverable(LocalDate inputLocalDate)      { deliverables.add(new Deliverable(inputLocalDate)); }
+
 
     public void setState(int s){
         this.state=state;
