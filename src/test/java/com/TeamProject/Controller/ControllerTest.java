@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-
 public class ControllerTest {
     University university = new University("Carleton University");
     LocalDate BOD = LocalDate.of(2000, 1, 1);
@@ -24,12 +23,14 @@ public class ControllerTest {
     @DisplayName("User case 12 test")
     @Test
     public void UserCase12() {
+
         /* Student attempts to register a course
          * Actor: Student, Admin staff
          * Precondition: The student has log in, and the system is operational
          * */
         Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "Computer Science");
         RegisterController c = new RegisterController();
+
         Term winter2021 = new Term(2021, "Winter");
         CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
         CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);//Pre: Course is create in list.

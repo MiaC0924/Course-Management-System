@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
-
 @Controller
 public class LoginController {
     @Autowired
     private StudentDao stuDao;
-
 
     @RequestMapping("/user/login")
     public String login(@RequestParam("username") String username,

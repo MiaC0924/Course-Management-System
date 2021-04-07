@@ -33,8 +33,8 @@ public class Student extends Person implements Visitable {
         terms = new ArrayList<Term>();
     }
 
-    public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputMajor){
-        super(inputName, inputGender, inputAddress, inputDOB);
+    public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputPW, String inputMajor){
+        super(inputName, inputGender, inputAddress, inputDOB, inputPW);
         studentNumber  = countID;
         major = inputMajor;
         majorGPA = 0;

@@ -26,17 +26,17 @@ public class Professor extends Person implements Visitable{
         passRateOfCurr = 0;
         passRateOverAll = 0;
         ++countID;
-        terms = new ArrayList<Term>();
+        course = new ArrayList<>();
     }
 
-    public Professor(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputFaculty){
-        super(inputName, inputGender, inputAddress, inputDOB);
+    public Professor(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputPW, String inputFaculty){
+        super(inputName, inputGender, inputAddress, inputDOB, inputPW);
         profID  = countID;
         faculty = inputFaculty;
         passRateOfCurr = 0;
         passRateOverAll = 0;
         ++countID;
-        terms = new ArrayList<Term>();
+        course = new ArrayList<>();
     }
 
     //setters
