@@ -2,6 +2,8 @@ package com.TeamProject.Controller;
 
 import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.StudentDao;
+import com.TeamProject.Person.Admin;
+import com.TeamProject.Person.AdminRepository;
 import com.TeamProject.Person.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,7 @@ public class LoginController {
     @Autowired
     private StudentDao stuDao;
     private AdminDao   admDao;
-
+    private AdminRepository adminRepository;
 
     @RequestMapping("/user/login")
     public String login(@RequestParam("username") String username,
@@ -27,9 +29,8 @@ public class LoginController {
                         @RequestParam("btnradio") String btnradio,
                         Model model, HttpSession session){
 
-        //need database
-        if("123456".equals(password)){
-            session.setAttribute("loginUser",username);
+        if(valid(btnradio, username, password)){
+            session.setAttribute("loginId",username);
             session.setAttribute("loginP",btnradio);
 
             return "redirect:/"+ btnradio + "/main";
@@ -39,9 +40,16 @@ public class LoginController {
         }
     }
 
-//    private boolean valid(String mood){
-//        if(mood == "Admin"){
+    private boolean valid(String mood, String username, String inputPW) {
+        if (mood == "Admin") {
+            Admin adm = admDao.findAdminById(username);
+            if (adm != null && adm.checkPassword(inputPW))
+                return true;
+//        } else if (mood == "Student"){
 //
-//        }
-//    }
+//        } else if (mood == "Professor"){
+
+        }
+        return false;
+    }
 }

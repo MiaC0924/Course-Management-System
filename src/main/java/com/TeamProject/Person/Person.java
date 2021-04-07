@@ -34,4 +34,10 @@ public abstract class Person  implements Observer {
     public String    getEmail() { return email; }
     public LocalDate getBirthDay(){ return birthDay;}
 
+    public boolean checkPassword(String inputPw) {
+        if(inputPw.equals(password))
+            return true;
+        return false;
+    }
+
 }
