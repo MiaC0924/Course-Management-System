@@ -16,23 +16,20 @@ public class StudentDao {
     private MongoTemplate mongoTemplate;
 
     public boolean addStudent(Student stu){
-        if(findStudentByEmail(stu.getAddress())!= null){
+        if(findStudentByStuId(stu.getStudentNumber())!= null){
             return false;
         }
-        mongoTemplate.save(stu)
+        mongoTemplate.save(stu);
         return true;
     }
-    public Student findStudentByEmail(String email){
-        if(email == null){
-            return null;
-        }
-        Query query = new Query((Criteria.where("address").is(email)));
+    public Student findStudentByStuId(int id){
+        Query query = new Query((Criteria.where("studentNumber").is(id)));
         Student stu = mongoTemplate.findOne(query , Student.class);
         return stu;
     }
 
-    public boolean updateStudentMajorGPAByEmail(String email,Double majorGPA){
-        Query query = new Query(Criteria.where("address").is(email));
+    public boolean updateStudentMajorGPAByStuId(int id,Double majorGPA){
+        Query query = new Query(Criteria.where("studentNumber").is(id));
         Update update = new Update().set("majorGPA",majorGPA);
 
         UpdateResult result = mongoTemplate.updateFirst(query,update,Student.class);
@@ -44,8 +41,8 @@ public class StudentDao {
         }
     }
 
-    public void deleteStudentByEmail(String email){
-        Query query = new Query(Criteria.where("address").is(email));
+    public void deleteStudentByStuId(int id){
+        Query query = new Query(Criteria.where("studentNumber").is(id));
         mongoTemplate.remove(query,Student.class);
     }
 
