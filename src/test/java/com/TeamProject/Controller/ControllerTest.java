@@ -28,7 +28,7 @@ public class ControllerTest {
          * Actor: Student, Admin staff
          * Precondition: The student has log in, and the system is operational
          * */
-        Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "Computer Science");
+        Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "","Computer Science");
         RegisterController c = new RegisterController();
 
         Term winter2021 = new Term(2021, "Winter");
@@ -82,7 +82,7 @@ public class ControllerTest {
          * Actor: Student, Admin staff
          * Precondition: The student has log in, and the system is operational
          * */
-        Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "Computer Science");
+        Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "", "Computer Science");
         RegisterController c = new RegisterController();
         DropController dc = new DropController();
         Term fall2020 = new Term(2020, "Fall");//It is valid to drop
@@ -140,7 +140,7 @@ public class ControllerTest {
          * Actor: Student
          * Precondition: The student has log in, and the system is operational
          * */
-        Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "Computer Science");
+        Student s1 = new Student("Allen", "Male", "XXX,XXX,XXX", BOD, "", "Computer Science");
         //The student selects a course from his/her list of registered courses
         // The system shows there is no registered course
 
@@ -175,7 +175,7 @@ public class ControllerTest {
          * */
         University university = new University("Carleton University");
         LocalDate BOD = LocalDate.of(2000, 1, 1);
-        Professor p1 = new Professor("Allen", "Male", "XXX,XXX,XXX", BOD, "Computer Science");
+        Professor p1 = new Professor("Allen", "Male", "XXX,XXX,XXX", BOD, "", "Computer Science");
         Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);
         Term fall2021 = new Term(2021, "Fall");
         CourseSection comp3005A = new CourseSection(comp3005, 'A', fall2021);

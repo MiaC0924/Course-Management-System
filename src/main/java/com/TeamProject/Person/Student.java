@@ -1,8 +1,9 @@
 package com.TeamProject.Person;
 
-import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.Term;
+import com.TeamProject.Evaluator.MajorVisitor;
+import com.TeamProject.Evaluator.OverallVisitor;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
 import com.TeamProject.Observer.Subject;
@@ -10,38 +11,47 @@ import com.TeamProject.Observer.Subject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
-//TODO: The ArrayList finalGrades should be changed to an ArrayList of CourseSection,
-// the list of final grade should be read from these sections
 public class Student extends Person implements Visitable {
     private static int countID = 100000001;
     private int studentNumber;
     private String major;
-    private Map<CourseSection,Character> finalGrades;
-    private ArrayList<Term> terms;
+    private ArrayList<Term> terms; //terms contain courseSections
+    private HashMap<CourseSection, Character> finalGrades;
     private double majorGPA, overallGPA;
+    private OverallVisitor overallVisitor;
+    private MajorVisitor majorVisitor;
 
     public Student(){
         super();
-        studentNumber  = countID;
+        studentNumber = countID;
         major = "";
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
-        finalGrades = new HashMap<CourseSection,Character>();
-        terms = new ArrayList<Term>();
+        terms = new ArrayList<>();
+        finalGrades = new HashMap<>();
     }
 
-    public Student(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputPW, String inputMajor){
-        super(inputName, inputGender, inputAddress, inputDOB, inputPW);
-        studentNumber  = countID;
+    public Student(String inputName, String inputGender, String inputEmail,
+                   LocalDate inputDOB, String inputPW, String inputMajor){
+        super(inputName, inputGender, inputEmail, inputDOB, inputPW);
+        studentNumber = countID;
         major = inputMajor;
         majorGPA = 0;
         overallGPA = 0;
         ++countID;
-        terms = new ArrayList<Term>();
+        terms = new ArrayList<>();
+        finalGrades = new HashMap<>();
     }
+
+    //getters
+    public int getStudentNumber(){ return studentNumber; }
+    public String getMajor()     { return major;         }
+    public double getMajorGPA()  { return majorGPA;      }
+    public double getOverallGPA(){ return overallGPA;    }
+    public ArrayList<Term> getTerms(){ return terms; }
+    public HashMap<CourseSection,Character> getFinalGrades(){ return finalGrades; }
 
     //setters
     public void setMajor(String inputMajor){ major = inputMajor; }
@@ -51,42 +61,34 @@ public class Student extends Person implements Visitable {
     public void addCourse(CourseSection s){
         for(Term t:terms){
             if(t.sameTerm(s.getTerm())){
-                for(CourseSection c:t.getCourse()){
-                    if(c.getSectionName()==s.getSectionName()){
-                        t.remove(c);
-                        t.add(s);
+                for(CourseSection c:t.getCourseSections()){
+                    if(c.getSectionName().equals(s.getSectionName())){
+                        t.removeCourseSections(c);
+                        t.addCourseSections(s);
                         return;
                     }
                 }
-                t.add(s);
+                t.addCourseSections(s);
                 return;
             }
         }
         Term added = new Term(s.getTerm().getYear(),s.getTerm().getSeason());
-        added.add(s);
+        added.addCourseSections(s);
         terms.add(added);
     }
 
     public void removeCourse(CourseSection s){
         for(Term t:terms){
             if(t.sameTerm(s.getTerm())){
-                for(CourseSection c:t.getCourse()){
-                    if(c.getSectionName()==s.getSectionName()){
-                        t.remove(c);
+                for(CourseSection c:t.getCourseSections()){
+                    if(c.getSectionName().equals(s.getSectionName())){
+                        t.removeCourseSections(c);
                         return;
                     }
                 }
             }
         }
     }
-
-    //getters
-    public int getStudentNumber(){ return studentNumber; }
-    public String getMajor()     { return major;         }
-    public double getMajorGPA()  { return majorGPA;      }
-    public double getOverallGPA(){ return overallGPA;    }
-    public ArrayList<Term> getTerms(){ return terms; }
-    public Map<CourseSection,Character> getFinalGrades(){ return finalGrades; }
 
     @Override
     public double accept(Visitor visitor) {
@@ -105,7 +107,7 @@ public class Student extends Person implements Visitable {
     public boolean containCourse(CourseSection c){
         for(Term t:terms){
             if(t.sameTerm(c.getTerm())){
-                for(CourseSection s:t.getCourse()){
+                for(CourseSection s:t.getCourseSections()){
                     if(c.equals(s)){
                         return true;
                     }
