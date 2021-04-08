@@ -12,7 +12,7 @@ public class OverallVisitor implements Visitor{
     public OverallVisitor(){ }
 
     /** Pass rate of all semester course(s) of this professor
-     * output = 0 -- no course for this semester
+     * output = 0 -- never taught a course
      * output > 0 -- at least one student pass
      * output < 0 -- all student fail in his/her course(s)
      * */
@@ -20,21 +20,19 @@ public class OverallVisitor implements Visitor{
     public double visit(Professor inputProf) {
         double output = 0.0;
 
-        if (inputProf.getPassRateCol().isEmpty()){
-            inputProf.setPassRateOfCurr(output);
-            return output;
-        }else {
-            for (double rate : inputProf.getPassRateCol()) {
+        if (!inputProf.getPassRates().isEmpty()){
+            Map<CourseSection, Double> passRates = inputProf.getPassRates();
+
+            for (double rate: passRates.values()) {
                 output += rate;
             }
 
-            output = output / inputProf.getPassRateCol().size();
-
-            //means this processor has no student passed in his/her courses
-            if(output == 0){
+            if(output == 0){ //all student fail in his/her course(s)
                 output = -1.0;
+            } else { //at least one student pass
+                output = output / passRates.size();
             }
-        }
+        } //else never taught a course
 
         inputProf.setPassRateOfCurr(output);
         return output;
@@ -50,23 +48,19 @@ public class OverallVisitor implements Visitor{
     public double visit(Student inputStu) {
         double output = 0.0;
 
-        if (inputStu.getFinalGrades().isEmpty()){
-            inputStu.setMajorGPA(output);
-            return output;
-        }else {
+        if (!inputStu.getFinalGrades().isEmpty()){ 
             Map<CourseSection,Character> gradeMap = inputStu.getFinalGrades();
 
-            for (CourseSection key : gradeMap.keySet()) {
-                output += gradeCalculation(gradeMap.get(key));
+            for (Character grade: gradeMap.values()) {
+                output += gradeCalculation(grade);
             }
 
-            output = output / gradeMap.size();
-
-            //means this student has all course fail
-            if(output == 0){
+            if(output == 0){ //fail all the taken courses
                 output = -1.0;
+            } else { //pass at least one course
+                output = output / gradeMap.size();
             }
-        }
+        } //else never took a course
 
         inputStu.setMajorGPA(output);
         return output;

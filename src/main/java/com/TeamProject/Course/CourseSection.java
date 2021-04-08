@@ -41,7 +41,7 @@ public class CourseSection implements Subject {
         observers = new ArrayList<>();
         deliverables = new ArrayList<>();
         gradeList = new HashMap<>();
-        inputTerm.add(this);
+        inputTerm.addCourseSections(this);
     }
 
     //getters

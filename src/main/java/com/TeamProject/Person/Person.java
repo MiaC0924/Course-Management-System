@@ -8,7 +8,6 @@ public abstract class Person  implements Observer {
     protected String name, gender, email, password;
     protected LocalDate birthDay;
     protected String username;
-    protected String password;
 
     public Person(){
         name = "";
@@ -42,9 +41,7 @@ public abstract class Person  implements Observer {
     public LocalDate getBirthDay(){ return birthDay;}
 
     public boolean checkPassword(String inputPw) {
-        if(inputPw.equals(password))
-            return true;
-        return false;
+        return inputPw.equals(password);
     }
 
 }

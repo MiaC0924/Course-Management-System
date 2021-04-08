@@ -2,22 +2,25 @@ package com.TeamProject.Person;
 
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.Term;
+import com.TeamProject.Evaluator.MajorVisitor;
+import com.TeamProject.Evaluator.OverallVisitor;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
 import com.TeamProject.Observer.Subject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-//TODO: The ArrayList passRateCol should be changed to an ArrayList of CourseSection
-// the list of pass rate should be read from these sections
 public class Professor extends Person implements Visitable{
     private static int countID = 9001;
     private int profID;
     private String faculty;
-    private ArrayList<Double> passRateCol = new ArrayList<>();
-    private ArrayList<Term> terms;
+    private ArrayList<Term> terms; //terms contain courseSections
+    private HashMap<CourseSection, Double> passRates;
     private double passRateOfCurr, passRateOverAll;
+    private OverallVisitor overallVisitor;
+    private MajorVisitor majorVisitor;
 
     public Professor(){
         super();
@@ -26,43 +29,21 @@ public class Professor extends Person implements Visitable{
         passRateOfCurr = 0;
         passRateOverAll = 0;
         ++countID;
-        course = new ArrayList<>();
+        terms = new ArrayList<>();
+        passRates = new HashMap<>();
     }
 
-    public Professor(String inputName, String inputGender, String inputAddress, LocalDate inputDOB, String inputPW, String inputFaculty){
-        super(inputName, inputGender, inputAddress, inputDOB, inputPW);
+    public Professor(String inputName, String inputGender, String inputEmail,
+                     LocalDate inputDOB, String inputPW, String inputFaculty){
+        super(inputName, inputGender, inputEmail, inputDOB, inputPW);
         profID  = countID;
         faculty = inputFaculty;
-        passRateOfCurr = 0;
+        passRateOfCurr  = 0;
         passRateOverAll = 0;
         ++countID;
-        course = new ArrayList<>();
+        terms = new ArrayList<>();
+        passRates = new HashMap<>();
     }
-
-    //setters
-    public void setFaculty(String inputFaculty){ faculty = inputFaculty; }
-    public void setPassRateOfCurr(double passRate){ passRateOfCurr = passRate; }
-    public void setPassRateOverAll(double passRate){ passRateOverAll = passRate; }
-    public void addPassRates(double passRate){ passRateCol.add(passRate); }
-    public void addCourse(CourseSection s){
-        for(Term t:terms){
-            if(t.sameTerm(s.getTerm())){
-                for(CourseSection c:t.getCourse()){
-                    if(c.getSectionName()==s.getSectionName()){
-                        t.remove(c);
-                        t.add(s);
-                        return;
-                    }
-                }
-                t.add(s);
-                return;
-            }
-        }
-        Term added = new Term(s.getTerm().getYear(),s.getTerm().getSeason());
-        added.add(s);
-        terms.add(added);
-    }
-
 
     //getters
     public int getProfID()    { return profID;  }
@@ -70,7 +51,33 @@ public class Professor extends Person implements Visitable{
     public double getPassRateOfCurr (){ return passRateOfCurr;  }
     public double getPassRateOverAll(){ return passRateOverAll; }
     public ArrayList<Term> getTerms(){ return terms; }
-    public ArrayList<Double> getPassRateCol(){ return passRateCol; }
+    public HashMap<CourseSection, Double> getPassRates(){ return passRates; }
+
+    //setters
+    public void setFaculty(String inputFaculty){ faculty = inputFaculty; }
+    public void setPassRateOfCurr(double passRate){ passRateOfCurr = passRate; }
+    public void setPassRateOverAll(double passRate){ passRateOverAll = passRate; }
+    public void addPassRates(CourseSection c, Double rate){ passRates.put(c, rate); }
+    public void addTerm(Term t){ terms.add(t); }
+
+    public void addSection(CourseSection s){
+        for(Term t:terms){
+            if(t.sameTerm(s.getTerm())){
+                for(CourseSection c:t.getCourseSections()){
+                    if(c.getSectionName().equals(s.getSectionName())){
+                        t.removeCourseSections(c);
+                        t.addCourseSections(s);
+                        return;
+                    }
+                }
+                t.addCourseSections(s);
+                return;
+            }
+        }
+        Term added = new Term(s.getTerm().getYear(),s.getTerm().getSeason());
+        added.addCourseSections(s);
+        terms.add(added);
+    }
 
     @Override
     public double accept(Visitor visitor) {
@@ -80,7 +87,7 @@ public class Professor extends Person implements Visitable{
     @Override
     public void update(Subject s) {
         if(s instanceof CourseSection){
-            addCourse((CourseSection) s);
+            addSection((CourseSection) s);
         }
     }
 }
