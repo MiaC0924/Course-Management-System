@@ -14,8 +14,8 @@ import java.time.LocalDate;
 
 @Controller
 public class LoginController {
-    @Autowired
-    private StudentDao stuDao;
+  //  @Autowired
+   // private StudentDao stuDao;
 
     @RequestMapping("/user/login")
     public String login(@RequestParam("username") String username,
