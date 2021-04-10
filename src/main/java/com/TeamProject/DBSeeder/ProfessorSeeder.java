@@ -37,12 +37,11 @@ public class ProfessorSeeder implements CommandLineRunner {
 
         Term jpTerm0 = new Term(2021, "Winter");
         Term jpTerm1 = new Term(2021, "Summer");
-
         //jpTerm.addCourseSections(comp3004A);
 
         jp.addTerm(jpTerm0);
         jp.addTerm(jpTerm1);
-        jp.addPassRates(comp3004A, 0.6);
+        //jp.addPassRates(comp3004A, 0.6);
 
         Professor matthew = new Professor(
                 "Matthew",
