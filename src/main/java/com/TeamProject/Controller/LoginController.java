@@ -2,6 +2,7 @@ package com.TeamProject.Controller;
 
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Student;
+import com.TeamProject.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 public class LoginController {
   //  @Autowired
    // private StudentDao stuDao;
+    private StudentService studentService;
 
 
     @RequestMapping("/user/login")
