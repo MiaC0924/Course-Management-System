@@ -7,11 +7,13 @@ import com.TeamProject.Evaluator.OverallVisitor;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
 import com.TeamProject.Observer.Subject;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Document(collection = "Professor_table")
 public class Professor extends Person implements Visitable{
     private static int countID = 9001;
     private int profID;
@@ -48,15 +50,13 @@ public class Professor extends Person implements Visitable{
     //getters
     public int getProfID()    { return profID;  }
     public String getFaculty(){ return faculty; }
-    public double getPassRateOfCurr (){ return passRateOfCurr;  }
-    public double getPassRateOverAll(){ return passRateOverAll; }
     public ArrayList<Term> getTerms(){ return terms; }
     public HashMap<CourseSection, Double> getPassRates(){ return passRates; }
 
     //setters
     public void setFaculty(String inputFaculty){ faculty = inputFaculty; }
     public void setPassRateOfCurr(double passRate){ passRateOfCurr = passRate; }
-    public void setPassRateOverAll(double passRate){ passRateOverAll = passRate; }
+    public void setPassRateOverall(double passRate){ passRateOverAll = passRate; }
     public void addPassRates(CourseSection c, Double rate){ passRates.put(c, rate); }
     public void addTerm(Term t){ terms.add(t); }
 
@@ -82,6 +82,16 @@ public class Professor extends Person implements Visitable{
     @Override
     public double accept(Visitor visitor) {
         return visitor.visit(this);
+    }
+
+    public double getPassRateOfCurr (){
+        OverallVisitor calculator = new OverallVisitor();
+        return this.accept(calculator);
+    }
+
+    public double getPassRateOverAll(){
+        MajorVisitor calculator = new MajorVisitor();
+        return this.accept(calculator);
     }
 
     @Override

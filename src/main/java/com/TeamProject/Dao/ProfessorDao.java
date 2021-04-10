@@ -1,5 +1,6 @@
 package com.TeamProject.Dao;
 
+import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Person.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -35,7 +36,7 @@ public class ProfessorDao {
     }
 
     //update
-    public void updateById(Professor prof) {
+    public void updatePersonalInfoById(Professor prof) {
         Query query = new Query(Criteria.where("id").is(prof.getProfID()));
         Update update = new Update().set("name", prof.getName()).set("gender", prof.getGender());
         //update the first result
@@ -44,7 +45,7 @@ public class ProfessorDao {
         // mongoTemplate.updateMulti(query, update, prof.class);
     }
 
-    public void updateByEmail(Professor prof) {
+    public void updatePersonalInfoByEmail(Professor prof) {
         Query query = new Query(Criteria.where("email").is(prof.getEmail()));
         Update update = new Update().set("name", prof.getName()).set("gender", prof.getGender());
         //update the first result
@@ -53,9 +54,33 @@ public class ProfessorDao {
         // mongoTemplate.updateMulti(query, update, prof.class);
     }
 
+    public void updateFacultyById(int id, String inputFaculty){
+        Query query = new Query(Criteria.where("profId").is(id));
+        Update update = new Update().set("faculty", inputFaculty);
+        mongoTemplate.updateFirst(query, update, Professor.class);
+    }
+
+    //TODO
+    public void addCourseSectionByProfId(int id, CourseSection inputCS){
+
+    }
+
     //delete
     public void deleteProfByEmail (String email){
         Query query = new Query(Criteria.where("email").is(email));
         mongoTemplate.remove(query, Professor.class);
     }
+
+    //pass rate
+//    public double getOverallPassRateById (int id){
+//        Query query = new Query(Criteria.where("profId").is(id));
+//        Professor prof = mongoTemplate.findOne(query, Professor.class);
+//        return prof.getPassRateOverAll();
+//    }
+//
+//    public double getCurrentTermPassRateById (int id){
+//        Query query = new Query(Criteria.where("profId").is(id));
+//        Professor prof = mongoTemplate.findOne(query, Professor.class);
+//        return prof.getPassRateOfCurr();
+//    }
 }
