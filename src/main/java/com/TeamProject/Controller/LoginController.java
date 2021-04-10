@@ -51,7 +51,7 @@ public class LoginController {
 //
             comp3004A.addStudent(stu);
             comp3004A.addGrade(stu,'A');
-//            stu.addCourse(comp3004A);
+            stu.addCourse(comp3004A);
 //
 //           // stuDao.deleteStudentByStuId(100000001);
             stuDao.addStudent(stu);

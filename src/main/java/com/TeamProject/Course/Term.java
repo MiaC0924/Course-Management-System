@@ -1,8 +1,9 @@
 package com.TeamProject.Course;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Term {
+public class Term implements Serializable {
     private int    year;
     private String season;
     private ArrayList<CourseSection> sections;
