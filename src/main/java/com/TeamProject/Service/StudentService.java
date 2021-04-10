@@ -1,7 +1,6 @@
 package com.TeamProject.Service;
 
-import com.TeamProject.Course.CourseSection;
-import com.TeamProject.Course.Term;
+import com.TeamProject.Course.*;
 import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Professor;
@@ -30,14 +29,40 @@ public class StudentService {
         }
     }
 
-    public void registerCourse(){
+    public boolean registerCourse(int id,int year,String season, Character section,String Course,int code){
+        Term term = new Term(year,season);
+        Student stu = studentDao.findStudentByStuId(id);
+        if(validRegisterPeriod(term)){
+            CourseBuilding department = new Department();
+            Course course = department.orderTheCourse("COMP",3004);
+            CourseSection courseSection = new CourseSection(course,section,term);
+            //courseSection.attachObserver(stu);
+            studentDao.addCourseByStuId(id,courseSection);
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
-    public void dropCourse(){
-
+    public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
+        Term term = new Term(year,season);
+        Student stu = studentDao.findStudentByStuId(id);
+        if(validRegisterPeriod(term)){
+            CourseBuilding department = new Department();
+            Course course = department.orderTheCourse(majorcode,3004);
+            CourseSection courseSection = new CourseSection(course,section,term);
+            //courseSection.attachObserver(stu);
+            studentDao.deleteCourseByStuId(id,courseSection);
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public void submit(){
+    public void submitDeliver(){
 
     }
 
@@ -48,11 +73,6 @@ public class StudentService {
         }else{
             return false;
         }
-    }
-
-    public boolean assignCourse(Professor p, CourseSection c){
-        c.attachObserver(p);
-        return true;
     }
 
     public boolean validRegisterPeriod(Term t){
@@ -68,5 +88,4 @@ public class StudentService {
             return false;
         }
     }
-
 }
