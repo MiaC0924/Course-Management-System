@@ -1,5 +1,6 @@
-package com.TeamProject.Person;
+package com.TeamProject.DBSeeder;
 
+import com.TeamProject.Person.Admin;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

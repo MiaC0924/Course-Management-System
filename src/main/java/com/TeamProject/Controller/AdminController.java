@@ -2,7 +2,7 @@ package com.TeamProject.Controller;
 
 import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Person.Admin;
-import com.TeamProject.Person.AdminRepository;
+import com.TeamProject.DBSeeder.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

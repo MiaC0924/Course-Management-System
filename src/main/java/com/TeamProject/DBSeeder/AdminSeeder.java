@@ -1,5 +1,6 @@
-package com.TeamProject.Person;
+package com.TeamProject.DBSeeder;
 
+import com.TeamProject.Person.Admin;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;

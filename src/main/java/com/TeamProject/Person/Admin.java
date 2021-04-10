@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Document(collection = "Administer_table")
+@Document(collection = "Admin_table")
 public class Admin extends Person{
     private static int countID = 101;
     @Id

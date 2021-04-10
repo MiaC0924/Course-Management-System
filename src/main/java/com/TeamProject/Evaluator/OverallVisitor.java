@@ -34,7 +34,7 @@ public class OverallVisitor implements Visitor{
             }
         } //else never taught a course
 
-        inputProf.setPassRateOfCurr(output);
+        inputProf.setPassRateOverall(output);
         return output;
     }
 
@@ -62,7 +62,7 @@ public class OverallVisitor implements Visitor{
             }
         } //else never took a course
 
-        inputStu.setMajorGPA(output);
+        inputStu.setOverallGPA(output);
         return output;
     }
 
