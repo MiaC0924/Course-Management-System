@@ -1,5 +1,6 @@
 package com.TeamProject.Dao;
 
+
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Person.Professor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class ProfessorDao {
     }
 
     //update
+
     public void updatePersonalInfoById(Professor prof) {
         Query query = new Query(Criteria.where("id").is(prof.getProfID()));
         Update update = new Update().set("name", prof.getName()).set("gender", prof.getGender());
@@ -54,6 +56,7 @@ public class ProfessorDao {
         // mongoTemplate.updateMulti(query, update, prof.class);
     }
 
+
     public void updateFacultyById(int id, String inputFaculty){
         Query query = new Query(Criteria.where("profId").is(id));
         Update update = new Update().set("faculty", inputFaculty);
@@ -71,6 +74,7 @@ public class ProfessorDao {
         mongoTemplate.remove(query, Professor.class);
     }
 
+
     //pass rate
 //    public double getOverallPassRateById (int id){
 //        Query query = new Query(Criteria.where("profId").is(id));
@@ -83,4 +87,5 @@ public class ProfessorDao {
 //        Professor prof = mongoTemplate.findOne(query, Professor.class);
 //        return prof.getPassRateOfCurr();
 //    }
+
 }
