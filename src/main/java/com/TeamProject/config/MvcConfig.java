@@ -17,13 +17,22 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/Admin/main").setViewName("dashboardAdm");
         registry.addViewController("/404").setViewName("404Page");
         registry.addViewController("/testD").setViewName("dashboard");
+
+        //Admin Course
         registry.addViewController("/Admin/Courses").setViewName("coursesAdm");
+        registry.addViewController("/Admin/Courses/Create").setViewName("createCourseAdmin");
+        registry.addViewController("/Admin/Courses/Delete").setViewName("deleteCourseAdmin");
+        //Admin Person
+        registry.addViewController("/Admin/Person").setViewName("404Page");
+        registry.addViewController("/Admin/Person/Create").setViewName("createPersonAdmin");
+        registry.addViewController("/Admin/Person/Delete").setViewName("deletePersonAdmin");
+
     }
 
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-       //registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/index.html","/","/user/login","/img/**","/css/*","/javascript/**");
+       registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/index.html","/","/user/login","/img/**","/css/*","/javascript/**");
        registry.addInterceptor(new StudentLoginHandlerInterceptor()).addPathPatterns("/Student/**");
        registry.addInterceptor(new ProfessorLoginHandlerInterceptor()).addPathPatterns("/Professor/**");
        registry.addInterceptor(new AdminLoginHandlerInterceptor()).addPathPatterns("/Admin/**");
