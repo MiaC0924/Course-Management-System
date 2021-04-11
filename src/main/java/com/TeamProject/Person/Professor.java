@@ -7,6 +7,7 @@ import com.TeamProject.Evaluator.OverallVisitor;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
 import com.TeamProject.Observer.Subject;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 @Document(collection = "Professor_table")
 public class Professor extends Person implements Visitable{
     private static int countID = 9001;
+    @Id
     private int profID;
     private String faculty;
     private ArrayList<Term> terms; //terms contain courseSections

@@ -19,23 +19,21 @@ public class StudentDao {
     public void addStudent(Student stu){
         mongoTemplate.save(stu);
     }
+
     public Student findStudentByStuId(int id){
         Query query = new Query((Criteria.where("studentNumber").is(id)));
-        Student stu = mongoTemplate.findOne(query , Student.class);
-        return stu;
+        return mongoTemplate.findOne(query , Student.class);
     }
 
     public boolean updateStudentMajorGPAByStuId(int id,Double majorGPA){
-        Query query = new Query(Criteria.where("studentNumber").is(id));
-        Update update = new Update().set("majorGPA",majorGPA);
-
-        UpdateResult result = mongoTemplate.updateFirst(query,update,Student.class);
-
-        if(result != null){
+        Student stu = findStudentByStuId(id);
+        if(stu != null) {
+            Query query = new Query(Criteria.where("studentNumber").is(id));
+            Update update = new Update().set("majorGPA", majorGPA);
+            mongoTemplate.updateFirst(query, update, Student.class);
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
     public void addStudentCourseSectionByStuId(int id, CourseSection cs){
@@ -52,4 +50,11 @@ public class StudentDao {
         mongoTemplate.remove(query,Student.class);
     }
 
+    //TODO
+    public void addCourseByStuId(int id, CourseSection courseSection) {
+    }
+
+    //TODO
+    public void deleteCourseByStuId(int id, CourseSection courseSection) {
+    }
 }
