@@ -21,12 +21,12 @@ public class StudentService {
     public boolean applyForCreation(String email,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
         //need boolean addStudentApplications(e,g,d,p,m){} in adminDao
-        if(adminDao.addStudentApplications(email,gender,dob,pw,major)){
-            return true;
-        }
-        else{
+       // if(adminDao.addStudentApplications(email,gender,dob,pw,major)){
+       //     return true;
+       // }
+       // else{
             return false;
-        }
+       // }
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String Course,int code){
@@ -37,7 +37,7 @@ public class StudentService {
             Course course = department.orderTheCourse("COMP",3004);
             CourseSection courseSection = new CourseSection(course,section,term);
             //courseSection.attachObserver(stu);
-            studentDao.addCourseByStuId(id,courseSection);
+           // studentDao.addCourseByStuId(id,courseSection);
             return true;
         }
         else{
@@ -54,7 +54,7 @@ public class StudentService {
             Course course = department.orderTheCourse(majorcode,3004);
             CourseSection courseSection = new CourseSection(course,section,term);
             //courseSection.attachObserver(stu);
-            studentDao.deleteCourseByStuId(id,courseSection);
+          //  studentDao.deleteCourseByStuId(id,courseSection);
             return true;
         }
         else{
