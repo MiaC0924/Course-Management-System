@@ -6,12 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.82.0">
-    <title>Dashboard Template · Bootstrap v5.0</title>
+    <title>Dashboard</title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
 
 
     <style>
@@ -31,14 +30,14 @@
     </style>
 
 
-    <!--     Custom styles for this template -->
-    <!--     <link href="dashboard.css" rel="stylesheet"> -->
+    <!-- Custom styles for this template -->
+    <!-- <link href="dashboard.css" rel="stylesheet"> -->
 </head>
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand fab fa-accessible-icon"> School</a>
-    <a class="navbar-brand  me-0 px-3" href="#">Professor</a>
+    <a class="navbar-brand  me-0 px-3" href="#">Admin</a>
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">[[${session.loginUser}]]</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -57,31 +56,37 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Professor/Dashboard">
+                        <a class="nav-link active" aria-current="page" href="/Admin/Dashboard">
                             <i class="fas fa-home"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Professor/Deliverable">
+                        <a class="nav-link active" aria-current="page" href="/Admin/Courses">
                             <i class="fas fa-book"></i>
-                            Deliverable
+                            Courses
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Professor/Grades">
+                        <a class="nav-link" href="/Admin/Section">
                             <i class="fas fa-project-diagram"></i>
-                            Grades
+                            Section
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Professor/Account">
+                        <a class="nav-link" href="/Admin/Students">
                             <i class="fas fa-user-graduate"></i>
-                            Account
+                            Students
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Professor/Reports">
+                        <a class="nav-link" href="/Admin/Professor">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            Professor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Reports">
                             <i class="fas fa-chart-bar"></i>
                             Reports
                         </a>
@@ -96,6 +101,7 @@
                     </a>
                 </h6>
                 <ul class="nav flex-column mb-2">
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="file-text"></span>
@@ -124,94 +130,47 @@
             </div>
         </nav>
 
-
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Create Deliverable</h1>
+                <h1 class="h2">Delete a Person</h1>
             </div>
-
-            <h2>Section title</h2>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Course</th>
-                        <th>Code</th>
-                        <th>Section</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                        <td>visual</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>data</td>
-                        <td>rich</td>
-                        <td>dashboard</td>
-                    </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
             <form class="was-validated">
-                <h5>Select Course</h5>
-                <div class="form-group row">
-                    <label for= "course" class="col-1 col-form-label">Course</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="major" class="form-control" id ="course" placeholder="COMP" required>
-                    </div>
+
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  value="Student" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">Student</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Professor" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">Professor</label>
                 </div>
 
                 <div class="form-group row">
-                    <label for="Code" class="col-1 col-form-label">Code</label>
+                    <label for= "Pid" class="col-1 col-form-label">No.</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="code" class="form-control" id = "Code" placeholder="1000" required>
+                        <input style="margin:10px" type="text" name="major" class="form-control" id ="Pid" placeholder="XXX" required>
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="Section" class="col-1 col-form-label">Section</label>
-                    <div class="col-1">
-                        <input style="margin:10px" type="text" name="section" class="form-control" id = "Section" placeholder="A" required>
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="deliver_name" class="col-1 col-form-label">DeliverableName</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="section" class="form-control" id = "deliver_name" placeholder="A" required>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                        <label class="form-check-label" for="invalidCheck2">
+                            Confirm the information
+                        </label>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="deadline" class="col-1 col-form-label">Deadline</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="date" name="section" class="form-control" id = "deadline" placeholder="A" required>
-                    </div>
                 </div>
+                <button style="margin:10px" class=" btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit"> Delete a Person </button>
             </form>
-
-            <button class="btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Create </button>
         </main>
     </div>
 </div>
 
 
 <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
 </body>
 </html>
