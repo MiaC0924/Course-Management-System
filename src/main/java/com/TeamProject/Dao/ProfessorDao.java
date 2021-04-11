@@ -27,7 +27,7 @@ public class ProfessorDao {
 
     //find prof
     public Professor findProfById (int id){
-        Query query = new Query(Criteria.where("profId").is(id));
+        Query query = new Query(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query, Professor.class);
     }
 
@@ -58,7 +58,7 @@ public class ProfessorDao {
 
 
     public void updateFacultyById(int id, String inputFaculty){
-        Query query = new Query(Criteria.where("profId").is(id));
+        Query query = new Query(Criteria.where("id").is(id));
         Update update = new Update().set("faculty", inputFaculty);
         mongoTemplate.updateFirst(query, update, Professor.class);
     }
@@ -77,13 +77,13 @@ public class ProfessorDao {
 
     //pass rate
 //    public double getOverallPassRateById (int id){
-//        Query query = new Query(Criteria.where("profId").is(id));
+//        Query query = new Query(Criteria.where("id").is(id));
 //        Professor prof = mongoTemplate.findOne(query, Professor.class);
 //        return prof.getPassRateOverAll();
 //    }
 //
 //    public double getCurrentTermPassRateById (int id){
-//        Query query = new Query(Criteria.where("profId").is(id));
+//        Query query = new Query(Criteria.where("id").is(id));
 //        Professor prof = mongoTemplate.findOne(query, Professor.class);
 //        return prof.getPassRateOfCurr();
 //    }

@@ -23,7 +23,7 @@ public class CourseSection implements Subject {
     private String building;
 
     private ArrayList<Observer> observers;
-    private Map<Student,Character> gradeList;
+    private Map<Student, Character> gradeList;
     private ArrayList<Deliverable> deliverables;
     private int state;
 
@@ -45,11 +45,9 @@ public class CourseSection implements Subject {
         gradeList = new HashMap<>();
         inputTerm.addCourseSections(this);
     }
+
     public boolean sameTerm(Term t){
-        if(cYear == t.getYear() && cSeason.equals(t.getSeason())){
-            return true;
-        }
-        return false;
+        return cYear == t.getYear() && cSeason.equals(t.getSeason());
     }
 
 
@@ -88,7 +86,7 @@ public class CourseSection implements Subject {
         return student;
     }
     public Map<Student,Character> getGradeList() { return gradeList;   }
-    public Character getGradeByName(String name){ return gradeList.get(name); }
+    //public Character getGradeByName(String name){ return gradeList.get(name); }
 
     //setters
     public void setBuilding(String inputBuilding) { building = inputBuilding;  }

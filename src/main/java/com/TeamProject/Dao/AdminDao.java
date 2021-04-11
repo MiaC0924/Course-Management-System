@@ -25,7 +25,7 @@ public class AdminDao {
 
     //find admin
     public Admin findAdminById (String id){
-        Query query = new Query(Criteria.where("adminId").is(id));
+        Query query = new Query(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query, Admin.class);
     }
 
@@ -60,4 +60,8 @@ public class AdminDao {
         mongoTemplate.remove(query, Admin.class);
     }
 
+    //TODO
+    public boolean addStudentApplications(String email, String gender, String dob, String pw, String major) {
+        return true;
+    }
 }
