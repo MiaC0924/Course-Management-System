@@ -62,7 +62,7 @@ public class Professor extends Person implements Visitable{
 
     public void addSection(CourseSection s){
         for(Term t:terms){
-            if(t.sameTerm(s.getTerm())){
+            if(s.sameTerm(t)){
                 for(CourseSection c:t.getCourseSections()){
                     if(c.getSectionName().equals(s.getSectionName())){
                         t.removeCourseSections(c);
@@ -74,7 +74,7 @@ public class Professor extends Person implements Visitable{
                 return;
             }
         }
-        Term added = new Term(s.getTerm().getYear(),s.getTerm().getSeason());
+        Term added = new Term(s.getTermYear(),s.getTermSeason());
         added.addCourseSections(s);
         terms.add(added);
     }

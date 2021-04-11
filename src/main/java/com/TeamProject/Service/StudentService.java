@@ -32,7 +32,7 @@ public class StudentService {
     public boolean registerCourse(int id,int year,String season, Character section,String Course,int code){
         Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
-        if(validRegisterPeriod(term)){
+        if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
             Course course = department.orderTheCourse("COMP",3004);
             CourseSection courseSection = new CourseSection(course,section,term);
@@ -49,7 +49,7 @@ public class StudentService {
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
         Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
-        if(validRegisterPeriod(term)){
+        if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
             Course course = department.orderTheCourse(majorcode,3004);
             CourseSection courseSection = new CourseSection(course,section,term);
@@ -67,7 +67,7 @@ public class StudentService {
     }
 
     public boolean register(Student s, CourseSection c){
-        if(validRegisterPeriod(c.getTerm())){
+        if(validRegisterPeriod(c.getTermYear(),c.getTermSeason())){
             c.attachObserver(s);
             return true;
         }else{
@@ -75,11 +75,11 @@ public class StudentService {
         }
     }
 
-    public boolean validRegisterPeriod(Term t){
-        if(t.getYear() == Calendar.getInstance().get(Calendar.YEAR)){
-            if(t.getSeason()=="Fall"){
+    public boolean validRegisterPeriod(int tY , String tS){
+        if(tY == Calendar.getInstance().get(Calendar.YEAR)){
+            if(tS =="Fall"){
                 return true;
-            }else if(t.getSeason()=="Summer"){
+            }else if(tS =="Summer"){
                 return true;
             }else{
                 return false;

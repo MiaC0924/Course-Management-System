@@ -60,7 +60,7 @@ public class Student extends Person implements Visitable {
     public void addFinalGrade(CourseSection c,Character grade){ finalGrades.put(c,grade); }
     public void addCourse(CourseSection s){
         for(Term t:terms){
-            if(t.sameTerm(s.getTerm())){
+            if(s.sameTerm(t)){
                 for(CourseSection c:t.getCourseSections()){
                     if(c.getSectionName().equals(s.getSectionName())){
                         t.removeCourseSections(c);
@@ -72,14 +72,14 @@ public class Student extends Person implements Visitable {
                 return;
             }
         }
-        Term added = new Term(s.getTerm().getYear(),s.getTerm().getSeason());
+        Term added = new Term(s.getTermYear(),s.getTermSeason());
         added.addCourseSections(s);
         terms.add(added);
     }
 
     public void removeCourse(CourseSection s){
         for(Term t:terms){
-            if(t.sameTerm(s.getTerm())){
+            if(s.sameTerm(t)){
                 for(CourseSection c:t.getCourseSections()){
                     if(c.getSectionName().equals(s.getSectionName())){
                         t.removeCourseSections(c);
@@ -106,7 +106,7 @@ public class Student extends Person implements Visitable {
     //Test
     public boolean containCourse(CourseSection c){
         for(Term t:terms){
-            if(t.sameTerm(c.getTerm())){
+            if(c.sameTerm(t)){
                 for(CourseSection s:t.getCourseSections()){
                     if(c.equals(s)){
                         return true;
