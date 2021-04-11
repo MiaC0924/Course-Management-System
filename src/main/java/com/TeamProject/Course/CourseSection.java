@@ -16,7 +16,8 @@ public class CourseSection implements Subject {
 
     private Course course;
     private Character section;
-    private Term term;
+    private int cYear;
+    private String cSeason;
 
     private int room;
     private String building;
@@ -33,7 +34,8 @@ public class CourseSection implements Subject {
 
         course = inputCourse;
         section = inputSection;
-        term = inputTerm;
+        cYear = inputTerm.getYear();
+        cSeason = inputTerm.getSeason();
 
         room = 0;
         building = "";
@@ -43,11 +45,19 @@ public class CourseSection implements Subject {
         gradeList = new HashMap<>();
         inputTerm.addCourseSections(this);
     }
+    public boolean sameTerm(Term t){
+        if(cYear == t.getYear() && cSeason.equals(t.getSeason())){
+            return true;
+        }
+        return false;
+    }
+
 
     //getters
     public int getSectionID()      { return sectionID; }
     public String getSectionName() { return course.getCourseName() + section; }
-    public Term getTerm()        { return term; }
+    public int getTermYear()        { return cYear; }
+    public String getTermSeason()     { return cSeason; }
 
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
