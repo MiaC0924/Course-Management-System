@@ -27,7 +27,7 @@ public class stuDropProcessController {
 
     @Autowired
     StudentService studentService;
-    @RequestMapping("/Student/Register/Processing")
+    @RequestMapping("/Student/Drop/Processing")
     public String submitCourseGrade(@RequestParam("major") String major,
                                     @RequestParam("code") int code,
                                     @RequestParam("section") Character section,
