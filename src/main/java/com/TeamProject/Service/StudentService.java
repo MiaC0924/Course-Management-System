@@ -18,26 +18,25 @@ public class StudentService {
     AdminDao adminDao;
 
     //{email:[name,gender,dob,pw,major]}
-    public boolean applyForCreation(String email,String gender,String dob,String pw,String major){
+    public boolean applyForCreation(String email,String name, String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
-        //need boolean addStudentApplications(e,g,d,p,m){} in adminDao
-       // if(adminDao.addStudentApplications(email,gender,dob,pw,major)){
-       //     return true;
-       // }
-       // else{
+        if(adminDao.addStudentApplications(email,name,gender,dob,pw,major)){
+            return true;
+        }
+        else{
             return false;
-       // }
+        }
     }
 
-    public boolean registerCourse(int id,int year,String season, Character section,String Course,int code){
+    public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
         if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
-            Course course = department.orderTheCourse("COMP",3004);
+            Course course = department.orderTheCourse(majorcode,code);
             CourseSection courseSection = new CourseSection(course,section,term);
             //courseSection.attachObserver(stu);
-           // studentDao.addCourseByStuId(id,courseSection);
+            studentDao.addCourseSectionByStuId(id,courseSection);
             return true;
         }
         else{
@@ -51,10 +50,10 @@ public class StudentService {
         Student stu = studentDao.findStudentByStuId(id);
         if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
-            Course course = department.orderTheCourse(majorcode,3004);
+            Course course = department.orderTheCourse(majorcode,code);
             CourseSection courseSection = new CourseSection(course,section,term);
             //courseSection.attachObserver(stu);
-          //  studentDao.deleteCourseByStuId(id,courseSection);
+            studentDao.deleteCourseSectionByStuId(id,courseSection);
             return true;
         }
         else{

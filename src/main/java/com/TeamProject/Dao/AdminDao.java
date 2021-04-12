@@ -61,7 +61,7 @@ public class AdminDao {
     }
 
     //TODO
-    public boolean addStudentApplications(String email, String gender, String dob, String pw, String major) {
+    public boolean addStudentApplications(String email,String name, String gender, String dob, String pw, String major) {
         return true;
     }
 }

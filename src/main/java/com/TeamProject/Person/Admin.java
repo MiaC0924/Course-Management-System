@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Document(collection = "Admin_table")
 public class Admin extends Person{
     private static int countID = 101;
+    private HashMap<String, StudentApplication> studentAppList;
     @Id
     private String adminID;
     private boolean admitted;
@@ -31,6 +32,23 @@ public class Admin extends Person{
     }
 
     public String getAdminID() { return adminID;  }
+    public
+
+    public boolean addStudentApp(StudentApplication app){
+        if(studentAppList.get(app.getEmail()) != null){
+            return false;
+        }
+        studentAppList.put(app.email, app);
+        return true;
+    }
+
+    public boolean deleteStudentApp(String email){
+        if(studentAppList.get(email) == null){
+            return false;
+        }
+        studentAppList.remove(email);
+        return true;
+    }
 
     @Override
     public void update(Subject s) {
