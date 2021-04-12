@@ -11,11 +11,16 @@ Chao Wu       | Charles       | 101042669      | ChaoWu0405
 ---------
 ### How to run the "HelloWorld" demo: ###
 1. clone repositories by HTTP URL <pre> https://github.com/MiaC0924/3004Project.git </pre>
-2. open "main" branch  
-   `$ git checkout main`
-3. run "CmsApplication.java", which could be found by  
+2. Have your local mongoDB run
+   - You could download mongoDB here: https://www.mongodb.com/try/download/community
+   - Run the mongo database shell
+   - Connect the project database  
+      •	The mongoDB uri is mongodb://Localhost:27017/CMS
+3. open "master" branch  
+   `$ git checkout master`
+4. run "CmsApplication.java", which could be found by  
    `/3004Project/src/main/java/com/TeamProject/CmsApplication.java`
-4. open below link in your browser <pre>http://localhost:8080/hello</pre>
+2. open below link in your browser <pre>http://localhost:8080/index.html</pre>
 
 --------
 ### Introduction of classes packaging: ###
@@ -23,14 +28,9 @@ Chao Wu       | Charles       | 101042669      | ChaoWu0405
    - *Person*  
    - Professor  
    - Student  
-   - Admin
+   - Admin   
    
-2. University  
-   - University  
-   - Department (ComputerScience, Mathematics, etc.)  
-   - Subject
-   
-3. Course - Abstract Factory Design Pattern  
+2. Course - Abstract Factory Design Pattern  
    - *CourseFactory*  
       - CompFactory,  
       - MathFactory, etc.
@@ -39,14 +39,17 @@ Chao Wu       | Charles       | 101042669      | ChaoWu0405
    - *PreCondition*
    - *Credit*
    - Course
+   - University
+   - Department (ComputerScience, Mathematics, etc.)
+   - Subject
    
-4. Evaluator - Visitor Design Pattern
+3. Evaluator - Visitor Design Pattern
    - *Visitor*
       - majorVisitor
       - overallVisitor
    - *Visitable*
    
-5. DataAnalyst - Strategy/Decorator/Composite Design Pattern
+4. DataAnalyst - Strategy/Decorator/Composite Design Pattern
    - StrategyController
    - *Strategy*
       - DataStrategy
@@ -57,6 +60,6 @@ Chao Wu       | Charles       | 101042669      | ChaoWu0405
       - OnlyFemaleDecorator
    - Data
 
-6. Observer - Observer Design Pattern
+5. Observer - Observer Design Pattern
    - *Observer*
    - *Subject*
