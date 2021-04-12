@@ -18,6 +18,8 @@ public class StudentService {
 
     @Autowired
     StudentDao studentDao;
+
+    @Autowired
     AdminDao adminDao;
 
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
@@ -77,15 +79,6 @@ public class StudentService {
     public void submitDeliver(){
 
 
-    }
-
-    public boolean register(Student s, CourseSection c){
-        if(validRegisterPeriod(c.getTermYear(),c.getTermSeason())){
-            c.attachObserver(s);
-            return true;
-        }else{
-            return false;
-        }
     }
 
     public boolean validRegisterPeriod(int tY , String tS){

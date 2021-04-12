@@ -46,9 +46,9 @@ public class LoginService {
             return false;
         }
         System.out.println("here");
-//        if(professorDao.findProfByEmail(username).getUsername() != null && professorDao.findProfByEmail(username).checkPassword(password)){
-//            return true;
-//        }
+        if(professorDao.findProfByEmail(username).getUsername() != null && professorDao.findProfByEmail(username).checkPassword(password)){
+            return true;
+        }
         return false;
     }
 

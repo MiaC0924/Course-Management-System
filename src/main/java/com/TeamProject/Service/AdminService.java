@@ -14,9 +14,17 @@ import java.util.Map;
 public class AdminService {
     @Autowired
     private AdminDao adminDao;
+
+    @Autowired
     private StudentDao studentDao;
+
+    @Autowired
     private ProfessorDao professorDao;
+
+    @Autowired
     private CourseDao courseDao;
+
+    @Autowired
     private CourseSectionDao courseSectionDao;
 
     //create student
@@ -69,9 +77,9 @@ public class AdminService {
             //if the course is in the database then fail
             if(courseSectionDao.addSection(courseSection)){
                 //find specfic major prof
-//                Professor pro = professorDao.findProfBymajor(major);
-//                courseSectionDao.updateProfessorBySectionId(courseSection.getSectionID(), pro);
-//                professorDao.addCourseSectionByProfId(pro.getProfID(),courseSection);
+                Professor pro = professorDao.findProfByMajor(major);
+                courseSectionDao.updateProfessorBySectionId(courseSection.getSectionID(), pro);
+                professorDao.addCourseSectionByProfId(pro.getProfID(),courseSection);
                 return true;
             }
             else {
@@ -128,7 +136,7 @@ public class AdminService {
                     //deregister prof
                     professorDao.deleteCourseSectionByProfId(courseSection.getProfessor().getProfID(),courseSection);
                     //delete course
-                    //courseSectionDao.deleteCourseSection(courseSection);
+                    courseSectionDao.deleteSection(courseSection.getSectionID());
                     return true;
                 }
             }
