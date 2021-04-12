@@ -1,9 +1,11 @@
 package com.TeamProject.Service;
 
+import com.TeamProject.Course.Deliverable;
 import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Dao.ProfessorDao;
 import com.TeamProject.Dao.StudentDao;
+import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.ProfessorApplication;
 import com.TeamProject.Person.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +52,8 @@ public class ProfessorService {
         }
     }
 
-    public void createDeliver(String major , int code, String section, String deliver){
-
+    public boolean createDeliver(String major , int code, String section, String deliver){
+        return false;
     }
 
     public void modifyDeliver(){}
@@ -100,5 +102,13 @@ public class ProfessorService {
             }
         }
         return false;
+    }
+
+    public Professor findProfessorByEmail(String email){
+        return professorDao.findProfByEmail(email);
+    }
+
+    public ArrayList<Deliverable> findAllDeliverable(){
+        return null;
     }
 }

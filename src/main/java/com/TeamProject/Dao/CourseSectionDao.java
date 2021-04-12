@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @Component
 public class CourseSectionDao {
@@ -37,6 +38,12 @@ public class CourseSectionDao {
         Query query = new Query(Criteria.where("sectionID").is(id));
         return mongoTemplate.findOne(query, CourseSection.class);
     }
+
+//    public ArrayList<CourseSection> findAllCourseSectionByProfessor(Professor p){
+//        ArrayList<CourseSection> course= new CourseSection();
+//        Query query = new Query(Criteria.where("sectionID").is(p.getProfID()));
+//        return mongoTemplate.findOne(query, CourseSection.class);
+//    }
 
     //update
     public boolean updateProfessorBySectionId(int id, Professor professor){
@@ -69,13 +76,13 @@ public class CourseSectionDao {
         return false;
     }
 
-    public boolean addDeliverableBySectionId(int id, LocalDate date){
-        CourseSection section = findSectionById(id);
-        if(section != null) {
-            section.addDeliverable(date);
-            mongoTemplate.save(section);
-            return true;
-        }
-        return false;
-    }
+//    public boolean addDeliverableBySectionId(int id, LocalDate date){
+//        CourseSection section = findSectionById(id);
+//        if(section != null) {
+//            section.addDeliverable(date);
+//            mongoTemplate.save(section);
+//            return true;
+//        }
+//        return false;
+//    }
 }

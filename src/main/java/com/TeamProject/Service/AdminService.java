@@ -29,6 +29,7 @@ public class AdminService {
 
     //create student
     public boolean createStudent() {
+//        System.out.println(adminDao.findAdminById("101"));
         if (adminDao.findAdminById("101").getStudentAppList().isEmpty()) {
             return false;
         } else {
@@ -104,12 +105,12 @@ public class AdminService {
         }
 
         //delete prof
-        public boolean deleteProfessor (int id,String email){
+        public boolean deleteProfessor (int id){
             //check if the prof exist
             if (professorDao.findProfById(id) != null) {
                 //check if the prof have any courses
                 if(professorDao.findProfById(id).getTerms().isEmpty()){
-                    professorDao.deleteProfByEmail(email);
+                    professorDao.deleteProfById(id);
                     return true;
                 }
                 else{
@@ -156,6 +157,10 @@ public class AdminService {
             } else {
                 return false;
             }
+        }
+
+        public CourseSection findCourseSectionById(int id){
+            return courseSectionDao.findSectionById(id);
         }
 
 }

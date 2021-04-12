@@ -34,6 +34,8 @@ public class Admin extends Person{
         admitted = false;
         this.password = inputPW;
         ++countID;
+        studentAppList = new HashMap<>();
+        profApplist = new HashMap<>();
     }
 
     public String getAdminID() { return adminID;  }

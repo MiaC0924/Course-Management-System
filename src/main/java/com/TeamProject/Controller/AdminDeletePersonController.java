@@ -24,7 +24,7 @@ public class AdminDeletePersonController {
 
         if(btnradio.equals("Professor")){
             //bug !!!   adminService.deleteProfessor(id,email)  !!! //
-            if(adminService.deleteProfessor(id,email)){
+            if(adminService.deleteProfessor(id)){
                 flag1 = true;
             }else{
                 flag1 = false;

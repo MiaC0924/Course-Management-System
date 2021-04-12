@@ -40,7 +40,7 @@ public class AdminCreatePersonController {
 
 
 
-        System.out.println("Create Course:  btnradio: " + btnradio + " , firstN: " + firstN +
+        System.out.println("Create Person:  btnradio: " + btnradio + " , firstN: " + firstN +
                 " , lastN: " + lastN  + " ,Gender: " + gender + " Major: " + major + " BirthDay: " + date +
                 "Address: " + address);
 
@@ -49,13 +49,13 @@ public class AdminCreatePersonController {
         // @Bug  !!!    createProfessor()                   createStudent() !!!       //
         // @Bug  !!!    createProfessor()                   createStudent() !!!       //
         if(btnradio.equals("Professor")){
-            if( true /*adminService.createProfessor() */){
+            if( adminService.createProfessor()){
                 flag1 = true;
             }else {
                 flag1 = false;
             }
         }else if(btnradio.equals("Student")){
-            if( true /* adminService.createStudent() */){
+            if( adminService.createStudent()){
                 flag1 = true;
             }else{
                 flag1 = false;
@@ -66,10 +66,10 @@ public class AdminCreatePersonController {
 
 
         if(flag1){
-            System.out.println("Create Course Success");
+            System.out.println("Create Person Success");
             model.addAttribute("msg","success");
         }else{
-            System.out.println("Create Course fail");
+            System.out.println("Create Person fail");
             model.addAttribute("msg","fail");
         }
         return "createPersonAdmin";
