@@ -134,8 +134,8 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Create a Person</h1>
             </div>
-            <form class="was-validated">
-
+            <form class="was-validated" action="/Admin/Person/Create/Processing">
+                <p style="color:red" th:text="${msg}"></p>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  value="Student" autocomplete="off" checked>
                     <label class="btn btn-outline-primary" for="btnradio1">Student</label>
@@ -147,21 +147,21 @@
                 <div class="form-group row">
                     <label for= "firstName" class="col-1 col-form-label">FirstName</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="major" class="form-control" id ="firstName" placeholder="XXX" required>
+                        <input style="margin:10px" type="text" name="firstN" class="form-control" id ="firstName" placeholder="XXX" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for= "lastName" class="col-1 col-form-label">LastName</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="major" class="form-control" id ="lastName" placeholder="XXX" required>
+                        <input style="margin:10px" type="text" name="lastN" class="form-control" id ="lastName" placeholder="XXX" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="gender" class="col-1 col-form-label">Gender</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="section" class="form-control" id = "gender" placeholder="Man/Female" required>
+                        <input style="margin:10px" type="text" name="gender" class="form-control" id = "gender" placeholder="Man/Female" required>
                     </div>
                 </div>
 
@@ -175,14 +175,14 @@
                 <div class="form-group row">
                     <label for="birthday" class="col-1 col-form-label">Birthday</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="date" name="section" class="form-control" id = "birthday"  required>
+                        <input style="margin:10px" type="date" name="birthDay" class="form-control" id = "birthday"  required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for= "address" class="col-1 col-form-label">Address</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="major" class="form-control" id ="address" placeholder="XXXX" required>
+                        <input style="margin:10px" type="text" name="address" class="form-control" id ="address" placeholder="XXXX" required>
                     </div>
                 </div>
 
