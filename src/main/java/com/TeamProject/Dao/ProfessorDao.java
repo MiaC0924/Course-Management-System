@@ -36,6 +36,11 @@ public class ProfessorDao {
         return mongoTemplate.findOne(query, Professor.class);
     }
 
+    public Professor findProfByMajor (String fac){
+        Query query = new Query(Criteria.where("faculty").is(fac));
+        return mongoTemplate.findOne(query, Professor.class);
+    }
+
     //update
     public void updatePersonalInfoById(Professor prof) {
         Query query = new Query(Criteria.where("id").is(prof.getProfID()));

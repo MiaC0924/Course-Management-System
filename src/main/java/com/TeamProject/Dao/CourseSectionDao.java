@@ -26,6 +26,12 @@ public class CourseSectionDao {
         return false;
     }
 
+    //create
+    public void deleteSection(int secID){
+        Query query = new Query(Criteria.where("sectionID").is(secID));
+        mongoTemplate.remove(query, CourseSection.class);
+    }
+
     //find
     public CourseSection findSectionById(int id){
         Query query = new Query(Criteria.where("sectionID").is(id));
