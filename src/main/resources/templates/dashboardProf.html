@@ -46,7 +46,7 @@
 
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" href="/signOut">Sign out</a>
         </li>
     </ul>
 </header>
@@ -57,7 +57,7 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Professor/Dashboard">
+                        <a class="nav-link active" aria-current="page" href="/Professor/main">
                             <i class="fas fa-home"></i>
                             Dashboard
                         </a>
@@ -129,10 +129,49 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Dashboard</h1>
             </div>
-            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Create a deliverable </button>
-            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Delete a deliverable </button>
+
+
+            <h1 style="color:red" th:text="${msg1}"></h1>
+
+
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit" onclick="window.location.href='/Professor/Deliver/Create'">  Create a deliverable </button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/Professor/Deliver/Delete'">  Delete a deliverable </button>
+
+
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Submit a list of grade of deliverable </button>
+
+
+
+            <form class="was-validated" action="/Professor/FinalGrade">
+                <div class="form-group row">
+                    <label for= "course" class="col-1 col-form-label">major</label>
+                    <div class="col-2">
+                        <input style="margin:10px" type="text" name="course" class="form-control" id ="course" placeholder="COMP" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for= "code" class="col-1 col-form-label">code</label>
+                    <div class="col-2">
+                        <input style="margin:10px" type="text" name="code" class="form-control" id ="code" placeholder="1000" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for= "section" class="col-1 col-form-label">section</label>
+                    <div class="col-2">
+                        <input style="margin:10px" type="text" name="section" class="form-control" id ="section" placeholder="A" required>
+                    </div>
+                </div>
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Submit a list of final grade </button>
+            </form>
+
+
+
+
+
+
+
+
+
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Change a final grade </button>
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Change a deliverable grade </button>
 

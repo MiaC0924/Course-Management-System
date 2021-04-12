@@ -51,6 +51,7 @@ public class Student extends Person implements Visitable {
     public ArrayList<Term> getTerms(){ return terms; }
     public HashMap<String, ArrayList<Character>> getFinalGrades(){ return finalGrades; }
 
+
     //setters
     public void setMajor(String inputMajor){ major = inputMajor; }
     public void setMajorGPA(double gpa){ majorGPA = gpa; }
