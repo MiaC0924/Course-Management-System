@@ -20,9 +20,15 @@ public class StudentDao {
         mongoTemplate.save(stu);
     }
 
+    //find
     public Student findStudentByStuId(int id){
         Query query = new Query((Criteria.where("studentNumber").is(id)));
-        return mongoTemplate.findOne(query , Student.class);
+        return mongoTemplate.findOne(query, Student.class);
+    }
+
+    public Student findStudentByEmail(int email){
+        Query query = new Query((Criteria.where("email").is(email)));
+        return mongoTemplate.findOne(query, Student.class);
     }
 
     public boolean updateStudentMajorGPAByStuId(int id,Double majorGPA){
