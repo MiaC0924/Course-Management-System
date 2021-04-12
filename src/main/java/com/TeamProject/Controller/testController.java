@@ -4,6 +4,7 @@ import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.Term;
 import com.TeamProject.Course.University;
+import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.CourseDao;
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Student;
@@ -23,6 +24,9 @@ public class testController {
 
     @Autowired
     StudentDao studentDao;
+
+    @Autowired
+    AdminDao adminDao;
 
 
 

@@ -1,5 +1,6 @@
 package com.TeamProject.Controller;
 
+import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Student;
 import com.TeamProject.Service.LoginService;
@@ -16,9 +17,9 @@ import java.time.LocalDate;
 
 @Controller
 public class LoginController {
-  //  @Autowired
-   // private StudentDao stuDao;
-    private LoginService loginService;
+
+    @Autowired
+    LoginService loginService;
 
 
     @RequestMapping("/user/login")
@@ -26,16 +27,30 @@ public class LoginController {
                         @RequestParam("password") String password,
                         @RequestParam("btnradio") String btnradio,
                         Model model, HttpSession session){
+        Boolean loginFlag = false;
+        if(btnradio.equals("Professor")){
+            if(loginService.professorLogin(username, password)){
+                loginFlag = true;
+            }
+        }else if(btnradio.equals("Student")){
+            if(loginService.studentLogin(username, password)){
+                loginFlag = true;
+            }
+        }else if(btnradio.equals("Admin")){
+            if(loginService.adminLogin(username, password)){
+                loginFlag = true;
+            }
+        }
 
         //need database
-        if("123456".equals(password)){
+        if(loginFlag){
             session.setAttribute("loginUser",username);
             session.setAttribute("loginP",btnradio);
-            //stuDao.addStudent(new Student("Gura","F",username, LocalDate.now(),"MATH"));
+
 
             return "redirect:/"+ btnradio + "/main";
         }else{
-            model.addAttribute("msg","wrong password");
+            model.addAttribute("msg","wrong username/password");
             return "index";
         }
     }
