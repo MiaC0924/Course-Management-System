@@ -27,15 +27,15 @@ public class CourseSection implements Subject {
     private ArrayList<Deliverable> deliverables;
     private int state;
 
-    public CourseSection(Course inputCourse, Character inputSection, Term inputTerm){
+    public CourseSection(Course course, Character section, int cYear,String cSeason){
         sectionID = count;
         ++count;
         state = 0;
 
-        course = inputCourse;
-        section = inputSection;
-        cYear = inputTerm.getYear();
-        cSeason = inputTerm.getSeason();
+        this.course = course;
+        this.section = section;
+        this.cYear = cYear;
+        this.cSeason = cSeason;
 
         room = 0;
         building = "";
@@ -43,7 +43,6 @@ public class CourseSection implements Subject {
         observers = new ArrayList<>();
         deliverables = new ArrayList<>();
         gradeList = new HashMap<>();
-        inputTerm.addCourseSections(this);
     }
 
     public boolean sameTerm(Term t){

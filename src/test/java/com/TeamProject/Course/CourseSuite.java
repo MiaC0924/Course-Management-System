@@ -50,7 +50,7 @@ public class CourseSuite {
 
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
         Term winter2021 = new Term(2021, "Winter");
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
 
         comp3004A.addStudent(mia);
         comp3004A.addGrade(mia,'A');

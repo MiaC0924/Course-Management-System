@@ -41,10 +41,9 @@ public class ProfCreateDeliverController {
         University university = new University("Carleton");
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
         Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);
-        Term winter2021 = new Term(2021, "Winter");
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
-        CourseSection comp3005A = new CourseSection(comp3005, 'A', winter2021);
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+        CourseSection comp3005A = new CourseSection(comp3005, 'A', 2021, "Winter");
 
         csList.add(comp3004A);
         csList.add(comp3004B);
