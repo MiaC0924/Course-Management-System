@@ -67,16 +67,16 @@ public class AdminService {
             Term term = new Term(year,season);
             CourseSection courseSection = new CourseSection(course,section,term);
             //if the course is in the database then fail
-            if(courseSectionDao.addSection(courseSection)){
+//            if(courseSectionDao.addSection(courseSection)){
                 //find specfic major prof
 //                Professor pro = professorDao.findProfBymajor(major);
 //                courseSectionDao.updateProfessorBySectionId(courseSection.getSectionID(), pro);
 //                professorDao.addCourseSectionByProfId(pro.getProfID(),courseSection);
                 return true;
-            }
-            else {
-                return false;
-            }
+//            }
+//            else {
+//                return false;
+//            }
         }
 
         //delete student
