@@ -44,8 +44,8 @@ public class testController {
         math2107 = mongoDao.findAdminByNameAndCode("MATH",2107);
        // System.out.println(math2107.getCourseName());
        // System.out.println(math2107.getCode());
-        CourseSection cs = new CourseSection(math2107, 'a',new Term(2021 , "Winter"));
-        CourseSection cs1 = new CourseSection(comp3004 , 'B' , new Term(2022 , "Winter"));
+        CourseSection cs = new CourseSection(math2107, 'a',2021 , "Winter");
+        CourseSection cs1 = new CourseSection(comp3004 , 'B' ,2022 , "Winter");
         mia.addSection(cs);
 
 

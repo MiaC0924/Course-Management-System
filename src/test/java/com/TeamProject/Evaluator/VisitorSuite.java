@@ -22,15 +22,15 @@ public class VisitorSuite {
 
         University university = new University("Carleton University");
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
-        Term winter2021 = new Term(2021, "Winter");
-        Term summer2021 = new Term(2021, "Summer");
+//        Term winter2021 = new Term(2021, "Winter");
+//        Term summer2021 = new Term(2021, "Summer");
 
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
-        CourseSection comp3004C = new CourseSection(comp3004, 'C', summer2021);
-        winter2021.addCourseSections(comp3004A);
-        winter2021.addCourseSections(comp3004B);
-        summer2021.addCourseSections(comp3004C);
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+        CourseSection comp3004C = new CourseSection(comp3004, 'C', 2021, "Summer");
+//        winter2021.addCourseSections(comp3004A);
+//        winter2021.addCourseSections(comp3004B);
+//        summer2021.addCourseSections(comp3004C);
 
         Professor mia = new Professor();
         mia.addPassRates(comp3004A, 0.6);
@@ -48,15 +48,15 @@ public class VisitorSuite {
 
         University university = new University("Carleton University");
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
-        Term winter2021 = new Term(2021, "Winter");
-        Term summer2021 = new Term(2021, "Summer");
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
-        CourseSection comp3004C = new CourseSection(comp3004, 'C', summer2021);
+//        Term winter2021 = new Term(2021, "Winter");
+//        Term summer2021 = new Term(2021, "Summer");
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+        CourseSection comp3004C = new CourseSection(comp3004, 'C', 2021, "Summer");
 
         Professor mia = new Professor();
-        mia.addTerm(winter2021);
-        mia.addTerm(summer2021);
+//        mia.addTerm(winter2021);
+//        mia.addTerm(summer2021);
         mia.addSection(comp3004A);
         mia.addSection(comp3004B);
         mia.addSection(comp3004C);
@@ -77,10 +77,10 @@ public class VisitorSuite {
         University university = new University("Carleton University");
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
 
-        Term winter2021 = new Term(2021, "Winter");
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
-        CourseSection comp3004C = new CourseSection(comp3004, 'C', winter2021);
+//        Term winter2021 = new Term(2021, "Winter");
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+        CourseSection comp3004C = new CourseSection(comp3004, 'C', 2021, "Winter");
 
         Student mia = new Student();
         mia.addFinalGrade(comp3004A,'C');
@@ -99,11 +99,11 @@ public class VisitorSuite {
         University university = new University("Carleton University");
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
         Course math2000 = university.getDepartments().orderTheCourse("MATH",2000);
-        Term winter2021 = new Term(2021, "Winter");
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
-        CourseSection comp3004C = new CourseSection(comp3004, 'C', winter2021);
-        CourseSection math2000A = new CourseSection(math2000, 'A', winter2021);
+//        Term winter2021 = new Term(2021, "Winter");
+        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+        CourseSection comp3004C = new CourseSection(comp3004, 'C', 2021, "Winter");
+        CourseSection math2000A = new CourseSection(math2000, 'A', 2021, "Winter");
 
         Student mia = new Student();
         mia.setMajor("MATH");

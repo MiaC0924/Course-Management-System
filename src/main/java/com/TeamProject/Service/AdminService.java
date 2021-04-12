@@ -73,19 +73,18 @@ public class AdminService {
         public boolean createCourse (String major,int code, Character section, int year, String season){
             CourseBuilding department = new Department();
             Course course = department.orderTheCourse(major,code);
-            Term term = new Term(year,season);
-            CourseSection courseSection = new CourseSection(course,section,term);
-            //if the course is in the database then fail
-//            if(courseSectionDao.addSection(courseSection)){
-                //find specfic major prof
+            CourseSection courseSection = new CourseSection(course,section,year,season);
+//            if the course is in the database then fail
+            if(courseSectionDao.addSection(courseSection)){
+//                find specfic major prof
                 Professor pro = professorDao.findProfByMajor(major);
                 courseSectionDao.updateProfessorBySectionId(courseSection.getSectionID(), pro);
                 professorDao.addCourseSectionByProfId(pro.getProfID(),courseSection);
                 return true;
-//            }
-//            else {
-//                return false;
-//            }
+            }
+            else {
+                return false;
+            }
         }
 
         //delete student

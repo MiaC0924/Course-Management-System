@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
 
 @Component
@@ -38,6 +39,12 @@ public class CourseSectionDao {
         Query query = new Query(Criteria.where("sectionID").is(id));
         return mongoTemplate.findOne(query, CourseSection.class);
     }
+
+//    public CourseSection findSectionByInfo(String course, int code, Character section,int year,String season){
+//        Query query = new Query(Criteria.where("sectionID").is(id));
+//        return mongoTemplate.findOne(query, CourseSection.class);
+//    }
+
 
 //    public ArrayList<CourseSection> findAllCourseSectionByProfessor(Professor p){
 //        ArrayList<CourseSection> course= new CourseSection();

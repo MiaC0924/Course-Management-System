@@ -21,11 +21,10 @@ public class ObserverTest {
         Student s2 = new Student();
         Professor p1 = new Professor();
         Admin a = new Admin();
-        Term t = new Term(2020,"Fall");
         Course math = university.getDepartments().orderTheCourse("MATH",2004);
-        CourseSection mathA = new CourseSection(math,'A',t);
-        CourseSection mathB = new CourseSection(math,'B',t);
-        CourseSection mathC = new CourseSection(math,'C',t);
+        CourseSection mathA = new CourseSection(math,'A',2020,"Fall");
+        CourseSection mathB = new CourseSection(math,'B',2020,"Fall");
+        CourseSection mathC = new CourseSection(math,'C',2020,"Fall");
 
         //Simple attach event
         mathA.attachObserver(s1);
@@ -74,10 +73,10 @@ public class ObserverTest {
         Student s2 = new Student();
         Professor p1 = new Professor();
         Admin a = new Admin();
-        Term t = new Term(2020,"Fall");
+//        Term t = new Term(2020,"Fall");
         Course math = university.getDepartments().orderTheCourse("MATH",3004);
-        CourseSection mathA = new CourseSection(math,'A',t);
-        CourseSection mathB = new CourseSection(math,'B',t);
+        CourseSection mathA = new CourseSection(math,'A',2020,"Fall");
+        CourseSection mathB = new CourseSection(math,'B',2020,"Fall");
 
         //Simple attach event
         mathA.attachObserver(s1);

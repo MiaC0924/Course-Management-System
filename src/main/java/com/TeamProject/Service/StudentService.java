@@ -43,12 +43,11 @@ public class StudentService {
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
-        Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
         if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
             Course course = department.orderTheCourse(majorcode,code);
-            CourseSection courseSection = new CourseSection(course,section,term);
+            CourseSection courseSection = new CourseSection(course,section,year,season);
             //courseSection.attachObserver(stu);
             studentDao.addCourseSectionByStuId(id,courseSection);
             return true;
@@ -60,13 +59,11 @@ public class StudentService {
     }
 
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
-        Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
-
         if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
             Course course = department.orderTheCourse(majorcode,code);
-            CourseSection courseSection = new CourseSection(course,section,term);
+            CourseSection courseSection = new CourseSection(course,section,year,season);
             //courseSection.attachObserver(stu);
             studentDao.deleteCourseSectionByStuId(id,courseSection);
             return true;
