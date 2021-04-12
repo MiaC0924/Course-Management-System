@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Term {
     private int    year;
     private String season;
-    private ArrayList<CourseSection> sections;
+    private ArrayList<Integer> sectionIds;
 
     public Term(int inputYear, String inputSeason){
         year   = inputYear;
         season = inputSeason;
-        sections = new ArrayList<>();
+        sectionIds = new ArrayList<>();
     }
 
     @Override
@@ -23,10 +23,10 @@ public class Term {
     public int    getYear()  { return year;   }
 
     //courseSections
-    public ArrayList<CourseSection> getCourseSections(){ return sections; }
-    public void addCourseSections(CourseSection c){ sections.add(c); }
+    public ArrayList<Integer> getCourseSections(){ return sectionIds; }
+    public void addCourseSections(CourseSection c){ sectionIds.add(c.getSectionID()); }
     public void removeCourseSections(CourseSection c){
-        sections.remove(c);
+        sectionIds.remove(c.getSectionID());
     }
 
     public boolean sameTerm(Term t){

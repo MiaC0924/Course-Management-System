@@ -16,11 +16,9 @@ public class Student extends Person implements Visitable {
     private static int countID = 100000001;
     private int studentNumber;
     private String major;
-    private ArrayList<Term> terms; //terms contain courseSections
-    private HashMap<CourseSection, Character> finalGrades;
+    private ArrayList<Term> terms; //terms contain courseSectionIds
+    private HashMap<String, ArrayList<Character>> finalGrades; //k-Major, v-list of finalGrade
     private double majorGPA, overallGPA;
-    private OverallVisitor overallVisitor;
-    private MajorVisitor majorVisitor;
 
     public Student(){
         super();
@@ -51,38 +49,49 @@ public class Student extends Person implements Visitable {
     public double getMajorGPA()  { return majorGPA;      }
     public double getOverallGPA(){ return overallGPA;    }
     public ArrayList<Term> getTerms(){ return terms; }
-    public HashMap<CourseSection,Character> getFinalGrades(){ return finalGrades; }
+    public HashMap<String, ArrayList<Character>> getFinalGrades(){ return finalGrades; }
 
     //setters
     public void setMajor(String inputMajor){ major = inputMajor; }
     public void setMajorGPA(double gpa){ majorGPA = gpa; }
     public void setOverallGPA(double gpa){ overallGPA = gpa; }
-    public void addFinalGrade(CourseSection c,Character grade){ finalGrades.put(c,grade); }
-    public void addCourse(CourseSection s){
+
+    public void addFinalGrade(CourseSection c, Character grade){
+        if(finalGrades.containsKey(c.getMajor())){
+            finalGrades.get(c.getMajor()).add(grade);
+        } else{
+            ArrayList<Character> gradeList = new ArrayList<>();
+            gradeList.add(grade);
+            finalGrades.put(c.getMajor(), gradeList);
+        }
+    }
+
+    public void addSection(CourseSection section){
         for(Term t:terms){
-            if(s.sameTerm(t)){
-                for(CourseSection c:t.getCourseSections()){
-                    if(c.getSectionName().equals(s.getSectionName())){
-                        t.removeCourseSections(c);
-                        t.addCourseSections(s);
+            if(section.sameTerm(t)){
+                for(int sectionID: t.getCourseSections()){
+                    if(sectionID == section.getSectionID()){
+                        t.removeCourseSections(section);
+                        t.addCourseSections(section);
                         return;
                     }
                 }
-                t.addCourseSections(s);
+                t.addCourseSections(section);
                 return;
             }
         }
-        Term added = new Term(s.getTermYear(),s.getTermSeason());
-        added.addCourseSections(s);
+
+        Term added = new Term(section.getTermYear(), section.getTermSeason());
+        added.addCourseSections(section);
         terms.add(added);
     }
 
-    public void removeCourse(CourseSection s){
+    public void removeCourse(CourseSection section){
         for(Term t:terms){
-            if(s.sameTerm(t)){
-                for(CourseSection c:t.getCourseSections()){
-                    if(c.getSectionName().equals(s.getSectionName())){
-                        t.removeCourseSections(c);
+            if(section.sameTerm(t)){
+                for(int sectionID: t.getCourseSections()){
+                    if(sectionID == section.getSectionID()){
+                        t.removeCourseSections(section);
                         return;
                     }
                 }
@@ -99,7 +108,7 @@ public class Student extends Person implements Visitable {
     @Override
     public void update(Subject s) {
         if(s instanceof CourseSection){
-            addCourse((CourseSection) s);
+            addSection((CourseSection) s);
         }
     }
 
@@ -107,8 +116,8 @@ public class Student extends Person implements Visitable {
     public boolean containCourse(CourseSection c){
         for(Term t:terms){
             if(c.sameTerm(t)){
-                for(CourseSection s:t.getCourseSections()){
-                    if(c.equals(s)){
+                for(int sectionID: t.getCourseSections()){
+                    if(c.getSectionID() == sectionID){
                         return true;
                     }
                 }

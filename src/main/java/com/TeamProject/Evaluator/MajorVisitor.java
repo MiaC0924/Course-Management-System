@@ -1,11 +1,11 @@
 package com.TeamProject.Evaluator;
 
-import com.TeamProject.Course.CourseSection;
+import com.TeamProject.Course.Term;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 public class MajorVisitor implements Visitor{
 
@@ -22,17 +22,21 @@ public class MajorVisitor implements Visitor{
         int count = 0;
 
         if(!inputProf.getTerms().isEmpty()) {
-            ArrayList<CourseSection> sections = inputProf.getTerms().get((inputProf.getTerms().size()-1)).getCourseSections();
+            ArrayList<Term> terms = inputProf.getTerms();
+            Term currTerm = terms.get(terms.size()-1);
+            ArrayList<Double> rateList = inputProf.getPassRates().get(currTerm.toString());
 
-            for (CourseSection s: sections) {
-                output += inputProf.getPassRates().get(s);
-                ++count;
-            }
+            if(!(rateList == null)){
+                for (Double rate: rateList) {
+                    output += rate;
+                    ++count;
+                }
 
-            if (output == 0) { //all student fail in his/her course(s) this term
-                output = -1.0;
-            } else { //at least one student pass this term
-                output = output / count;
+                if (output == 0) { //all student fail in his/her course(s) this term
+                    output = -1.0;
+                } else { //at least one student pass this term
+                    output = output / count;
+                }
             }
         } //else no course for this semester
 
@@ -49,24 +53,27 @@ public class MajorVisitor implements Visitor{
     @Override
     public double visit(Student inputStu) {
         double output = 0.0;
-        int     count = 0;
+        int count = 0;
 
         if (!inputStu.getFinalGrades().isEmpty()){
-            Map<CourseSection,Character> gradeMap = inputStu.getFinalGrades();
+            HashMap<String, ArrayList<Character>> gradeMap = inputStu.getFinalGrades();
+            ArrayList<Character> majorGrade = gradeMap.get(inputStu.getMajor());
 
-            for (CourseSection key : gradeMap.keySet()) {
-                if(key.getMajor().equals(inputStu.getMajor())) {
-                    output += gradeCalculation(gradeMap.get(key));
+            if(!(majorGrade == null)) {
+                for (Character grade : majorGrade) {
+                    output += gradeCalculation(grade);
                     ++count;
-                }
-            }
 
-            if(output == 0){ //fail all the taken major courses
-                output = -1.0;
-            } else { //pass at least one major course
-                output = output / count;
-            }
-        } //else never took a major course
+                    System.out.println(output + "-" + count);
+                }
+
+                if(output == 0){ //fail all the taken major courses
+                    output = -1.0;
+                } else { //pass at least one major course
+                    output = output / count;
+                }
+            }//else never took a major course
+        }
 
         inputStu.setMajorGPA(output);
         return output;

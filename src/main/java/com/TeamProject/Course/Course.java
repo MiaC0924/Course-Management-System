@@ -16,9 +16,8 @@ public abstract class Course {
 
     abstract void create();
 
-    public String toStirng(){
-        String r = name + code + "have "+tutorial+" and have ";
-        return r;
+    public String toString(){
+        return name + code + "have "+tutorial+" and have ";
     }
 
     //getters
@@ -32,8 +31,6 @@ public abstract class Course {
     public void setPreCondition(PreCondition preCondition) { this.preCondition = preCondition; }
 
     public boolean match(Course inputCourse){
-        if(name == inputCourse.getMajor() && code == inputCourse.getCode())
-            return true;
-        return false;
+        return name.equals(inputCourse.getMajor()) && code == inputCourse.getCode();
     }
 }
