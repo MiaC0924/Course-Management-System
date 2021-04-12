@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class CourseSectionDao {
@@ -41,16 +42,14 @@ public class CourseSectionDao {
     }
 
 //    public CourseSection findSectionByInfo(String course, int code, Character section,int year,String season){
-//        Query query = new Query(Criteria.where("sectionID").is(id));
-//        return mongoTemplate.findOne(query, CourseSection.class);
+//        Query query = new Query();
+//        query.addCriteria(Criteria.where("course").is(course));
+//        List<CourseSection> coursesection = mongoTemplate.find(query, CourseSection.class);
+//
 //    }
 
 
-//    public ArrayList<CourseSection> findAllCourseSectionByProfessor(Professor p){
-//        ArrayList<CourseSection> course= new CourseSection();
-//        Query query = new Query(Criteria.where("sectionID").is(p.getProfID()));
-//        return mongoTemplate.findOne(query, CourseSection.class);
-//    }
+
 
     //update
     public boolean updateProfessorBySectionId(int id, Professor professor){
