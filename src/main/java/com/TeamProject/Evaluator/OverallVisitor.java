@@ -4,6 +4,7 @@ import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -19,18 +20,22 @@ public class OverallVisitor implements Visitor{
     @Override
     public double visit(Professor inputProf) {
         double output = 0.0;
+        int count = 0;
 
         if (!inputProf.getPassRates().isEmpty()){
-            Map<CourseSection, Double> passRates = inputProf.getPassRates();
+            HashMap<String, ArrayList<Double>> passRates = inputProf.getPassRates();
 
-            for (double rate: passRates.values()) {
-                output += rate;
+            for (ArrayList<Double> rate: passRates.values()) {
+                for (Double r: rate) {
+                    output += r;
+                    ++count;
+                }
             }
 
             if(output == 0){ //all student fail in his/her course(s)
                 output = -1.0;
             } else { //at least one student pass
-                output = output / passRates.size();
+                output = output / count;
             }
         } //else never taught a course
 
@@ -47,18 +52,22 @@ public class OverallVisitor implements Visitor{
     @Override
     public double visit(Student inputStu) {
         double output = 0.0;
+        int count = 0;
 
-        if (!inputStu.getFinalGrades().isEmpty()){ 
-            Map<CourseSection,Character> gradeMap = inputStu.getFinalGrades();
+        if (!inputStu.getFinalGrades().isEmpty()){
+            HashMap<String, ArrayList<Character>> gradeMap = inputStu.getFinalGrades();
 
-            for (Character grade: gradeMap.values()) {
-                output += gradeCalculation(grade);
+            for (ArrayList<Character> grade: gradeMap.values()) {
+                for (Character g: grade) {
+                    output += gradeCalculation(g);
+                    ++count;
+                }
             }
 
             if(output == 0){ //fail all the taken courses
                 output = -1.0;
             } else { //pass at least one course
-                output = output / gradeMap.size();
+                output = output / count;
             }
         } //else never took a course
 

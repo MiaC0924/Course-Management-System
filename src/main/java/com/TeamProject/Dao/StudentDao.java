@@ -38,7 +38,7 @@ public class StudentDao {
 
     public void addStudentCourseSectionByStuId(int id, CourseSection cs){
         Student stu = findStudentByStuId(id);
-        stu.addCourse(cs);
+        stu.addSection(cs);
         mongoTemplate.save(stu);
     }
 

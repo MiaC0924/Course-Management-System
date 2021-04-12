@@ -104,7 +104,7 @@ public class ControllerTest {
         c.register(s1,comp3005B);
         c.register(s1,comp3004A);
         c.register(s1,comp3004B);
-        s1.addCourse(comp3005C);//Force added course
+        s1.addSection(comp3005C);//Force added course
         comp3005C.attachObserver(s1);//Force added course
         //Student select a course comp3005B in his register list.
 

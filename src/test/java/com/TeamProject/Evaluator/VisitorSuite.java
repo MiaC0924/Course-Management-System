@@ -24,6 +24,7 @@ public class VisitorSuite {
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
         Term winter2021 = new Term(2021, "Winter");
         Term summer2021 = new Term(2021, "Summer");
+
         CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
         CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
         CourseSection comp3004C = new CourseSection(comp3004, 'C', summer2021);
@@ -75,10 +76,12 @@ public class VisitorSuite {
 
         University university = new University("Carleton University");
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
+
         Term winter2021 = new Term(2021, "Winter");
         CourseSection comp3004A = new CourseSection(comp3004, 'A', winter2021);
         CourseSection comp3004B = new CourseSection(comp3004, 'B', winter2021);
         CourseSection comp3004C = new CourseSection(comp3004, 'C', winter2021);
+
         Student mia = new Student();
         mia.addFinalGrade(comp3004A,'C');
         mia.addFinalGrade(comp3004B,'A');
@@ -104,6 +107,10 @@ public class VisitorSuite {
 
         Student mia = new Student();
         mia.setMajor("MATH");
+        mia.addSection(comp3004A);
+        mia.addSection(comp3004B);
+        mia.addSection(comp3004C);
+        mia.addSection(math2000A);
         mia.addFinalGrade(comp3004A,'C');
         mia.addFinalGrade(comp3004B,'A');
         mia.addFinalGrade(comp3004C,'B');

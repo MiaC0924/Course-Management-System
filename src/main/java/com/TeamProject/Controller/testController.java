@@ -42,11 +42,11 @@ public class testController {
        // System.out.println(math2107.getCode());
         CourseSection cs = new CourseSection(math2107, 'a',new Term(2021 , "Winter"));
         CourseSection cs1 = new CourseSection(comp3004 , 'B' , new Term(2022 , "Winter"));
-        mia.addCourse(cs);
+        mia.addSection(cs);
 
 
         studentDao.addStudent(mia);
-        mia.addCourse(cs1);
+        mia.addSection(cs1);
        // studentDao.addStudent(mia);
 
        // studentDao.addStudentCourseSectionByStuId(mia.getStudentNumber() , cs1);

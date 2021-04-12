@@ -56,6 +56,7 @@ public class CourseSection implements Subject {
     public String getSectionName() { return course.getCourseName() + section; }
     public int getTermYear()        { return cYear; }
     public String getTermSeason()     { return cSeason; }
+    public String getTerm() { return cSeason + cYear;}
 
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
