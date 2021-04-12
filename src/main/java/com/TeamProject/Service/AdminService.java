@@ -75,7 +75,7 @@ public class AdminService {
             Course course = department.orderTheCourse(major,code);
             CourseSection courseSection = new CourseSection(course,section,year,season);
 //            if the course is in the database then fail
-            if(courseSectionDao.addSection(courseSection)){
+            if(courseSectionDao.findSectionByInfo(major,code,section,year,season) == null){
 //                find specfic major prof
                 Professor pro = professorDao.findProfByMajor(major);
                 courseSectionDao.updateProfessorBySectionId(courseSection.getSectionID(), pro);
