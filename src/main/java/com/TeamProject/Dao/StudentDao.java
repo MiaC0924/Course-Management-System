@@ -26,7 +26,7 @@ public class StudentDao {
         return mongoTemplate.findOne(query, Student.class);
     }
 
-    public Student findStudentByEmail(int email){
+    public Student findStudentByEmail(String email){
         Query query = new Query((Criteria.where("email").is(email)));
         return mongoTemplate.findOne(query, Student.class);
     }
