@@ -42,25 +42,21 @@ public class StudentDao {
         return false;
     }
 
-    public void addStudentCourseSectionByStuId(int id, CourseSection cs){
+    public void addCourseSectionByStuId(int id, CourseSection courseSection) {
         Student stu = findStudentByStuId(id);
-        stu.addSection(cs);
+        stu.addSection(courseSection);
         mongoTemplate.save(stu);
     }
 
-
+    public void deleteCourseSectionByStuId(int id, CourseSection courseSection) {
+        Student stu = findStudentByStuId(id);
+        stu.removeSection(courseSection);
+        mongoTemplate.save(stu);
+    }
 
 
     public void deleteStudentByStuId(int id){
         Query query = new Query(Criteria.where("studentNumber").is(id));
         mongoTemplate.remove(query,Student.class);
-    }
-
-    //TODO
-    public void addCourseByStuId(int id, CourseSection courseSection) {
-    }
-
-    //TODO
-    public void deleteCourseByStuId(int id, CourseSection courseSection) {
     }
 }

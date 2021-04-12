@@ -63,9 +63,16 @@ public class ProfessorDao {
         mongoTemplate.updateFirst(query, update, Professor.class);
     }
 
-    //TODO
     public void addCourseSectionByProfId(int id, CourseSection inputCS){
+        Professor prof = findProfById(id);
+        prof.addSection(inputCS);
+        mongoTemplate.save(prof);
+    }
 
+    public void deleteCourseSectionByProfId(int id, CourseSection inputCS){
+        Professor prof = findProfById(id);
+        prof.removeSection(inputCS);
+        mongoTemplate.save(prof);
     }
 
     //delete

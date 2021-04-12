@@ -35,7 +35,7 @@ public class DropController {
     public boolean dropCourse(Student s, CourseSection c){
         if(validDropPeriod(c.getTermYear(), c.getTermSeason()) == 0&&c.getObservers().contains(s)){
             c.detachObserver(s);
-            s.removeCourse(c);
+            s.removeSection(c);
             return true;
         }else if(validDropPeriod(c.getTermYear(), c.getTermSeason()) > 0&&c.getObservers().contains(s)){
             c.detachObserver(s);
