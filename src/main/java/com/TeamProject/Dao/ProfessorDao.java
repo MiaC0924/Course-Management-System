@@ -37,7 +37,6 @@ public class ProfessorDao {
     }
 
     //update
-
     public void updatePersonalInfoById(Professor prof) {
         Query query = new Query(Criteria.where("id").is(prof.getProfID()));
         Update update = new Update().set("name", prof.getName()).set("gender", prof.getGender());

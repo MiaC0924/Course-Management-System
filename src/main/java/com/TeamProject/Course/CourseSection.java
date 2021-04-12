@@ -67,7 +67,7 @@ public class CourseSection implements Subject {
         return state;
     }
 
-    public Professor getProfessor()            {
+    public Professor getProfessor() {
         Professor professor = null;
         for(Observer o:observers){
             if(o instanceof Professor){
@@ -86,6 +86,7 @@ public class CourseSection implements Subject {
         }
         return student;
     }
+
     public Map<Student,Character> getGradeList() { return gradeList;   }
     //public Character getGradeByName(String name){ return gradeList.get(name); }
 
