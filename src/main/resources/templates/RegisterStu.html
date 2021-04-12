@@ -154,31 +154,27 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Course</th>
+                        <th scope="col">Code</th>
                         <th scope="col">Section</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Season</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>COMP3004</td>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>COMP3005</td>
-                        <td>B</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>COMP3005</td>
-                        <td>C</td>
+                    <tr th:each="cour:${courses}">
+                        <td th:text="${cour.getSectionID()}"></td>
+                        <td th:text="${cour.getMajor()}"></td>
+                        <td th:text="${cour.getCode()}"></td>
+                        <td th:text="${cour.getSection()}"></td>
+                        <td th:text="${cour.getTermYear()}"></td>
+                        <td th:text="${cour.getTermSeason()}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
 
 
-            <form class="was-validated">
+            <form class="was-validated" action="Student/Register/Process">
                 <h5>Select Course</h5>
                 <div class="form-group row">
                     <label for= "Major" class="col-1 col-form-label">Major</label>
@@ -200,9 +196,9 @@
                         <input style="margin:10px" type="text" name="section" class="form-control" id = "Section" placeholder="A" required>
                     </div>
                 </div>
-            </form>
 
-            <button type="button" class="btn btn-primary float-right">Confirm</button>
+                <button type="submit" class="btn btn-primary float-right">Confirm</button>
+            </form>
         </main>
     </div>
 </div>
