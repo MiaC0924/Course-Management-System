@@ -1,12 +1,15 @@
 package com.TeamProject.Dao;
 
 import com.TeamProject.Person.Admin;
+import com.TeamProject.Person.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class AdminDao {
@@ -54,14 +57,30 @@ public class AdminDao {
         // mongoTemplate.updateMulti(query, update, Admin.class);
     }
 
-    //delete admin by adminID
+    //delete admin
     public void deleteAdminByEmail (String email){
         Query query = new Query(Criteria.where("email").is(email));
         mongoTemplate.remove(query, Admin.class);
     }
 
-    //TODO
-    public boolean addStudentApplications(String email, String gender, String dob, String pw, String major) {
-        return true;
+    public void deleteAdminById (String id){
+        Query query = new Query(Criteria.where("id").is(id));
+        mongoTemplate.remove(query, Admin.class);
+    }
+
+    public boolean addStudentApplications(String name, String gender, String email,
+                                          LocalDate dob, String pw, String major) {
+        Admin admin = findAdminById("101");
+        StudentApplication stuApp = new StudentApplication(name, gender, email, dob, pw, major);
+        boolean added = admin.addStudentApp(stuApp);
+        mongoTemplate.save(admin);
+        return added;
+    }
+
+    public boolean deleteStudentApplications(String studentEmail) {
+        Admin admin = findAdminById("101");
+        boolean deleted = admin.deleteStudentApp(studentEmail);
+        mongoTemplate.save(admin);
+        return deleted;
     }
 }
