@@ -129,13 +129,13 @@
                 </ul>
             </div>
         </nav>
-
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Create a Course</h1>
             </div>
 
-            <form class="was-validated">
+            <p style="color:red" th:text="${msg}"></p>
+            <form class="was-validated" action="/Admin/Courses/Create/Processing">
                 <div class="form-group row">
                     <label for= "Major" class="col-1 col-form-label">Major</label>
                     <div class="col-2">
@@ -167,7 +167,7 @@
                 <div class="form-group row">
                     <label for="Season" class="col-1 col-form-label">Season</label>
                     <div class="col-2">
-                        <select style="margin:10px" class="form-control" id="Season" required>
+                        <select style="margin:10px" class="form-control" id="Season" name="Season" required>
                             <option value="">Chooses...</option>
                             <option>Fall</option>
                             <option>Summer</option>

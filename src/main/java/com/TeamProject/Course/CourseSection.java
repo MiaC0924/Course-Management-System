@@ -57,7 +57,7 @@ public class CourseSection implements Subject {
     public int getTermYear()        { return cYear; }
     public String getTermSeason()     { return cSeason; }
     public String getTerm() { return cSeason + cYear;}
-
+    public int getCode() {return course.getCode();}
     public int    getRoom()        { return room;     }
     public String getBuilding()    { return building; }
     public String getMajor() { return course.getMajor(); }
@@ -66,7 +66,7 @@ public class CourseSection implements Subject {
     public int getState(){
         return state;
     }
-
+    public char getSection() {return section;}
     public Professor getProfessor() {
         Professor professor = null;
         for(Observer o:observers){
