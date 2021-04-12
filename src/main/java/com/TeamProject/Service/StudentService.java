@@ -17,8 +17,8 @@ import java.util.Map;
 public class StudentService {
 
     @Autowired
-    StudentDao studentDao;
-    AdminDao adminDao;
+    private StudentDao studentDao;
+    private AdminDao adminDao;
 
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
