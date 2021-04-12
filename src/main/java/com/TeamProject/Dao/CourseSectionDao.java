@@ -41,13 +41,57 @@ public class CourseSectionDao {
         return mongoTemplate.findOne(query, CourseSection.class);
     }
 
-//    public CourseSection findSectionByInfo(String course, int code, Character section,int year,String season){
-//        Query query = new Query();
-//        query.addCriteria(Criteria.where("course").is(course));
-//        List<CourseSection> coursesection = mongoTemplate.find(query, CourseSection.class);
-//
-//    }
+    public CourseSection findSectionByInfo(String course, int code, Character section,int year,String season){
+        Query query = new Query();
+        System.out.println("query");
+        query.addCriteria(Criteria.where("course").is(course));
+        System.out.println("course found");
+        if(query == null){
+            System.out.println("find null");
+            return null;
+        }
+        List<CourseSection> courseSections = mongoTemplate.find(query,CourseSection.class);
+        ArrayList<CourseSection> courseArray = new ArrayList<>();
+        ArrayList<CourseSection> courseArray1 = new ArrayList<>();
+        ArrayList<CourseSection> courseArray2= new ArrayList<>();
+        ArrayList<CourseSection> courseArray3 = new ArrayList<>();
 
+        for(CourseSection c : courseSections){
+            if(c.getCode() == code){
+                courseArray.add(c);
+                System.out.println("added");
+            }
+            if(courseSections.isEmpty()){
+                System.out.println("empty");
+                return null;
+            }
+        }
+        for(CourseSection c : courseArray){
+            if(c.getSection() != section){
+               courseArray1.add(c);
+            }
+            if(courseArray.isEmpty()){
+                return null;
+            }
+        }
+        for(CourseSection c : courseArray1){
+            if(c.getTermYear() != year){
+                courseArray2.add(c);
+            }
+            if(courseArray1.isEmpty()){
+                return null;
+            }
+        }
+        for(CourseSection c : courseArray2){
+            if(c.getTermSeason() != season){
+                courseArray3.add(c);
+            }
+            if(courseArray2.isEmpty()){
+                return null;
+            }
+        }
+        return courseArray.get(0);
+    }
 
 
 
