@@ -7,9 +7,9 @@ public class Term {
     private String season;
     private ArrayList<Integer> sectionIds;
 
-    public Term(int inputYear, String inputSeason){
-        year   = inputYear;
-        season = inputSeason;
+    public Term(int year, String season){
+        this.year   = year;
+        this.season = season;
         sectionIds = new ArrayList<>();
     }
 
