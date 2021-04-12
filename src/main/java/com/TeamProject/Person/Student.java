@@ -86,7 +86,7 @@ public class Student extends Person implements Visitable {
         terms.add(added);
     }
 
-    public void removeCourse(CourseSection section){
+    public void removeSection(CourseSection section){
         for(Term t:terms){
             if(section.sameTerm(t)){
                 for(int sectionID: t.getCourseSections()){
