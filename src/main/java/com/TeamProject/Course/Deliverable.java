@@ -8,8 +8,10 @@ public class Deliverable {
     private Map<String,Float> grades;
     private boolean submit;
     private LocalDate deadline;
+    private String name;
 
-    public Deliverable(LocalDate dl){
+    public Deliverable(String name,LocalDate dl){
+        this.name=name;
         deadline = dl;
         submit = true;
     }
@@ -25,6 +27,7 @@ public class Deliverable {
     public void getGrade(String name){
         grades.get(name);
     }
+    public String getName(){ return name; }
 
     public void removeStu(String name){
         grades.remove(name);

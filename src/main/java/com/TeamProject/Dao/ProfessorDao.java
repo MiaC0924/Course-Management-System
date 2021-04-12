@@ -27,7 +27,7 @@ public class ProfessorDao {
 
     //find prof
     public Professor findProfById (int id){
-        Query query = new Query(Criteria.where("id").is(id));
+        Query query = new Query(Criteria.where("profID").is(id));
         return mongoTemplate.findOne(query, Professor.class);
     }
 
@@ -82,6 +82,11 @@ public class ProfessorDao {
     //delete
     public void deleteProfByEmail (String email){
         Query query = new Query(Criteria.where("email").is(email));
+        mongoTemplate.remove(query, Professor.class);
+    }
+
+    public void deleteProfById(int id){
+        Query query = new Query(Criteria.where("profId").is(id));
         mongoTemplate.remove(query, Professor.class);
     }
 

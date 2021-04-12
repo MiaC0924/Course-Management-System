@@ -104,7 +104,7 @@ public class CourseSection implements Subject {
     public void addStudent(Student inputStu)      { observers.add(inputStu); }
     public void addGrade(Student s,Character inputGrade)    { gradeList.put(s,inputGrade); }
     public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
-    public void addDeliverable(LocalDate inputLocalDate)      { deliverables.add(new Deliverable(inputLocalDate)); }
+    public void addDeliverable(String name,LocalDate inputLocalDate)      { deliverables.add(new Deliverable(name,inputLocalDate)); }
 
 
     public void setState(int s){

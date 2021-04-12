@@ -29,7 +29,7 @@ public class AdminDao {
 
     //find admin
     public Admin findAdminById (String id){
-        Query query = new Query(Criteria.where("id").is(id));
+        Query query = new Query(Criteria.where("adminID").is(id));
         return mongoTemplate.findOne(query, Admin.class);
     }
 
