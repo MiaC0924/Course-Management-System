@@ -1,6 +1,7 @@
 package com.TeamProject.Dao;
 
 import com.TeamProject.Person.Admin;
+import com.TeamProject.Person.ProfessorApplication;
 import com.TeamProject.Person.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -77,9 +78,25 @@ public class AdminDao {
         return added;
     }
 
+    public boolean addProfosserApplications(String name, String gender, String email,
+                                          LocalDate dob, String pw, String major) {
+        Admin admin = findAdminById("101");
+        ProfessorApplication proApp = new ProfessorApplication(name, gender, email, dob, pw, major);
+        boolean added = admin.addProfessorApp(proApp);
+        mongoTemplate.save(admin);
+        return added;
+    }
+
     public boolean deleteStudentApplications(String studentEmail) {
         Admin admin = findAdminById("101");
         boolean deleted = admin.deleteStudentApp(studentEmail);
+        mongoTemplate.save(admin);
+        return deleted;
+    }
+
+    public boolean deleteProfessorApplications(String proEmail) {
+        Admin admin = findAdminById("101");
+        boolean deleted = admin.deleteProfessorApp(proEmail);
         mongoTemplate.save(admin);
         return deleted;
     }

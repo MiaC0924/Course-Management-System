@@ -5,10 +5,13 @@ import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
+import com.TeamProject.Person.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Map;
 
 @Service
 public class StudentService {
@@ -17,27 +20,35 @@ public class StudentService {
     StudentDao studentDao;
     AdminDao adminDao;
 
-    //{email:[name,gender,dob,pw,major]}
-    public boolean applyForCreation(String email,String gender,String dob,String pw,String major){
+    public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
-        //need boolean addStudentApplications(e,g,d,p,m){} in adminDao
-       // if(adminDao.addStudentApplications(email,gender,dob,pw,major)){
-       //     return true;
-       // }
-       // else{
-            return false;
-       // }
+        LocalDate DOB = LocalDate.parse(dob);
+        //check if the application list is empty
+        if(adminDao.findAdminById("101").getStudentAppList().isEmpty()){
+            adminDao.addStudentApplications(name,gender,email,DOB,pw,major);
+            return true;
+        }
+        else{
+            //check if the application is exist already
+            for(Map.Entry<String, StudentApplication> set : adminDao.findAdminById("101").getStudentAppList().entrySet()){
+                if(set.getKey() == email){
+                    return false;
+                }
+            }
+            adminDao.addStudentApplications(name,gender,email,DOB,pw,major);
+            return true;
+        }
     }
 
-    public boolean registerCourse(int id,int year,String season, Character section,String Course,int code){
+    public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
         if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
-            Course course = department.orderTheCourse("COMP",3004);
+            Course course = department.orderTheCourse(majorcode,code);
             CourseSection courseSection = new CourseSection(course,section,term);
             //courseSection.attachObserver(stu);
-           // studentDao.addCourseByStuId(id,courseSection);
+            studentDao.addCourseSectionByStuId(id,courseSection);
             return true;
         }
         else{
@@ -49,12 +60,13 @@ public class StudentService {
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
         Term term = new Term(year,season);
         Student stu = studentDao.findStudentByStuId(id);
+
         if(validRegisterPeriod(year,season)){
             CourseBuilding department = new Department();
-            Course course = department.orderTheCourse(majorcode,3004);
+            Course course = department.orderTheCourse(majorcode,code);
             CourseSection courseSection = new CourseSection(course,section,term);
             //courseSection.attachObserver(stu);
-          //  studentDao.deleteCourseByStuId(id,courseSection);
+            studentDao.deleteCourseSectionByStuId(id,courseSection);
             return true;
         }
         else{
@@ -63,6 +75,7 @@ public class StudentService {
     }
 
     public void submitDeliver(){
+
 
     }
 

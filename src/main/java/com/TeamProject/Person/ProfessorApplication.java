@@ -2,11 +2,11 @@ package com.TeamProject.Person;
 
 import java.time.LocalDate;
 
-public class StudentApplication {
+public class ProfessorApplication {
     String name, email, gender, password, major;
     LocalDate birthday;
 
-    public StudentApplication(String name, String gender, String email,
+    public ProfessorApplication(String name, String gender, String email,
                               LocalDate dob, String pw, String major){
         this.name = name;
         this.gender = gender;
