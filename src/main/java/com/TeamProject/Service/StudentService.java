@@ -78,6 +78,7 @@ public class StudentService {
         Student stu = studentDao.findStudentByStuId(id);
         System.out.println(stu);
         CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+        System.out.println(cs);
 
 //         if(cs.getObservers().contains(stu)){
 //             return false;
@@ -89,15 +90,15 @@ public class StudentService {
 //             studentDao.addStudent(stu);
 
         for(Student s:cs.getStudentList()){
+            System.out.println(s);
             if (s.getStudentNumber()==stu.getStudentNumber()){
                 return false;
             }
         }
         if(validRegisterPeriod(year,season)){
             System.out.println(cs.getObservers());
-//            cs.attachObserver(stu);
+            cs.attachObserver(stu);
             courseSectionDao.addStudentBySectionId(cs.getSectionID(),stu);
-
             return true;
         }
         else{

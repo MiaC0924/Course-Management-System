@@ -140,7 +140,12 @@ public class CourseSectionDao {
     public boolean addStudentBySectionId(int id, Student stu){
         CourseSection section = findSectionById(id);
         if(section != null) {
+            System.out.println(section);
+            System.out.println(section.getObservers());
             section.addStudent(stu);
+            System.out.println(section.getObservers());
+            Query query =new Query(Criteria.where("sectionID").is(id));
+            mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(section);
             return true;
         }

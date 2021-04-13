@@ -105,9 +105,10 @@ public class CourseSection implements Subject {
         attachObserver(inputProf);
     }
 
-    public void addStudent(Student inputStu)      { observers.add(inputStu);
-        this.notifyAllObserver();
-        gradeList.put(inputStu,'F');
+    public void addStudent(Student inputStu) {
+        observers.add(inputStu);
+//        gradeList.put(inputStu,'F');
+    }
 
 
     public void addGrade(Student s,Character inputGrade){
