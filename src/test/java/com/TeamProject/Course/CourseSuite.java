@@ -22,8 +22,6 @@ public class CourseSuite {
         Course math2107 = university.getDepartments().orderTheCourse("MATH",2107);
         Course comp3004A = university.getDepartments().orderTheCourse("COMP",3004);
         Course comp3004B = university.getDepartments().orderTheCourse("COMP",3004);
-        Course math1007 = university.getDepartments().orderTheCourse("MATH",1007);
-
 
         assertEquals("COMP3004", comp3004A.getCourseName());
         assertTrue(comp3004A.match(comp3004B));
@@ -31,21 +29,14 @@ public class CourseSuite {
         assertEquals("MATH", math2107.getMajor());
         assertEquals(2107, math2107.getCode());
 
-       // comp3004A.addPreCondition(math2000);
-        ArrayList<Course> expect = new ArrayList<>();
-        expect.add(math1007);
-
-        System.out.println(expect.get(0).getCourseName());
-        math2107.getPreCondition().coursePre(math2107.getCode()).get(0).getCourseName();
-//        assertEquals(expect, math2107.getPreCondition().coursePre(math2107.getCode()));
-
+        assertEquals("tutorial C1", comp3004A.tutorial.toString());
+        assertEquals("tutorial M1", math2107.tutorial.toString());
     }
 
     @DisplayName("CourseSection test case")
     @Test
     void CourseSection() {
         Student mia = new Student();
-        Professor john = new Professor();
         University university = new University("Carleton");
 
         Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
@@ -60,7 +51,6 @@ public class CourseSuite {
         expectStudent.add(mia);
         expectGrade.add('A');
 
-        //assertEquals(john, comp3004A.getProfessor());
         assertEquals(100001, comp3004A.getSectionID());
         assertTrue(comp3004A.sameTerm(winter2021));
         assertEquals("COMP3004A", comp3004A.getSectionName());
