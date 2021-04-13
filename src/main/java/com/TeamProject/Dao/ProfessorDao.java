@@ -86,8 +86,11 @@ public class ProfessorDao {
     }
 
     public void deleteProfById(int id){
-        Query query = new Query(Criteria.where("profId").is(id));
+        Query query = new Query(Criteria.where("profID").is(id));
+        System.out.println(mongoTemplate.find(query,Professor.class));
         mongoTemplate.remove(query, Professor.class);
+        System.out.println(query);
+        System.out.println(mongoTemplate.find(query,Professor.class));
     }
 
 

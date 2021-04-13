@@ -43,6 +43,7 @@ public class CourseSectionDao {
 
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
         ArrayList<CourseSection> css = getAllCourse();
+        System.out.println(css);
         for(CourseSection cs:css){
             if(!cs.getObservers().contains(stu)){
                 css.remove(cs);
@@ -75,8 +76,6 @@ public class CourseSectionDao {
         System.out.println(c);
         return c;
     }
-
-
 
     //update
     public boolean updateProfessorBySectionId(int id, Professor professor){
