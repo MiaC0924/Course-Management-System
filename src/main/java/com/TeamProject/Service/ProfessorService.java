@@ -11,6 +11,7 @@ import com.TeamProject.Person.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,17 +36,23 @@ public class ProfessorService {
     private CourseDao courseDao;
 
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
+//        System.out.println(dob);
         //put key and value into hashmap in admin database check if application exist
         LocalDate DOB = LocalDate.parse(dob);
+//        System.out.println(DOB);
         //check if the application list is empty
         HashMap<Integer, ProfessorApplication> map = new HashMap<>();
+//        System.out.println(adminDao.findAdminById("101"));
         map = adminDao.findAdminById("101").getProfAppList();
+//        System.out.println(map);
         if(map.isEmpty()){
+//            System.out.println("map is null");
             int applicationId = adminDao.addProfosserApplications(name,gender,email,DOB,pw,major);
             return true;
         }
         else{
             //check if the application is exist already
+//            System.out.println("map is not null");
             for(Map.Entry<Integer, ProfessorApplication> set : map.entrySet()){
                 if(set.getValue().getEmail() == email){
                     return false;
@@ -57,15 +64,15 @@ public class ProfessorService {
     }
 
     public boolean createDeliver(String major , int code, Character section,int year,String season, String deliver,LocalDate DL){
-
-        Course c = courseDao.findCourseByCourseCode(major,code);
-
+//        Course c = courseDao.findCourseByCourseCode(major,code);
         CourseSection cs = courseSectionDao.findSectionByAllInfo(major ,  code,  section, year, season);
-
-        cs.addDeliverable(deliver, DL);
-
-
-        return false;
+        if(cs == null){
+            System.out.println("cs no found");
+            return false;
+        }else{
+            System.out.println(cs);
+            return cs.addDeliverable(deliver, DL);
+        }
     }
 
     public void modifyDeliver(){}

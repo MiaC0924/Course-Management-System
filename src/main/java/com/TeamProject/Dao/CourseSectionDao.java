@@ -31,6 +31,7 @@ public class CourseSectionDao {
         }
     }
 
+
     //create
     public void deleteSection(int secID){
         Query query = new Query(Criteria.where("sectionID").is(secID));
@@ -57,9 +58,17 @@ public class CourseSectionDao {
     public ArrayList<CourseSection> getAllCourseByProf(Professor prof){
         ArrayList<CourseSection> css = getAllCourse();
         ArrayList<CourseSection> c = new ArrayList<CourseSection>();
-        System.out.println(css);
+
         for(CourseSection cs:css){
-            if(cs.getProfessor().getEmail().equals(prof.getEmail())){
+            System.out.println(cs.getSectionID());
+            if(cs.getProfessor()==null){
+                System.out.println("No Prof");
+                continue;
+            }else{
+                System.out.println(cs.getProfessor().getName());
+                System.out.println(prof.getName());
+            }
+            if(cs.getProfessor().getName().equals(prof.getName())){
                 c.add(cs);
             }
         }

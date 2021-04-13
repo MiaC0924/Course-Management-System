@@ -81,6 +81,7 @@ public class AdminDao {
     public int addProfosserApplications(String name, String gender, String email,
                                           LocalDate dob, String pw, String major) {
         Admin admin = findAdminById("101");
+        System.out.println(admin);
         ProfessorApplication proApp = new ProfessorApplication(name, gender, email, dob, pw, major);
         admin.addProfessorApp(proApp);
         mongoTemplate.save(admin);

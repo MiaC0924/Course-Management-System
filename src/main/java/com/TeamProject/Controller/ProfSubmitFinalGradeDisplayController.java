@@ -20,12 +20,44 @@ import java.util.ArrayList;
 
 @Controller
 public class ProfSubmitFinalGradeDisplayController {
+//    @Autowired
+//    ProfessorService professorService;
+//
+//    @Autowired
+//    StudentService studentService;
+//    @RequestMapping("Professor/Grades/SubmitFinal")
+//    public String submitCourseGrade(Model model,  HttpSession session){
+//        String major = (String)session.getAttribute("major");
+//        int code = (int)session.getAttribute("code");
+//        String section = (String)session.getAttribute("section");
+//
+//        System.out.println("This course is : major : " + major + code + section);
+//
+//
+//
+//        // !!!!!!!!!!       need a function to add all student of the course to stuList
+//
+//        //                 test         Area                                    //
+//        ArrayList<Student> stuList = new ArrayList<Student>();
+//        Student mia2 = new Student("Mia2","Female","123 Ottawa St", LocalDate.now(), "","MATH");
+//        Student mia = new Student("Mia","Female","123 Ottawa St", LocalDate.now(), "","MATH");
+//        stuList.add(mia);
+//        stuList.add(mia2);
+//
+//
+//        //                  test        Area                                    //
+//
+//
+//        model.addAttribute("student" , stuList);
+//        return "submitGradeFinalProf";
+//    }
+
     @Autowired
     ProfessorService professorService;
 
     @Autowired
     StudentService studentService;
-    @RequestMapping("Professor/Grades/SubmitFinal")
+    @RequestMapping("Professor/SubmitFinal")
     public String submitCourseGrade(Model model,  HttpSession session){
         String major = (String)session.getAttribute("major");
         int code = (int)session.getAttribute("code");

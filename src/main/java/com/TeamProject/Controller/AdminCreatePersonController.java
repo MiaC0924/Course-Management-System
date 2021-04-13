@@ -28,16 +28,11 @@ public class AdminCreatePersonController {
                             @RequestParam("address") String address,
                             Model model, HttpSession session){
         Boolean flag1 = false;
-
-
         /*                    String -> LocalDate                                              */
         String str = birthDay;
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(str, fmt);
         /*                    String -> LocalDate                                              */
-
-
-
 
 
         System.out.println("Create Person:  btnradio: " + btnradio + " , firstN: " + firstN +

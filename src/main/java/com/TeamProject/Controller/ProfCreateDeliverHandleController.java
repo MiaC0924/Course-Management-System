@@ -34,8 +34,6 @@ public class ProfCreateDeliverHandleController {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date1 = LocalDate.parse(str, fmt);
         // convert year
-
-
         System.out.println("Create Deliver:  Major: " + major + " , Code: " + code + " , Section: " + section  + " ,deliver: " + deliver +
                 " date: " + date1);
 

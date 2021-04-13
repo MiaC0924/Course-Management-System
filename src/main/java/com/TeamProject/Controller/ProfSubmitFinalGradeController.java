@@ -18,22 +18,50 @@ import java.time.format.DateTimeFormatter;
 @Controller
 public class ProfSubmitFinalGradeController {
 
+//    @Autowired
+//    AdminService adminService;
+//    ProfessorService professorService;
+//    CourseSectionDao courseSectionDao;
+//    //need courseSectionService
+//    @RequestMapping("/Professor/Grades/FinalGrade")
+//    public String selectCourse(Model model, HttpSession session){
+//        CourseSection cs = courseSectionDao.findSectionById((Integer) session.getAttribute("id"));
+//
+//        System.out.println("Professor submit finalGrade :  Major: " + cs.getMajor() + " , Code: " + cs.getCode() + " , Section: " + cs.getSectionID());
+//
+//        if(/*courseSectionService.findCourseSection(string major, int code)*/ true){
+//            session.setAttribute("major" , cs.getMajor());
+//            session.setAttribute("code" , cs.getCode());
+//            session.setAttribute("section" , cs.getSectionID());
+//            return "redirect:/Professor/Grades/SubmitFinal";
+//        }else{
+//
+//            System.out.println("Find Course fail");
+//            model.addAttribute("msg1","fail");
+//            return "dashboardProf";
+//        }
+//
+//    }
+
     @Autowired
     AdminService adminService;
     ProfessorService professorService;
-    CourseSectionDao courseSectionDao;
     //need courseSectionService
-    @RequestMapping("/Professor/Grades/FinalGrade")
-    public String selectCourse(Model model, HttpSession session){
-        CourseSection cs = courseSectionDao.findSectionById((Integer) session.getAttribute("id"));
+    @RequestMapping("/Professor/FinalGrade")
+    public String submitFinalGrade(@RequestParam("course") String major,
+                                   @RequestParam("code") int code,
+                                   @RequestParam("section") String section,
+                                   Model model, HttpSession session){
 
-        System.out.println("Professor submit finalGrade :  Major: " + cs.getMajor() + " , Code: " + cs.getCode() + " , Section: " + cs.getSectionID());
+
+
+        System.out.println("Professor submit finalGrade :  Major: " + major + " , Code: " + code + " , Section: " + section);
 
         if(/*courseSectionService.findCourseSection(string major, int code)*/ true){
-            session.setAttribute("major" , cs.getMajor());
-            session.setAttribute("code" , cs.getCode());
-            session.setAttribute("section" , cs.getSectionID());
-            return "redirect:/Professor/Grades/SubmitFinal";
+            session.setAttribute("major" , major);
+            session.setAttribute("code" , code);
+            session.setAttribute("section" , section);
+            return "redirect:/Professor/SubmitFinal";
         }else{
 
             System.out.println("Find Course fail");
