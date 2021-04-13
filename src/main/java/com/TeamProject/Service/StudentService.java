@@ -73,20 +73,31 @@ public class StudentService {
         return s;
     }
 
+
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         System.out.println(stu);
         CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+
+//         if(cs.getObservers().contains(stu)){
+//             return false;
+//         }
+//         if(validRegisterPeriod(year,season)){
+//             System.out.println(cs);
+//             cs.attachObserver(stu);
+//             courseSectionDao.addSection(cs);
+//             studentDao.addStudent(stu);
+
         for(Student s:cs.getStudentList()){
             if (s.getStudentNumber()==stu.getStudentNumber()){
                 return false;
             }
         }
         if(validRegisterPeriod(year,season)){
-
             System.out.println(cs.getObservers());
 //            cs.attachObserver(stu);
             courseSectionDao.addStudentBySectionId(cs.getSectionID(),stu);
+
             return true;
         }
         else{

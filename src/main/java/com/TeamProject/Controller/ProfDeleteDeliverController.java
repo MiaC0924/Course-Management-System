@@ -28,14 +28,9 @@ public class ProfDeleteDeliverController {
         // find professor by this email
         // professorService.find professor by email
 
-
-
-
         // find all deliverable by this professor
         //professorService.findAllDeliverable
         // save in dList
-
-
 
         ArrayList<Deliverable> dList = new ArrayList<Deliverable>();
         //find all CourseSection

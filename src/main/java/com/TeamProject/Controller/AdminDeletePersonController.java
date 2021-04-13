@@ -20,8 +20,6 @@ public class AdminDeletePersonController {
                                Model model){
         boolean flag1 = false;
         System.out.println("Want to delete: " + btnradio + " id: " + id + " email: " + email);
-
-
         if(btnradio.equals("Professor")){
             //bug !!!   adminService.deleteProfessor(id,email)  !!! //
             if(adminService.deleteProfessor(id)){
@@ -38,10 +36,6 @@ public class AdminDeletePersonController {
                 flag1 = false;
             }
         }
-
-
-
-
         if(flag1){
             System.out.println("delete success");
             model.addAttribute("msg1" ,"success");

@@ -28,8 +28,6 @@ public class StuDropCourse {
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = studentService.getAllCourseByStu(email);
         System.out.println(csList);
-
-
         /*          Test Area                       */
 //        University university = new University("Carleton");
 //        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);

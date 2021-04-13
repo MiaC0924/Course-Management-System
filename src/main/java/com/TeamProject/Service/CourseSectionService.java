@@ -32,6 +32,11 @@ public class CourseSectionService {
         return courseSectionDao.getAllCourse();
     }
 
+    public ArrayList<CourseSection> getAllCourseByProf(Professor prof){
+        return courseSectionDao.getAllCourseByProf(prof);
+    }
+
+
 
 
 

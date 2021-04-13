@@ -31,6 +31,7 @@ public class CourseSectionDao {
         }
     }
 
+
     //create
     public void deleteSection(int secID){
         Query query = new Query(Criteria.where("sectionID").is(secID));
@@ -52,6 +53,40 @@ public class CourseSectionDao {
             }
         }
         return css;
+    }
+
+    public ArrayList<CourseSection> getAllCourseByProf(Professor prof){
+        ArrayList<CourseSection> css = getAllCourse();
+        ArrayList<CourseSection> c = new ArrayList<CourseSection>();
+
+        for(CourseSection cs:css){
+            System.out.println(cs.getSectionID());
+            if(cs.getProfessor()==null){
+                System.out.println("No Prof");
+                continue;
+            }else{
+                System.out.println(cs.getProfessor().getName());
+                System.out.println(prof.getName());
+            }
+            if(cs.getProfessor().getName().equals(prof.getName())){
+                c.add(cs);
+            }
+        }
+        System.out.println(c);
+        return c;
+    }
+
+    public ArrayList<CourseSection> getAllCourseByCourseSection (Course co,Character ch){
+        ArrayList<CourseSection> c = new ArrayList<>();
+
+        ArrayList<CourseSection> s = getAllCourse();
+        for (int i =0;i<s.size();i++){
+            if(s.get(i).getSectionName().equals(co
+                    .getCourseName())&&s.get(i).getSection()==ch){
+                c.add(s.get(i));
+            }
+        }
+        return c;
     }
 
     public ArrayList<CourseSection> getAllCourse (){
