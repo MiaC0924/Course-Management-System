@@ -2,6 +2,7 @@ package com.TeamProject.Service;
 
 import com.TeamProject.Course.*;
 import com.TeamProject.Dao.AdminDao;
+import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -17,10 +19,18 @@ import java.util.Map;
 public class StudentService {
 
     @Autowired
-    StudentDao studentDao;
+    private StudentDao studentDao;
 
     @Autowired
-    AdminDao adminDao;
+    private AdminDao adminDao;
+
+    @Autowired
+    private CourseSectionDao courseSectionDao;
+
+    public ArrayList<CourseSection> getAllCoursebyStu(String stu){
+        courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(stu));
+        return null;
+    }
 
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist

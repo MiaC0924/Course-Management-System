@@ -71,22 +71,34 @@ public class AdminService {
 
         // create course
         public boolean createCourse (String major,int code, Character section, int year, String season){
-            CourseBuilding department = new Department();
-            Course course = department.orderTheCourse(major,code);
-            CourseSection courseSection = new CourseSection(course,section,year,season);
-//            if the course is in the database then fail
-            if(courseSectionDao.findSectionByInfo(major,code,section,year,season) == null){
-//                find specfic major prof
+            Course course = courseDao.findCourseByCourseCode(major,code);
+            System.out.println(course);
+            if(course==null){
+                CourseBuilding cb = new Department();
+                Course c = cb.orderTheCourse(major,code);
+                courseDao.addCourse(c);
+                CourseSection cs = new CourseSection(c,section,year,season);
+                courseSectionDao.findSectionById(cs.getSectionID());
                 Professor pro = professorDao.findProfByMajor(major);
-                courseSectionDao.updateProfessorBySectionId(courseSection.getSectionID(), pro);
-                professorDao.addCourseSectionByProfId(pro.getProfID(),courseSection);
+                courseSectionDao.updateProfessorBySectionId(cs.getSectionID(), pro);
+                professorDao.addCourseSectionByProfId(pro.getProfID(),cs);
+                return true;
+            }
+//            if the course is in the database then fail
+            CourseSection courseSection = courseSectionDao.findSectionByInfo(section,year,season);
+            if(courseSection == null){
+//                find specfic major prof
+                CourseSection newCourseSection = new CourseSection(course,section,year,season);
+                Professor pro = professorDao.findProfByMajor(major);
+                courseSectionDao.addSection(newCourseSection);
+                courseSectionDao.updateProfessorBySectionId(newCourseSection.getSectionID(), pro);
+                professorDao.addCourseSectionByProfId(pro.getProfID(),newCourseSection);
                 return true;
             }
             else {
                 return false;
             }
         }
-
         //delete student
         public boolean deleteStudent (int id){
             //check if the student exist
@@ -124,6 +136,7 @@ public class AdminService {
             //from created course list
             //if registration start: deregister stu and prof then delete
             CourseSection courseSection = courseSectionDao.findSectionById(id);
+            System.out.println(courseSection);
             if(courseSection != null){
                 String season = courseSection.getTermSeason();
                 int year = courseSection.getTermYear();
@@ -135,10 +148,10 @@ public class AdminService {
                     }
                     //deregister prof
                     professorDao.deleteCourseSectionByProfId(courseSection.getProfessor().getProfID(),courseSection);
-                    //delete course
-                    courseSectionDao.deleteSection(courseSection.getSectionID());
-                    return true;
                 }
+                //delete course
+                courseSectionDao.deleteSection(id);
+                return true;
             }
             return false;
 

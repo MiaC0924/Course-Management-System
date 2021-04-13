@@ -1,8 +1,10 @@
 package com.TeamProject.Dao;
 
 import com.TeamProject.Course.Course;
+import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.MathCourse;
 import com.TeamProject.Person.Admin;
+import com.TeamProject.Person.Student;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
 
 @Component
 public class CourseDao {
@@ -28,6 +32,8 @@ public class CourseDao {
         Query query = new Query(Criteria.where("name").is(name).and("code").is(code));
         return mongoTemplate.findOne(query, Course.class,"Courses");
     }
+
+
 
     public Course  findCourseByCourseCode(String course,int code){
         Query query = new Query(Criteria.where("name").is(course).and("code").is(code));

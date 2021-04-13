@@ -1,5 +1,6 @@
 package com.TeamProject.Dao;
 
+import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
@@ -9,8 +10,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,8 @@ public class CourseSectionDao {
     //create
     public boolean addSection(CourseSection section){
         if(findSectionById(section.getSectionID()) == null){
-            mongoTemplate.save(section);
+            mongoTemplate.save(section,"Sections");
+            System.out.println("added success");
             return true;
         }
         return false;
@@ -32,65 +32,48 @@ public class CourseSectionDao {
     //create
     public void deleteSection(int secID){
         Query query = new Query(Criteria.where("sectionID").is(secID));
-        mongoTemplate.remove(query, CourseSection.class);
+        mongoTemplate.remove(query, CourseSection.class,"Sections");
     }
 
     //find
     public CourseSection findSectionById(int id){
         Query query = new Query(Criteria.where("sectionID").is(id));
-        return mongoTemplate.findOne(query, CourseSection.class);
+        return mongoTemplate.findOne(query, CourseSection.class,"Sections");
     }
 
-    public CourseSection findSectionByInfo(String course, int code, Character section,int year,String season){
-        Query query = new Query();
-        System.out.println("query");
-        query.addCriteria(Criteria.where("course").is(course));
-        System.out.println("course found");
-        if(query == null){
-            System.out.println("find null");
-            return null;
+    public ArrayList<CourseSection> getAllCourseByStu (Student stu){
+        ArrayList<CourseSection> css = getAllCourse();
+        for(CourseSection cs:css){
+            if(!cs.getObservers().contains(stu)){
+                css.remove(cs);
+            }
         }
-        List<CourseSection> courseSections = mongoTemplate.find(query,CourseSection.class);
-        ArrayList<CourseSection> courseArray = new ArrayList<>();
-        ArrayList<CourseSection> courseArray1 = new ArrayList<>();
-        ArrayList<CourseSection> courseArray2= new ArrayList<>();
-        ArrayList<CourseSection> courseArray3 = new ArrayList<>();
+        return css;
+    }
 
-        for(CourseSection c : courseSections){
-            if(c.getCode() == code){
-                courseArray.add(c);
-                System.out.println("added");
-            }
-            if(courseSections.isEmpty()){
-                System.out.println("empty");
-                return null;
-            }
-        }
-        for(CourseSection c : courseArray){
-            if(c.getSection() != section){
-               courseArray1.add(c);
-            }
-            if(courseArray.isEmpty()){
-                return null;
+    public ArrayList<CourseSection> getAllCourse (){
+        int count=100001;
+        ArrayList<CourseSection> css = new ArrayList<CourseSection>();
+        while(count<100100){
+            CourseSection cs =findSectionById(count);
+            if(cs==null){
+//                System.out.println("No found at "+count);
+                count++;
+            }else{
+                count++;
+                css.add(cs);
             }
         }
-        for(CourseSection c : courseArray1){
-            if(c.getTermYear() != year){
-                courseArray2.add(c);
-            }
-            if(courseArray1.isEmpty()){
-                return null;
-            }
-        }
-        for(CourseSection c : courseArray2){
-            if(c.getTermSeason() != season){
-                courseArray3.add(c);
-            }
-            if(courseArray2.isEmpty()){
-                return null;
-            }
-        }
-        return courseArray.get(0);
+        System.out.println(css);
+        return css;
+    }
+//
+    public CourseSection findSectionByInfo(Character section,int year,String season){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("section").is(section).and("cYear").is(year).and("cSeason").is(season));
+        CourseSection c= mongoTemplate.findOne(query,CourseSection.class,"Sections");
+        System.out.println(c);
+        return c;
     }
 
 
@@ -100,7 +83,7 @@ public class CourseSectionDao {
         CourseSection section = findSectionById(id);
         if(section != null) {
             section.setProfessor(professor);
-            mongoTemplate.save(section);
+            mongoTemplate.save(section,"Sections");
             return true;
         }
         return false;
@@ -110,7 +93,7 @@ public class CourseSectionDao {
         CourseSection section = findSectionById(id);
         if(section != null) {
             section.addStudent(stu);
-            mongoTemplate.save(section);
+            mongoTemplate.save(section,"Sections");
             return true;
         }
         return false;
@@ -120,7 +103,7 @@ public class CourseSectionDao {
         CourseSection section = findSectionById(id);
         if(section != null) {
             section.setGrade(stu, grade);
-            mongoTemplate.save(section);
+            mongoTemplate.save(section,"Sections");
             return true;
         }
         return false;

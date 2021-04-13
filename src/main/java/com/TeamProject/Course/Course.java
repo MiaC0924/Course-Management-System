@@ -16,7 +16,7 @@ public abstract class Course {
     abstract void create();
 
     public String toString(){
-        return name + code + "have "+tutorial+" and have ";
+        return name + code + "have "+tutorial+" and have "+preCondition;
     }
 
     //getters
