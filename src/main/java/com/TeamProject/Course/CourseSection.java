@@ -150,11 +150,18 @@ public class CourseSection implements Subject {
         CourseSection c = this;
         c.setState(-1);
         o.update(c);
-        observers.remove(o);
+        for(Student ob:getStudentList()){
+            if(o instanceof Student){
+                if(((Student) o).getStudentNumber()==ob.getStudentNumber()){
+                    observers.remove(ob);
+                }
+            }
+        }
     }
 
     public void removeStudent(Student stu){
         detachObserver(stu);
+        stu.removeSection(this);
         //gradeList.remove(stu);
     }
 

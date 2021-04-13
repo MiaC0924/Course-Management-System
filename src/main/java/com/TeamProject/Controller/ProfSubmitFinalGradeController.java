@@ -3,6 +3,7 @@ package com.TeamProject.Controller;
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Service.AdminService;
+import com.TeamProject.Service.CourseSectionService;
 import com.TeamProject.Service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,8 +46,10 @@ public class ProfSubmitFinalGradeController {
 
     @Autowired
     AdminService adminService;
+    @Autowired
     ProfessorService professorService;
-    //need courseSectionService
+    @Autowired
+    CourseSectionService courseSectionService;
     @RequestMapping("/Professor/FinalGrade")
     public String submitFinalGrade(@RequestParam("course") String major,
                                    @RequestParam("code") int code,
@@ -57,7 +60,7 @@ public class ProfSubmitFinalGradeController {
 
         System.out.println("Professor submit finalGrade :  Major: " + major + " , Code: " + code + " , Section: " + section);
 
-        if(/*courseSectionService.findCourseSection(string major, int code)*/ true){
+        if(courseSectionService.findCourseSection(string major, int code)){
             session.setAttribute("major" , major);
             session.setAttribute("code" , code);
             session.setAttribute("section" , section);

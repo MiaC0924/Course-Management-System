@@ -59,13 +59,14 @@ public class StudentService {
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (String email){
-        ArrayList<CourseSection> c = new ArrayList<>();
         ArrayList<CourseSection> s = new ArrayList<>();
-
-        c = courseSectionDao.getAllCourse();
+        ArrayList<CourseSection> c = courseSectionDao.getAllCourse();
         for (int i =0;i<c.size();i++){
+            System.out.println(c.get(i).getStudentList());
             for(int j=0;j<c.get(i).getStudentList().size();j++){
-                if(c.get(i).getStudentList().get(j).getEmail() == email){
+                System.out.println(email);
+                System.out.println(c.get(i).getStudentList().get(j).getEmail());
+                if(c.get(i).getStudentList().get(j).getEmail() .equals(email)){
                     s.add(c.get(i));
                 }
             }
@@ -108,9 +109,13 @@ public class StudentService {
 
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
         if(validRegisterPeriod(year,season)){
-            CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
-            cs.detachObserver(stu);
+
+            cs.removeStudent(stu);
+//            System.out.println(cs.getObservers());
+//            System.out.println(cs.getSectionID());
+//            System.out.println(stu.getTerms().get(0).getSectionIds());
             courseSectionDao.addSection(cs);
             studentDao.addStudent(stu);
             return true;

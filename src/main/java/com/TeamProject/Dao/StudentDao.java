@@ -17,7 +17,14 @@ public class StudentDao {
     private MongoTemplate mongoTemplate;
 
     public void addStudent(Student stu){
-        mongoTemplate.save(stu);
+        if(findStudentByStuId(stu.getStudentNumber()) == null){
+            mongoTemplate.save(stu);
+            System.out.println("added success");
+        }else{
+            Query query = new Query(Criteria.where("studentNumber").is(stu.getStudentNumber()));
+            mongoTemplate.remove(query,CourseSection.class);
+            mongoTemplate.save(stu);
+        }
     }
 
 //    public void update(Student stu){
@@ -49,6 +56,8 @@ public class StudentDao {
     public void deleteCourseSectionByStuId(int id, CourseSection courseSection) {
         Student stu = findStudentByStuId(id);
         stu.removeSection(courseSection);
+        Query query = new Query(Criteria.where("studentNumber").is(id));
+        mongoTemplate.remove(query,Student.class);
         mongoTemplate.save(stu);
     }
 

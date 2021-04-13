@@ -27,7 +27,7 @@ public class Term {
     public ArrayList<Integer> getCourseSections(){ return sectionIds; }
     public void addCourseSections(CourseSection c){ sectionIds.add(c.getSectionID()); }
     public void removeCourseSections(CourseSection c){
-        sectionIds.remove(c.getSectionID());
+        sectionIds.remove((Object )c.getSectionID());
     }
 
     public boolean sameTerm(Term t){

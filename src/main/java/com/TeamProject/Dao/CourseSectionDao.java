@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,14 +21,14 @@ public class CourseSectionDao {
     private MongoTemplate mongoTemplate;
 
     //create
-    public boolean addSection(CourseSection section){
+    public void addSection(CourseSection section){
         if(findSectionById(section.getSectionID()) == null){
             mongoTemplate.save(section);
             System.out.println("added success");
-            return true;
         }else{
+            Query query = new Query(Criteria.where("sectionID").is(section.getSectionID()));
+            mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(section);
-            return false;
         }
     }
 
@@ -155,7 +156,12 @@ public class CourseSectionDao {
     public boolean deleteStudentBySectionId(int id, Student stu){
         CourseSection section = findSectionById(id);
         if(section != null) {
+            System.out.println(section);
+            System.out.println(section.getObservers());
             section.removeStudent(stu);
+            System.out.println(section.getObservers());
+            Query query =new Query(Criteria.where("sectionID").is(id));
+            mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(section);
             return true;
         }
