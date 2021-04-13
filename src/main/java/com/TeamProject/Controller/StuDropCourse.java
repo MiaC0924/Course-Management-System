@@ -26,10 +26,11 @@ public class StuDropCourse {
         //need a function to get all course of this student put in csList
         String email = (String)session.getAttribute("loginUser");
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
-        csList = studentService.getAllCoursebyStu(email);
+        csList = studentService.getAllCourseByStu(email);
+        System.out.println(csList);
 
 
-//        /*          Test Area                       */
+        /*          Test Area                       */
 //        University university = new University("Carleton");
 //        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
 //        Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);

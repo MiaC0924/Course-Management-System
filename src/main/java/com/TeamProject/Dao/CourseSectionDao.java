@@ -25,8 +25,10 @@ public class CourseSectionDao {
             mongoTemplate.save(section,"Sections");
             System.out.println("added success");
             return true;
+        }else{
+            mongoTemplate.save(section,"Sections");
+            return false;
         }
-        return false;
     }
 
     //create
@@ -42,7 +44,6 @@ public class CourseSectionDao {
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
-
         ArrayList<CourseSection> css = getAllCourse();
         System.out.println(css);
         for(CourseSection cs:css){
@@ -76,6 +77,19 @@ public class CourseSectionDao {
         CourseSection c= mongoTemplate.findOne(query,CourseSection.class,"Sections");
         System.out.println(c);
         return c;
+    }
+
+    public CourseSection findSectionByAllInfo(String major,int code, Character section,int year,String season){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("section").is(section).and("cYear").is(year).and("cSeason").is(season));
+        List<CourseSection> cl= mongoTemplate.find(query,CourseSection.class,"Sections");
+        for(CourseSection c:cl){
+            if(c.getSectionName()==major&&c.getCode()==code){
+                return c;
+            }
+        }
+        System.out.println("null");
+        return null;
     }
 
     //update

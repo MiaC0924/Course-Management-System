@@ -27,18 +27,20 @@ public class StuRegisterCourseController {
         //need a function to get all course of this student put in csList
 
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
+        csList = studentService.getAllCourse();
+        System.out.println(csList);
         /*          Test Area                       */
-        University university = new University("Carleton");
-        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
-        Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);
-//        Term winter2021 = new Term(2021, "Winter");
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
-        CourseSection comp3005A = new CourseSection(comp3005, 'A', 2021, "Winter");
-
-        csList.add(comp3004A);
-        csList.add(comp3004B);
-        csList.add(comp3005A);
+//        University university = new University("Carleton");
+//        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
+//        Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);
+////        Term winter2021 = new Term(2021, "Winter");
+//        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+//        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+//        CourseSection comp3005A = new CourseSection(comp3005, 'A', 2021, "Winter");
+//
+//        csList.add(comp3004A);
+//        csList.add(comp3004B);
+//        csList.add(comp3005A);
         /*             Test Area                  */
 
 
