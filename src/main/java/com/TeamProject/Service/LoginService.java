@@ -38,9 +38,6 @@ public class LoginService {
             return false;
         }
     }
-
-
-
     public boolean studentLogin(String username,String password){
         if(studentDao.findStudentByEmail(username) == null){
             return false;
