@@ -104,11 +104,19 @@ public class CourseSection implements Subject {
         }
         attachObserver(inputProf);
     }
+
     public void addStudent(Student inputStu)      { observers.add(inputStu);
         this.notifyAllObserver();
         gradeList.put(inputStu,'F');
+
+
+    public void addGrade(Student s,Character inputGrade){
+        if(gradeList.get(s) == null) {
+            gradeList.put(s, inputGrade);
+        } else {
+            setGrade(s, inputGrade);
+        }
     }
-    public void addGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public boolean addDeliverable(String name,LocalDate inputLocalDate)      {
         for(Deliverable d:deliverables){
@@ -128,9 +136,11 @@ public class CourseSection implements Subject {
     @Override
     public void attachObserver(Observer o) {
         if(observers.contains(o)){
+            System.out.println("Contain");
             return;
         }
         observers.add(o);
+        System.out.println(observers);
         o.update(this);
     }
 
@@ -140,6 +150,11 @@ public class CourseSection implements Subject {
         c.setState(-1);
         o.update(c);
         observers.remove(o);
+    }
+
+    public void removeStudent(Student stu){
+        detachObserver(stu);
+        //gradeList.remove(stu);
     }
 
     @Override

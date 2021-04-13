@@ -22,11 +22,11 @@ public class CourseSectionDao {
     //create
     public boolean addSection(CourseSection section){
         if(findSectionById(section.getSectionID()) == null){
-            mongoTemplate.save(section,"Sections");
+            mongoTemplate.save(section);
             System.out.println("added success");
             return true;
         }else{
-            mongoTemplate.save(section,"Sections");
+            mongoTemplate.save(section);
             return false;
         }
     }
@@ -35,13 +35,13 @@ public class CourseSectionDao {
     //create
     public void deleteSection(int secID){
         Query query = new Query(Criteria.where("sectionID").is(secID));
-        mongoTemplate.remove(query, CourseSection.class,"Sections");
+        mongoTemplate.remove(query, CourseSection.class);
     }
 
     //find
     public CourseSection findSectionById(int id){
         Query query = new Query(Criteria.where("sectionID").is(id));
-        return mongoTemplate.findOne(query, CourseSection.class,"Sections");
+        return mongoTemplate.findOne(query, CourseSection.class);
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
@@ -108,7 +108,7 @@ public class CourseSectionDao {
     public CourseSection findSectionByInfo(Character section,int year,String season){
         Query query = new Query();
         query.addCriteria(Criteria.where("section").is(section).and("cYear").is(year).and("cSeason").is(season));
-        CourseSection c= mongoTemplate.findOne(query,CourseSection.class,"Sections");
+        CourseSection c= mongoTemplate.findOne(query,CourseSection.class);
         System.out.println(c);
         return c;
     }
@@ -116,7 +116,7 @@ public class CourseSectionDao {
     public CourseSection findSectionByAllInfo(String major,int code, Character section,int year,String season){
         Query query = new Query();
         query.addCriteria(Criteria.where("section").is(section).and("cYear").is(year).and("cSeason").is(season));
-        List<CourseSection> cl= mongoTemplate.find(query,CourseSection.class,"Sections");
+        List<CourseSection> cl= mongoTemplate.find(query,CourseSection.class);
         for(CourseSection c:cl){
             if(c.getSectionName().equals(""+major+code+section)){
                 return c;
@@ -131,7 +131,7 @@ public class CourseSectionDao {
         CourseSection section = findSectionById(id);
         if(section != null) {
             section.setProfessor(professor);
-            mongoTemplate.save(section,"Sections");
+            mongoTemplate.save(section);
             return true;
         }
         return false;
@@ -141,7 +141,17 @@ public class CourseSectionDao {
         CourseSection section = findSectionById(id);
         if(section != null) {
             section.addStudent(stu);
-            mongoTemplate.save(section,"Sections");
+            mongoTemplate.save(section);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteStudentBySectionId(int id, Student stu){
+        CourseSection section = findSectionById(id);
+        if(section != null) {
+            section.removeStudent(stu);
+            mongoTemplate.save(section);
             return true;
         }
         return false;
@@ -151,7 +161,7 @@ public class CourseSectionDao {
         CourseSection section = findSectionById(id);
         if(section != null) {
             section.setGrade(stu, grade);
-            mongoTemplate.save(section,"Sections");
+            mongoTemplate.save(section);
             return true;
         }
         return false;
