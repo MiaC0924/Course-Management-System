@@ -21,6 +21,9 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
+    @Autowired
+    StudentService studentService;
+
 
     @RequestMapping("/user/login")
     public String login(@RequestParam("username") String username,
@@ -28,17 +31,24 @@ public class LoginController {
                         @RequestParam("btnradio") String btnradio,
                         Model model, HttpSession session){
         Boolean loginFlag = false;
+        Boolean ApplyFlag = false;
         if(btnradio.equals("Professor")){
             if(loginService.professorLogin(username, password)){
                 loginFlag = true;
+            }if(loginService.professorApply(username, password)){
+                ApplyFlag = true;
             }
         }else if(btnradio.equals("Student")){
             if(loginService.studentLogin(username, password)){
                 loginFlag = true;
+            }if(loginService.studentApply(username, password)){
+                ApplyFlag = true;
             }
         }else if(btnradio.equals("Admin")){
             if(loginService.adminLogin(username, password)){
                 loginFlag = true;
+            }if(loginService.adminApply(username, password)){
+                ApplyFlag = true;
             }
         }
 
@@ -49,8 +59,9 @@ public class LoginController {
 
 
             return "redirect:/"+ btnradio + "/main";
+        }else if(ApplyFlag){
+            return "redirect:/Apply";
         }else{
-            model.addAttribute("msg","wrong username/password");
             return "index";
         }
     }

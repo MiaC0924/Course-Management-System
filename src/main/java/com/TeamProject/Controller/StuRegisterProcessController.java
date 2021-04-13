@@ -37,6 +37,9 @@ public class StuRegisterProcessController {
         String email = (String)session.getAttribute("loginUser");
        //!!!!!!!!!!!!!!!!!!!!   need find student by email
         Student stu = studentService.findStuByEmail(email);
+        System.out.println(email);
+        System.out.println(stu);
+        System.out.println(""+major+code+section+year+season);
 
 
        //!!!!!!!!!!!!!!!!          cannot get year and season

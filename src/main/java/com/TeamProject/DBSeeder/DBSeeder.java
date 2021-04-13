@@ -98,7 +98,7 @@ public class DBSeeder implements CommandLineRunner {
                 "Male",
                 "jp@fack.com",
                 LocalDate.now(),
-                "Professor",
+                    "Professor",
                 "COMP"
         );
 
@@ -139,11 +139,6 @@ public class DBSeeder implements CommandLineRunner {
 
         studentRepository.deleteAll();
 
-        ArrayList<Student> stuList = new ArrayList<>();
-        stuList.add(mia);
-        stuList.add(kevin);
-
-
         comp3004A.attachObserver(mia);
         math2000A.attachObserver(mia);
         comp3004A.attachObserver(jp);
@@ -154,6 +149,10 @@ public class DBSeeder implements CommandLineRunner {
         courseSectionList.add(comp3004A);
         courseSectionList.add(comp3004B);
         courseSectionList.add(math2000A);
+
+        ArrayList<Student> stuList = new ArrayList<>();
+        stuList.add(mia);
+        stuList.add(kevin);
         professorRepository.saveAll(profList);
         studentRepository.saveAll(stuList);
         courseSectionRepository.saveAll(courseSectionList);

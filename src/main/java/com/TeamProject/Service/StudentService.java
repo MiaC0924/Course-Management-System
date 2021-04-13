@@ -71,13 +71,28 @@ public class StudentService {
 //        }
 //        return courseSections;
 
-        return courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(email));
+        ArrayList<CourseSection> c = new ArrayList<>();
+        ArrayList<CourseSection> s = new ArrayList<>();
+
+        c = courseSectionDao.getAllCourse();
+        for (int i =0;i<c.size();i++){
+            for(int j=0;j<c.get(i).getStudentList().size();j++){
+                if(c.get(i).getStudentList().get(j).getEmail() == email){
+                    s.add(c.get(i));
+                }
+            }
+        }
+        return s;
+
+//        return courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(email));
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
+        System.out.println(stu);
         if(validRegisterPeriod(year,season)){
             CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+            System.out.println(cs);
             cs.attachObserver(stu);
             courseSectionDao.addSection(cs);
             studentDao.addStudent(stu);
@@ -86,7 +101,6 @@ public class StudentService {
         else{
             return false;
         }
-
     }
 
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){

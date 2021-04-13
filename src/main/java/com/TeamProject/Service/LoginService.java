@@ -31,6 +31,16 @@ public class LoginService {
         return false;
     }
 
+    public boolean adminApply(String username,String password){
+        if(adminDao.findAdminByEmail(username) == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
     public boolean studentLogin(String username,String password){
         if(studentDao.findStudentByEmail(username) == null){
             return false;
@@ -39,6 +49,14 @@ public class LoginService {
             return true;
         }
         return false;
+    }
+
+    public boolean studentApply(String username,String password){
+        if(studentDao.findStudentByEmail(username) == null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public boolean professorLogin(String username,String password){
@@ -52,5 +70,11 @@ public class LoginService {
         return false;
     }
 
-
+    public boolean professorApply(String username,String password){
+        if(professorDao.findProfByEmail(username) == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

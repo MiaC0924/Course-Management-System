@@ -92,18 +92,22 @@ public class CourseSection implements Subject {
     //public Character getGradeByName(String name){ return gradeList.get(name); }
 
     //setters
-    public void setBuilding(String inputBuilding) { building = inputBuilding;  }
-    public void setRoom(int inputRoom)            { room = inputRoom;          }
+//    public void setBuilding(String inputBuilding) { building = inputBuilding;  }
+//    public void setRoom(int inputRoom)            { room = inputRoom;          }
     public void setProfessor(Professor inputProf) {
         for(Observer o:observers){
             if(o instanceof Professor){
                 detachObserver(o);
                 attachObserver(inputProf);
+                return;
             }
         }
+        attachObserver(inputProf);
     }
-    public void addStudent(Student inputStu)      { observers.add(inputStu); }
-    public void addGrade(Student s,Character inputGrade)    { gradeList.put(s,inputGrade); }
+    public void addStudent(Student inputStu)      { observers.add(inputStu);
+        gradeList.put(inputStu,'F');
+    }
+    public void addGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public void addDeliverable(String name,LocalDate inputLocalDate)      { deliverables.add(new Deliverable(name,inputLocalDate)); }
 

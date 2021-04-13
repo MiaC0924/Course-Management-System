@@ -67,7 +67,6 @@ public class CourseSectionDao {
                 css.add(cs);
             }
         }
-        System.out.println(css);
         return css;
     }
 //
@@ -84,11 +83,11 @@ public class CourseSectionDao {
         query.addCriteria(Criteria.where("section").is(section).and("cYear").is(year).and("cSeason").is(season));
         List<CourseSection> cl= mongoTemplate.find(query,CourseSection.class,"Sections");
         for(CourseSection c:cl){
-            if(c.getSectionName()==major&&c.getCode()==code){
+            if(c.getSectionName().equals(""+major+code+section)){
                 return c;
             }
         }
-        System.out.println("null");
+//        System.out.println("null");
         return null;
     }
 

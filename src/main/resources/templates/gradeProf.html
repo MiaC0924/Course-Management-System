@@ -31,14 +31,14 @@
     </style>
 
 
-    <!-- Custom styles for this template -->
-    <!-- <link href="dashboard.css" rel="stylesheet"> -->
+    <!--     Custom styles for this template -->
+    <!--     <link href="dashboard.css" rel="stylesheet"> -->
 </head>
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand fab fa-accessible-icon"> School</a>
-    <a class="navbar-brand  me-0 px-3" href="#">Student</a>
+    <a class="navbar-brand  me-0 px-3" href="#">Professor</a>
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">[[${session.loginUser}]]</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -57,37 +57,31 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Student/main">
+                        <a class="nav-link active" aria-current="page" href="/Professor/Dashboard">
                             <i class="fas fa-home"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Student/Register">
+                        <a class="nav-link active" aria-current="page" href="/Professor/Deliverable">
                             <i class="fas fa-book"></i>
-                            Register
+                            Deliverable
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/Drop">
+                        <a class="nav-link" href="/Professor/Grades">
                             <i class="fas fa-project-diagram"></i>
-                            Drop
+                            Grades
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/Account">
+                        <a class="nav-link" href="/Professor/Account">
                             <i class="fas fa-user-graduate"></i>
                             Account
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/Deliverable">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            Deliverable
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Student/Reports">
+                        <a class="nav-link" href="/Professor/Reports">
                             <i class="fas fa-chart-bar"></i>
                             Reports
                         </a>
@@ -130,101 +124,22 @@
             </div>
         </nav>
 
+
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h1">Register</h1>
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <div class="btn-group">
-                        <button id="YearGroupDrop" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Year
-                        </button>
-                    </div>
-                    <div class="btn-group">
-                        <button id="SeasonGroupDrop" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Season
-                        </button>
-                    </div>
-                </div>
+                <h1 class="h2">Grades</h1>
             </div>
 
-            <h2>Section title</h2>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Code</th>
-                        <th scope="col">Section</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">Season</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="cour:${courses}">
-                        <td th:text="${cour.getSectionID()}"></td>
-                        <td th:text="${cour.getMajor()}"></td>
-                        <td th:text="${cour.getCode()}"></td>
-                        <td th:text="${cour.getSection()}"></td>
-                        <td th:text="${cour.getTermYear()}"></td>
-                        <td th:text="${cour.getTermSeason()}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-            <form class="was-validated" action="Student/Register/Processing">
-                <h5>Select Course</h5>
-                <div class="form-group row">
-                    <label for= "Major" class="col-1 col-form-label">Major</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="major" class="form-control" id ="Major" placeholder="COMP" maxlength="4" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="Code" class="col-1 col-form-label">Code</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="code" class="form-control" id = "Code" placeholder="1000" maxlength="4" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="Section" class="col-1 col-form-label">Section</label>
-                    <div class="col-1">
-                        <input style="margin:10px" type="text" name="section" class="form-control" id = "Section" placeholder="A" maxlength="1" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for= "Year" class="col-1 col-form-label">Year</label>
-                    <div class="col-1">
-                        <input style="margin:10px" type="text" name="year" class="form-control" id ="Year" placeholder="2020" maxlength="4" required>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="season" class="col-1 col-form-label">Season</label>
-                    <div class="col-2">
-                        <select style="margin:10px" class="form-control" id="season" name="season" required>
-                            <option value="">Chooses...</option>
-                            <option>Fall</option>
-                            <option>Summer</option>
-                            <option>Winter</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary float-right">Confirm</button>
-            </form>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/Professor/Grades/FinalGrade'">  Submit a Final Grade</button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit" onclick="window.location.href='/Professor/Grades/Delete'">  Submit a Deliverable Grade</button>
         </main>
     </div>
 </div>
 
+
 <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-
 </body>
 </html>
