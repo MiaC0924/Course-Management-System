@@ -27,6 +27,9 @@ public class StudentService {
     @Autowired
     private CourseSectionDao courseSectionDao;
 
+    public Student findStuByEmail(String email){
+        return studentDao.findStudentByEmail(email);
+    }
     public ArrayList<CourseSection> getAllCoursebyStu(String stu){
         courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(stu));
         return null;
@@ -50,6 +53,21 @@ public class StudentService {
             adminDao.addStudentApplications(name,gender,email,DOB,pw,major);
             return true;
         }
+    }
+
+    public ArrayList<CourseSection> getAllCourseByStu (Student stu){
+        Student s=studentDao.findStudentByStuId(stu.getStudentNumber());
+        ArrayList<Integer> sectionIds = new ArrayList<>();
+        ArrayList<CourseSection> courseSections = new ArrayList<>();
+        for (int i=0;i<stu.getTerms().size();i++){
+            for(int j=0;j<stu.getTerms().get(i).getSectionIds().size();j++){
+                sectionIds.add(stu.getTerms().get(i).getSectionIds().get(j));
+            }
+        }
+        for (int i=0;i<sectionIds.size();i++){
+            courseSections.add(courseSectionDao.findSectionById(sectionIds.get(i)));
+        }
+        return courseSections;
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){

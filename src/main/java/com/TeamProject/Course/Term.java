@@ -21,6 +21,7 @@ public class Term {
     //getters
     public String getSeason(){ return season; }
     public int    getYear()  { return year;   }
+    public ArrayList<Integer> getSectionIds(){ return sectionIds; }
 
     //courseSections
     public ArrayList<Integer> getCourseSections(){ return sectionIds; }

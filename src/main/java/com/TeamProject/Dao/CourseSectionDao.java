@@ -42,6 +42,7 @@ public class CourseSectionDao {
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
+
         ArrayList<CourseSection> css = getAllCourse();
         for(CourseSection cs:css){
             if(!cs.getObservers().contains(stu)){
