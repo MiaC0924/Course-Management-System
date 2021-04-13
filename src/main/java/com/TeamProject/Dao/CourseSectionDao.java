@@ -112,6 +112,16 @@ public class CourseSectionDao {
         return false;
     }
 
+    public boolean deleteStudentBySectionId(int id, Student stu){
+        CourseSection section = findSectionById(id);
+        if(section != null) {
+            section.removeStudent(stu);
+            mongoTemplate.save(section,"Sections");
+            return true;
+        }
+        return false;
+    }
+
     public boolean setGradeBySectionId(int id, Student stu, Character grade){
         CourseSection section = findSectionById(id);
         if(section != null) {
