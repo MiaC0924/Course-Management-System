@@ -4,12 +4,14 @@ import com.TeamProject.Observer.Observer;
 import com.TeamProject.Observer.Subject;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Document(collection = "CourseSection_table")
 public class CourseSection implements Subject {
     private static int count  = 100001;
     private int sectionID;

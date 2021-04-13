@@ -1,14 +1,13 @@
 package com.TeamProject.Course;
 
-import java.util.ArrayList;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Course_table")
 public abstract class Course {
     private String name;
     private int code;
     Tutorial tutorial;
     PreCondition preCondition;
-
-
 
     public Course(int code) {
         this.code = code;
