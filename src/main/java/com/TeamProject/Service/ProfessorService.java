@@ -8,6 +8,7 @@ import com.TeamProject.Dao.StudentDao;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.ProfessorApplication;
 import com.TeamProject.Person.Student;
+import com.TeamProject.Person.StudentApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,14 +37,16 @@ public class ProfessorService {
         //put key and value into hashmap in admin database check if application exist
         LocalDate DOB = LocalDate.parse(dob);
         //check if the application list is empty
-        if(adminDao.findAdminById("101").getProfAppList().isEmpty()){
-            adminDao.addProfosserApplications(name,gender,email,DOB,pw,major);
+        HashMap<Integer, ProfessorApplication> map = new HashMap<>();
+        map = adminDao.findAdminById("101").getProfAppList();
+        if(map.isEmpty()){
+            int applicationId = adminDao.addProfosserApplications(name,gender,email,DOB,pw,major);
             return true;
         }
         else{
             //check if the application is exist already
-            for(Map.Entry<String, ProfessorApplication> set : adminDao.findAdminById("101").getProfAppList().entrySet()){
-                if(set.getKey() == email){
+            for(Map.Entry<Integer, ProfessorApplication> set : map.entrySet()){
+                if(set.getValue().getEmail() == email){
                     return false;
                 }
             }
