@@ -47,7 +47,7 @@ public class StuDropCourse {
 
         model.addAttribute("courses" , csList);
 
-        return"RegisterStu";
+        return"DropStu";
     }
 }
 
