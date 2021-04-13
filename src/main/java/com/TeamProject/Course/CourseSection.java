@@ -109,7 +109,13 @@ public class CourseSection implements Subject {
         //gradeList.put(inputStu,'F');
     }
 
-    public void addGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
+    public void addGrade(Student s,Character inputGrade){
+        if(gradeList.get(s) == null) {
+            gradeList.put(s, inputGrade);
+        } else {
+            setGrade(s, inputGrade);
+        }
+    }
     public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public void addDeliverable(String name,LocalDate inputLocalDate)      { deliverables.add(new Deliverable(name,inputLocalDate)); }
 
