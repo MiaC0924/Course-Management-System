@@ -54,6 +54,32 @@ public class CourseSectionDao {
         return css;
     }
 
+    public ArrayList<CourseSection> getAllCourseByProf(Professor prof){
+        ArrayList<CourseSection> css = getAllCourse();
+        ArrayList<CourseSection> c = new ArrayList<CourseSection>();
+        System.out.println(css);
+        for(CourseSection cs:css){
+            if(cs.getProfessor().getEmail().equals(prof.getEmail())){
+                c.add(cs);
+            }
+        }
+        System.out.println(c);
+        return c;
+    }
+
+    public ArrayList<CourseSection> getAllCourseByCourseSection (Course co,Character ch){
+        ArrayList<CourseSection> c = new ArrayList<>();
+
+        ArrayList<CourseSection> s = getAllCourse();
+        for (int i =0;i<s.size();i++){
+            if(s.get(i).getSectionName().equals(co
+                    .getCourseName())&&s.get(i).getSection()==ch){
+                c.add(s.get(i));
+            }
+        }
+        return c;
+    }
+
     public ArrayList<CourseSection> getAllCourse (){
         int count=100001;
         ArrayList<CourseSection> css = new ArrayList<CourseSection>();

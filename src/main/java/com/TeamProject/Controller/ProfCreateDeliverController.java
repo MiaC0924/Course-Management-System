@@ -7,6 +7,7 @@ import com.TeamProject.Course.University;
 import com.TeamProject.Dao.CourseDao;
 import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Person.Admin;
+import com.TeamProject.Person.Professor;
 import com.TeamProject.Service.AdminService;
 import com.TeamProject.Service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ import static javax.swing.text.html.CSS.getAttribute;
 
 @Controller
 public class ProfCreateDeliverController {
-    // @Autowired a courseSection service
+     @Autowired
+     CourseSectionDao courseSectionDao;
     @Autowired
     ProfessorService professorService;
     AdminService adminService;
@@ -30,27 +32,25 @@ public class ProfCreateDeliverController {
         String email = (String)session.getAttribute("loginUser");
         System.out.println("this professor Email: " + email);
         /*       need findProcessorBy email                   */
-        // Professor prof = findByEmail()
+         Professor prof = professorService.findProfessorByEmail(email);
         /*       need findAllCourseSectionByProfessor                                */
-        // ArrayList<CourseSection> csList = findAllCourseSection
+        ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
+        csList = courseSectionDao.getAllCourseByProf(prof);
 
         //for test only
-        ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
+
         //find all CourseSection
         /*          Test Area                       */
-        University university = new University("Carleton");
-        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
-        Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);
-        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
-        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
-        CourseSection comp3005A = new CourseSection(comp3005, 'A', 2021, "Winter");
-
-        csList.add(comp3004A);
-        csList.add(comp3004B);
-        csList.add(comp3005A);
-
-
-
+//        University university = new University("Carleton");
+//        Course comp3004 = university.getDepartments().orderTheCourse("COMP",3004);
+//        Course comp3005 = university.getDepartments().orderTheCourse("COMP",3005);
+//        CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
+//        CourseSection comp3004B = new CourseSection(comp3004, 'B', 2021, "Winter");
+//        CourseSection comp3005A = new CourseSection(comp3005, 'A', 2021, "Winter");
+//
+//        csList.add(comp3004A);
+//        csList.add(comp3004B);
+//        csList.add(comp3005A);
 
         /*             Test Area                  */
         model.addAttribute("courses" , csList);

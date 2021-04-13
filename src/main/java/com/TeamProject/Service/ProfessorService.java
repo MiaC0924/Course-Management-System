@@ -1,10 +1,9 @@
 package com.TeamProject.Service;
 
+import com.TeamProject.Course.Course;
+import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.Deliverable;
-import com.TeamProject.Dao.AdminDao;
-import com.TeamProject.Dao.CourseSectionDao;
-import com.TeamProject.Dao.ProfessorDao;
-import com.TeamProject.Dao.StudentDao;
+import com.TeamProject.Dao.*;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.ProfessorApplication;
 import com.TeamProject.Person.Student;
@@ -32,6 +31,8 @@ public class ProfessorService {
 
     @Autowired
     private CourseSectionDao courseSectionDao;
+    @Autowired
+    private CourseDao courseDao;
 
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
@@ -55,7 +56,15 @@ public class ProfessorService {
         }
     }
 
-    public boolean createDeliver(String major , int code, String section, String deliver){
+    public boolean createDeliver(String major , int code, Character section,int year,String season, String deliver,LocalDate DL){
+
+        Course c = courseDao.findCourseByCourseCode(major,code);
+
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(major ,  code,  section, year, season);
+
+        cs.addDeliverable(deliver, DL);
+
+
         return false;
     }
 

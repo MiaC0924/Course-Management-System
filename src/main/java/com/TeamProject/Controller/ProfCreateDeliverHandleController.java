@@ -23,7 +23,9 @@ public class ProfCreateDeliverHandleController {
     @RequestMapping("/Professor/Deliver/Create/Processing")
     public String addCourse(@RequestParam("major") String major,
                             @RequestParam("code") int code,
-                            @RequestParam("section") String section,
+                            @RequestParam("section") Character section,
+                            @RequestParam("year") int year,
+                            @RequestParam("season") String season,
                             @RequestParam("deliver") String deliver,
                             @RequestParam("date") String date,
                             Model model, HttpSession session){
@@ -39,7 +41,7 @@ public class ProfCreateDeliverHandleController {
 
         // Bug !!! professorService.createDeliver(major , code,section , deliver) no return value !!! //
 
-        if( true /*professorService.createDeliver(major , code,section , deliver) */){
+        if( professorService.createDeliver(major , code, section,year,season , deliver,date1)){
             System.out.println("Create Deliver Success");
             model.addAttribute("msg","success");
         }else{

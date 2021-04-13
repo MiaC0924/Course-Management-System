@@ -35,6 +35,7 @@ public class MvcConfig implements WebMvcConfigurer {
         //prof deliver
        // registry.addViewController("/Professor/Deliver/Delete").setViewName("deletedeliverableProf");
          registry.addViewController("/Professor/Grades").setViewName("gradeProf");
+        registry.addViewController("/Professor/Deliverable").setViewName("deliverableProf");
     }
 
 

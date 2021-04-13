@@ -72,11 +72,15 @@ public class StudentService {
         return s;
     }
 
+
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         System.out.println(stu);
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+        if(cs.getObservers().contains(stu)){
+            return false;
+        }
         if(validRegisterPeriod(year,season)){
-            CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
             System.out.println(cs);
             cs.attachObserver(stu);
             courseSectionDao.addSection(cs);
@@ -109,9 +113,9 @@ public class StudentService {
 
     public boolean validRegisterPeriod(int tY , String tS){
         if(tY == Calendar.getInstance().get(Calendar.YEAR)){
-            if(tS =="Fall"){
+            if(tS.equals("Fall")){
                 return true;
-            }else if(tS =="Summer"){
+            }else if(tS.equals("Summer")){
                 return true;
             }else{
                 return false;
