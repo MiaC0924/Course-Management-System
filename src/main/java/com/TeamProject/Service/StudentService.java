@@ -58,19 +58,31 @@ public class StudentService {
         }
     }
 
-    public ArrayList<CourseSection> getAllCourseByStu (Student stu){
-        Student s=studentDao.findStudentByStuId(stu.getStudentNumber());
-        ArrayList<Integer> sectionIds = new ArrayList<>();
-        ArrayList<CourseSection> courseSections = new ArrayList<>();
-        for (int i=0;i<stu.getTerms().size();i++){
-            for(int j=0;j<stu.getTerms().get(i).getSectionIds().size();j++){
-                sectionIds.add(stu.getTerms().get(i).getSectionIds().get(j));
+    public ArrayList<CourseSection> getAllCourseByStu (String email){
+        ArrayList<CourseSection> c = new ArrayList<>();
+        ArrayList<CourseSection> s = new ArrayList<>();
+
+        c = courseSectionDao.getAllCourse();
+        for (int i =0;i<c.size();i++){
+            for(int j=0;j<c.get(i).getStudentList().size();j++){
+                if(c.get(i).getStudentList().get(j).getEmail() == email){
+                    s.add(c.get(i));
+                }
             }
         }
-        for (int i=0;i<sectionIds.size();i++){
-            courseSections.add(courseSectionDao.findSectionById(sectionIds.get(i)));
-        }
-        return courseSections;
+        return s;
+//        Student s=studentDao.findStudentByStuId(stu.getStudentNumber());
+//        ArrayList<Integer> sectionIds = new ArrayList<>();
+//        ArrayList<CourseSection> courseSections = new ArrayList<>();
+//        for (int i=0;i<stu.getTerms().size();i++){
+//            for(int j=0;j<stu.getTerms().get(i).getSectionIds().size();j++){
+//                sectionIds.add(stu.getTerms().get(i).getSectionIds().get(j));
+//            }
+//        }
+//        for (int i=0;i<sectionIds.size();i++){
+//            courseSections.add(courseSectionDao.findSectionById(sectionIds.get(i)));
+//        }
+//        return courseSections;
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
