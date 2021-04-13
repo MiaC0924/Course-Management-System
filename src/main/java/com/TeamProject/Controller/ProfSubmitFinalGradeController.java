@@ -59,8 +59,8 @@ public class ProfSubmitFinalGradeController {
 
 
         System.out.println("Professor submit finalGrade :  Major: " + major + " , Code: " + code + " , Section: " + section);
-
-        if(courseSectionService.findCourseSection(string major, int code)){
+//        courseSectionService.findCourseSection(major,code)!=null
+        if(true){
             session.setAttribute("major" , major);
             session.setAttribute("code" , code);
             session.setAttribute("section" , section);

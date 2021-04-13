@@ -45,6 +45,12 @@ public class CourseSectionDao {
         return mongoTemplate.findOne(query, CourseSection.class);
     }
 
+
+//    public CourseSection findCourseSection(String major,int code){
+//        Query query = new Query(Criteria.where("sectionID").is(id));
+//        return mongoTemplate.findOne(query, CourseSection.class);
+//    }
+
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
         ArrayList<CourseSection> css = getAllCourse();
         System.out.println(css);
