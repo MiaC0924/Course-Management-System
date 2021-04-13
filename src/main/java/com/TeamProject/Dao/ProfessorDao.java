@@ -86,7 +86,7 @@ public class ProfessorDao {
     }
 
     public void deleteProfById(int id){
-        Query query = new Query(Criteria.where("profId").is(id));
+        Query query = new Query(Criteria.where("profID").is(id));
         mongoTemplate.remove(query, Professor.class);
     }
 
