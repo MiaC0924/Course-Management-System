@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ObserverTest {
     @DisplayName("Observer test")
@@ -26,19 +25,19 @@ public class ObserverTest {
         CourseSection mathB = new CourseSection(math,'B',2020,"Fall");
         CourseSection mathC = new CourseSection(math,'C',2020,"Fall");
 
-        //Simple attach event
+        //Simple attach event - add students into course sections
         mathA.attachObserver(s1);
         mathB.attachObserver(s1);
         mathB.attachObserver(s2);
         mathA.attachObserver(p1);
         mathA.attachObserver(a);
 
-        ArrayList<CourseSection> expects1 = new ArrayList<CourseSection>();
-        ArrayList<CourseSection> expects2 = new ArrayList<CourseSection>();
+        ArrayList<CourseSection> expects1 = new ArrayList<>();
+        ArrayList<CourseSection> expects2 = new ArrayList<>();
 
-        ArrayList<Observer> expectOs1 = new ArrayList<Observer>();
-        ArrayList<Observer> expectOs2 = new ArrayList<Observer>();
-        ArrayList<Observer> expectOs3 = new ArrayList<Observer>();
+        ArrayList<Observer> expectOs1 = new ArrayList<>();
+        ArrayList<Observer> expectOs2 = new ArrayList<>();
+        ArrayList<Observer> expectOs3 = new ArrayList<>();
 
         expects1.add(mathA);
         expects1.add(mathB);//[mathA,mathB]
@@ -50,9 +49,9 @@ public class ObserverTest {
         expectOs2.add(s2);//[s2,s1]
 
         //check course correct store into observer;
-        assertEquals(true,s1.containCourse(mathA));
-        assertEquals(true,s1.containCourse(mathB));//several added-in
-        assertEquals(true,s2.containCourse(mathB));//single added
+        assertTrue(s1.containCourse(mathA));
+        assertTrue(s1.containCourse(mathB));//several added-in
+        assertTrue(s2.containCourse(mathB));//single added
 
         //check observer correct store into subject
         assertEquals(expectOs1,mathA.getObservers());//several added-in
@@ -73,7 +72,7 @@ public class ObserverTest {
         Student s2 = new Student();
         Professor p1 = new Professor();
         Admin a = new Admin();
-//        Term t = new Term(2020,"Fall");
+
         Course math = university.getDepartments().orderTheCourse("MATH",3004);
         CourseSection mathA = new CourseSection(math,'A',2020,"Fall");
         CourseSection mathB = new CourseSection(math,'B',2020,"Fall");
@@ -84,11 +83,11 @@ public class ObserverTest {
         mathA.attachObserver(p1);
         mathA.attachObserver(a);
 
-        ArrayList<CourseSection> expects1 = new ArrayList<CourseSection>();
-        ArrayList<CourseSection> expects2 = new ArrayList<CourseSection>();
+        ArrayList<CourseSection> expects1 = new ArrayList<>();
+        ArrayList<CourseSection> expects2 = new ArrayList<>();
 
-        ArrayList<Observer> expectOs1 = new ArrayList<Observer>();
-        ArrayList<Observer> expectOs2 = new ArrayList<Observer>();
+        ArrayList<Observer> expectOs1 = new ArrayList<>();
+        ArrayList<Observer> expectOs2 = new ArrayList<>();
 
         expects1.add(mathA);
         expects1.add(mathB);//["mathA","mathB"]
@@ -109,8 +108,8 @@ public class ObserverTest {
         expectOs2.remove(s2);//[s2]
 
         //Simple detach event;
-        assertEquals(false,s1.containCourse(mathA));
-        assertEquals(false,s2.containCourse(mathB));
+        assertFalse(s1.containCourse(mathA));
+        assertFalse(s2.containCourse(mathB));
         assertEquals(expectOs1,mathA.getObservers());
         assertEquals(expectOs2,mathB.getObservers());
 

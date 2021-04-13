@@ -63,8 +63,6 @@ public class MajorVisitor implements Visitor{
                 for (Character grade : majorGrade) {
                     output += gradeCalculation(grade);
                     ++count;
-
-                    System.out.println(output + "-" + count);
                 }
 
                 if(output == 0){ //fail all the taken major courses
