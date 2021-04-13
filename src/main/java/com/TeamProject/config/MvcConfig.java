@@ -22,7 +22,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/Admin/Courses").setViewName("coursesAdm");
         registry.addViewController("/Admin/Courses/Create").setViewName("createCourseAdmin");
         //👇 In AdminDeleteCourseController
-        //registry.addViewController("/Admin/Courses/Delete").setViewName("deleteCourseAdmin");
+        registry.addViewController("/Admin/Courses/Delete").setViewName("deleteCourseAdmin");
         //Admin Person
         registry.addViewController("/Admin/Person").setViewName("404Page");
         registry.addViewController("/Admin/Person/Create").setViewName("createPersonAdmin");

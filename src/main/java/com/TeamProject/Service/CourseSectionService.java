@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -26,6 +27,10 @@ public class CourseSectionService {
 
     @Autowired
     private CourseSectionDao courseSectionDao;
+
+    public ArrayList<CourseSection> getAllCourse(){
+        return courseSectionDao.getAllCourse();
+    }
 
 
 

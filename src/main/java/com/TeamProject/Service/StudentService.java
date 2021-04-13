@@ -22,6 +22,8 @@ public class StudentService {
     @Autowired
     AdminDao adminDao;
 
+
+
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
         LocalDate DOB = LocalDate.parse(dob);
