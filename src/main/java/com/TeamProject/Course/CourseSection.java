@@ -106,7 +106,7 @@ public class CourseSection implements Subject {
     }
     public void addStudent(Student inputStu){
         observers.add(inputStu);
-        gradeList.put(inputStu,'F');
+        //gradeList.put(inputStu,'F');
     }
 
     public void addGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
@@ -137,7 +137,7 @@ public class CourseSection implements Subject {
 
     public void removeStudent(Student stu){
         detachObserver(stu);
-        gradeList.remove(stu);
+        //gradeList.remove(stu);
     }
 
     @Override
