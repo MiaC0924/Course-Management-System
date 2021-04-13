@@ -22,7 +22,7 @@ public class CourseSectionDao {
     //create
     public boolean addSection(CourseSection section){
         if(findSectionById(section.getSectionID()) == null){
-            mongoTemplate.save(section,"Sections");
+            mongoTemplate.save(section);
             System.out.println("added success");
             return true;
         }else{

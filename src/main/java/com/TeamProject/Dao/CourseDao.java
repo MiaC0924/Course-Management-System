@@ -24,20 +24,20 @@ public class CourseDao {
 
 
     public boolean addCourse(Course course){
-        mongoTemplate.save(course , "Courses");
+        mongoTemplate.save(course);
         return false;
     }
 
     public Course findAdminByNameAndCode (String name, int code){
         Query query = new Query(Criteria.where("name").is(name).and("code").is(code));
-        return mongoTemplate.findOne(query, Course.class,"Courses");
+        return mongoTemplate.findOne(query, Course.class);
     }
 
 
 
     public Course  findCourseByCourseCode(String course,int code){
         Query query = new Query(Criteria.where("name").is(course).and("code").is(code));
-        return mongoTemplate.findOne(query, Course.class,"Courses");
+        return mongoTemplate.findOne(query, Course.class);
     }
 
 //
