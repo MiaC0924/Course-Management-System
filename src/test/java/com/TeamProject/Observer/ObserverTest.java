@@ -49,6 +49,9 @@ public class ObserverTest {
         expectOs2.add(s2);//[s2,s1]
 
         //check courseSection correctly store by observer - student;
+        //when the course section attached s1 and s2, the observer itself will receive a CourseSection subject
+        //and update the Student courseSection ArrayList,
+        //when using the the method to check if contain, it should return true
         assertTrue(s1.containCourse(mathA));
         assertTrue(s1.containCourse(mathB));//several added-in
         assertTrue(s2.containCourse(mathB));//single added
@@ -75,7 +78,7 @@ public class ObserverTest {
         CourseSection mathA = new CourseSection(math,'A',2020,"Fall");
         CourseSection mathB = new CourseSection(math,'B',2020,"Fall");
 
-        //Simple attach event
+        //Add student into CourseSection
         mathA.attachObserver(s1);
         mathB.attachObserver(s2);
         mathA.attachObserver(p1);
@@ -99,6 +102,7 @@ public class ObserverTest {
         mathA.detachObserver(s1);
         mathB.detachObserver(s2);
 
+        //remove the courseSection from observer
         expects1.remove(mathA);//["mathB"]
         expects2.remove(mathB);//[]
 

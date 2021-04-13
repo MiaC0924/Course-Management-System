@@ -3,11 +3,15 @@ package com.TeamProject.Person;
 import java.time.LocalDate;
 
 public class StudentApplication {
+    private static int countID = 1;
+    private int id;
     String name, email, gender, pw, major;
     LocalDate dob;
 
     public StudentApplication(String name, String gender, String email,
                               LocalDate dob, String pw, String major){
+        id = countID;
+        ++countID;
         this.name = name;
         this.gender = gender;
         this.email = email;
@@ -16,6 +20,7 @@ public class StudentApplication {
         this.major = major;
     }
 
+    public int getId(){ return id; }
     public String getEmail() {
         return email;
     }

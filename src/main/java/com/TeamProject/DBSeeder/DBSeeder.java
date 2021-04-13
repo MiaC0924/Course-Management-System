@@ -3,9 +3,7 @@ package com.TeamProject.DBSeeder;
 import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
 import com.TeamProject.Course.University;
-import com.TeamProject.Person.Admin;
-import com.TeamProject.Person.Professor;
-import com.TeamProject.Person.Student;
+import com.TeamProject.Person.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;
@@ -46,6 +44,26 @@ public class DBSeeder implements CommandLineRunner {
                 LocalDate.now(),
                 "Admin"
         );
+
+        ProfessorApplication professorApplication = new ProfessorApplication(
+                "Cat",
+                "Female",
+                "cat@fack.com",
+                LocalDate.now(),
+                "cat",
+                "ECON"
+                );
+        adm.addProfessorApp(professorApplication);
+
+        StudentApplication studentApplication = new StudentApplication(
+                "Bird",
+                "Male",
+                "bird@fack.com",
+                LocalDate.now(),
+                "bird",
+                "ECON"
+        );
+        adm.addStudentApp(studentApplication);
 
         adminRepository.deleteAll();
 
