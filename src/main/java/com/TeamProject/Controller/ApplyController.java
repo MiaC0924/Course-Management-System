@@ -17,6 +17,7 @@ public class ApplyController {
 
     @Autowired
     StudentService studentService;
+    @Autowired
     ProfessorService professorService;
 
     @RequestMapping("/Apply")
@@ -35,7 +36,7 @@ public class ApplyController {
 
         Boolean ApplyFlag = false;
         if(btnradio.equals("Professor")){
-            if(professorService.applyForCreation(email,firstN+lastN,gender,birthDay,password,major)){
+            if(professorService.applyforCreation(email,firstN+lastN,gender,birthDay,password,major)){
                 ApplyFlag=true;
             }
         }else if(btnradio.equals("Student")){

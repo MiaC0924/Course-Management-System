@@ -26,6 +26,7 @@ public class ProfCreateDeliverController {
      CourseSectionDao courseSectionDao;
     @Autowired
     ProfessorService professorService;
+    @Autowired
     AdminService adminService;
     @RequestMapping("Professor/Deliver/Create")
     public String DeleteCourse(Model model, HttpSession session){

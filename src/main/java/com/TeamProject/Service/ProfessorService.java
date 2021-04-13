@@ -35,7 +35,7 @@ public class ProfessorService {
     @Autowired
     private CourseDao courseDao;
 
-    public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
+    public boolean applyforCreation(String email,String name,String gender,String dob,String pw,String major){
 //        System.out.println(dob);
         //put key and value into hashmap in admin database check if application exist
         LocalDate DOB = LocalDate.parse(dob);
