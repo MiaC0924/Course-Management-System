@@ -20,7 +20,7 @@ public class AdminDeleteCourseController {
                                @RequestParam("section") char section,
                                Model model){
         System.out.println("Want to delete: Major: " + major + " Code: " + code + " section: " + section );
-        if(/*adminService.deleteCourse(id, major,code,section)*/ true){
+        if(adminService.deleteCourse(id, major,code,section)){
                 System.out.println("delete success");
                 model.addAttribute("msg1" ,"success");
         }else{

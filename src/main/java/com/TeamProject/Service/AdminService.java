@@ -136,6 +136,7 @@ public class AdminService {
             //from created course list
             //if registration start: deregister stu and prof then delete
             CourseSection courseSection = courseSectionDao.findSectionById(id);
+            System.out.println(courseSection);
             if(courseSection != null){
                 String season = courseSection.getTermSeason();
                 int year = courseSection.getTermYear();
@@ -147,10 +148,10 @@ public class AdminService {
                     }
                     //deregister prof
                     professorDao.deleteCourseSectionByProfId(courseSection.getProfessor().getProfID(),courseSection);
-                    //delete course
-                    courseSectionDao.deleteSection(courseSection.getSectionID());
-                    return true;
                 }
+                //delete course
+                courseSectionDao.deleteSection(id);
+                return true;
             }
             return false;
 

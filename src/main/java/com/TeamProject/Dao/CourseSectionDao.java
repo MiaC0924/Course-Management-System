@@ -41,12 +41,15 @@ public class CourseSectionDao {
         return mongoTemplate.findOne(query, CourseSection.class,"Sections");
     }
 
-//    public ArrayList<CourseSection> findCourseByStudent (Student stu){
-//        List<CourseSection> c = mongoTemplate.find(query, CourseSection.class,"Courses");
-//        ArrayList<CourseSection> css = new ArrayList<CourseSection>();
-//        css.addAll(c);
-//        return css;
-//    }
+    public ArrayList<CourseSection> getAllCourseByStu (Student stu){
+        ArrayList<CourseSection> css = getAllCourse();
+        for(CourseSection cs:css){
+            if(!cs.getObservers().contains(stu)){
+                css.remove(cs);
+            }
+        }
+        return css;
+    }
 
     public ArrayList<CourseSection> getAllCourse (){
         int count=100001;
@@ -54,7 +57,7 @@ public class CourseSectionDao {
         while(count<100100){
             CourseSection cs =findSectionById(count);
             if(cs==null){
-                System.out.println("No found at "+count);
+//                System.out.println("No found at "+count);
                 count++;
             }else{
                 count++;
