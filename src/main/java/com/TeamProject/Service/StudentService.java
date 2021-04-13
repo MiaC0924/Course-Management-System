@@ -58,19 +58,6 @@ public class StudentService {
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (String email){
-//        Student s=studentDao.findStudentByEmail(email);
-//        ArrayList<Integer> sectionIds = new ArrayList<>();
-//        ArrayList<CourseSection> courseSections = new ArrayList<>();
-//        for (int i=0;i<s.getTerms().size();i++){
-//            for(int j=0;j<s.getTerms().get(i).getSectionIds().size();j++){
-//                sectionIds.add(s.getTerms().get(i).getSectionIds().get(j));
-//            }
-//        }
-//        for (int i=0;i<sectionIds.size();i++){
-//            courseSections.add(courseSectionDao.findSectionById(sectionIds.get(i)));
-//        }
-//        return courseSections;
-
         ArrayList<CourseSection> c = new ArrayList<>();
         ArrayList<CourseSection> s = new ArrayList<>();
 
@@ -83,8 +70,6 @@ public class StudentService {
             }
         }
         return s;
-
-//        return courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(email));
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
