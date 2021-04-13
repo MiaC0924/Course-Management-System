@@ -57,7 +57,6 @@ public class LoginController {
             session.setAttribute("loginUser",username);
             session.setAttribute("loginP",btnradio);
 
-
             return "redirect:/"+ btnradio + "/main";
         }else if(ApplyFlag){
             return "redirect:/Apply";
