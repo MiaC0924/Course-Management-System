@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -27,6 +28,9 @@ public class StudentService {
     @Autowired
     private CourseSectionDao courseSectionDao;
 
+    public Student findStuByEmail(String email){
+        return studentDao.findStudentByEmail(email);
+    }
     public ArrayList<CourseSection> getAllCoursebyStu(String stu){
         courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(stu));
         return null;
@@ -36,20 +40,37 @@ public class StudentService {
         //put key and value into hashmap in admin database check if application exist
         LocalDate DOB = LocalDate.parse(dob);
         //check if the application list is empty
-        if(adminDao.findAdminById("101").getStudentAppList().isEmpty()){
-            adminDao.addStudentApplications(name,gender,email,DOB,pw,major);
+        HashMap<Integer,StudentApplication> map = new HashMap<>();
+        map = adminDao.findAdminById("101").getStudentAppList();
+        if(map.isEmpty()){
+            int applicationId = adminDao.addStudentApplications(name,gender,email,DOB,pw,major);
             return true;
         }
         else{
             //check if the application is exist already
-            for(Map.Entry<String, StudentApplication> set : adminDao.findAdminById("101").getStudentAppList().entrySet()){
-                if(set.getKey() == email){
+            for(Map.Entry<Integer, StudentApplication> set : map.entrySet()){
+                if(set.getValue().getEmail() == email){
                     return false;
                 }
             }
             adminDao.addStudentApplications(name,gender,email,DOB,pw,major);
             return true;
         }
+    }
+
+    public ArrayList<CourseSection> getAllCourseByStu (Student stu){
+        Student s=studentDao.findStudentByStuId(stu.getStudentNumber());
+        ArrayList<Integer> sectionIds = new ArrayList<>();
+        ArrayList<CourseSection> courseSections = new ArrayList<>();
+        for (int i=0;i<stu.getTerms().size();i++){
+            for(int j=0;j<stu.getTerms().get(i).getSectionIds().size();j++){
+                sectionIds.add(stu.getTerms().get(i).getSectionIds().get(j));
+            }
+        }
+        for (int i=0;i<sectionIds.size();i++){
+            courseSections.add(courseSectionDao.findSectionById(sectionIds.get(i)));
+        }
+        return courseSections;
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){

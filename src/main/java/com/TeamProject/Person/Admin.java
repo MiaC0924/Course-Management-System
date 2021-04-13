@@ -13,8 +13,8 @@ public class Admin extends Person{
     @Id
     private String adminID;
     private boolean admitted;
-    private HashMap<String, StudentApplication> studentAppList;
-    private HashMap<String, ProfessorApplication> profApplist;
+    private HashMap<Integer, StudentApplication> studentAppList;
+    private HashMap<Integer, ProfessorApplication> profApplist;
 
 
     public Admin(){
@@ -39,38 +39,38 @@ public class Admin extends Person{
     }
 
     public String getAdminID() { return adminID;  }
-    public HashMap<String,StudentApplication> getStudentAppList(){ return studentAppList; }
-    public HashMap<String,ProfessorApplication> getProfAppList(){ return profApplist; }
+    public HashMap<Integer,StudentApplication> getStudentAppList(){ return studentAppList; }
+    public HashMap<Integer,ProfessorApplication> getProfAppList(){ return profApplist; }
 
 
     public boolean addStudentApp(StudentApplication app){
-        if(studentAppList.get(app.getEmail()) != null){
+        if(studentAppList.get(app.getId()) != null){
             return false;
         }
-        studentAppList.put(app.email, app);
+        studentAppList.put(app.getId(), app);
         return true;
     }
     public boolean addProfessorApp(ProfessorApplication app){
-        if(profApplist.get(app.getEmail()) != null){
+        if(profApplist.get(app.getId()) != null){
             return false;
         }
-        profApplist.put(app.email, app);
+        profApplist.put(app.getId(), app);
         return true;
     }
 
-    public boolean deleteStudentApp(String email){
-        if(studentAppList.get(email) == null){
+    public boolean deleteStudentApp(int applicationId){
+        if(studentAppList.get(applicationId) == null){
             return false;
         }
-        studentAppList.remove(email);
+        studentAppList.remove(applicationId);
         return true;
     }
 
-    public boolean deleteProfessorApp(String email){
-        if(profApplist.get(email) == null){
+    public boolean deleteProfessorApp(int applicationId){
+        if(profApplist.get(applicationId) == null){
             return false;
         }
-        profApplist.remove(email);
+        profApplist.remove(applicationId);
         return true;
     }
 

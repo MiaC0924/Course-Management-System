@@ -43,7 +43,7 @@ public class ProfessorDao {
 
     //update
     public void updatePersonalInfoById(Professor prof) {
-        Query query = new Query(Criteria.where("id").is(prof.getProfID()));
+        Query query = new Query(Criteria.where("profID").is(prof.getProfID()));
         Update update = new Update().set("name", prof.getName()).set("gender", prof.getGender());
         //update the first result
         mongoTemplate.updateFirst(query, update, Professor.class);
@@ -62,7 +62,7 @@ public class ProfessorDao {
 
 
     public void updateFacultyById(int id, String inputFaculty){
-        Query query = new Query(Criteria.where("id").is(id));
+        Query query = new Query(Criteria.where("profID").is(id));
         Update update = new Update().set("faculty", inputFaculty);
         mongoTemplate.updateFirst(query, update, Professor.class);
     }
@@ -87,24 +87,7 @@ public class ProfessorDao {
 
     public void deleteProfById(int id){
         Query query = new Query(Criteria.where("profID").is(id));
-        System.out.println(mongoTemplate.find(query,Professor.class));
         mongoTemplate.remove(query, Professor.class);
-        System.out.println(query);
-        System.out.println(mongoTemplate.find(query,Professor.class));
     }
-
-
-    //pass rate
-//    public double getOverallPassRateById (int id){
-//        Query query = new Query(Criteria.where("id").is(id));
-//        Professor prof = mongoTemplate.findOne(query, Professor.class);
-//        return prof.getPassRateOverAll();
-//    }
-//
-//    public double getCurrentTermPassRateById (int id){
-//        Query query = new Query(Criteria.where("id").is(id));
-//        Professor prof = mongoTemplate.findOne(query, Professor.class);
-//        return prof.getPassRateOfCurr();
-//    }
 
 }

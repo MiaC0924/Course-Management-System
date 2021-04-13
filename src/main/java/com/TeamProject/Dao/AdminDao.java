@@ -69,34 +69,34 @@ public class AdminDao {
         mongoTemplate.remove(query, Admin.class);
     }
 
-    public boolean addStudentApplications(String name, String gender, String email,
+    public int addStudentApplications(String name, String gender, String email,
                                           LocalDate dob, String pw, String major) {
         Admin admin = findAdminById("101");
         StudentApplication stuApp = new StudentApplication(name, gender, email, dob, pw, major);
-        boolean added = admin.addStudentApp(stuApp);
+        admin.addStudentApp(stuApp);
         mongoTemplate.save(admin);
-        return added;
+        return stuApp.getId();
     }
 
-    public boolean addProfosserApplications(String name, String gender, String email,
+    public int addProfosserApplications(String name, String gender, String email,
                                           LocalDate dob, String pw, String major) {
         Admin admin = findAdminById("101");
         ProfessorApplication proApp = new ProfessorApplication(name, gender, email, dob, pw, major);
-        boolean added = admin.addProfessorApp(proApp);
+        admin.addProfessorApp(proApp);
         mongoTemplate.save(admin);
-        return added;
+        return proApp.getId();
     }
 
-    public boolean deleteStudentApplications(String studentEmail) {
+    public boolean deleteStudentApplications(int applicationId) {
         Admin admin = findAdminById("101");
-        boolean deleted = admin.deleteStudentApp(studentEmail);
+        boolean deleted = admin.deleteStudentApp(applicationId);
         mongoTemplate.save(admin);
         return deleted;
     }
 
-    public boolean deleteProfessorApplications(String proEmail) {
+    public boolean deleteProfessorApplications(int applicationId) {
         Admin admin = findAdminById("101");
-        boolean deleted = admin.deleteProfessorApp(proEmail);
+        boolean deleted = admin.deleteProfessorApp(applicationId);
         mongoTemplate.save(admin);
         return deleted;
     }

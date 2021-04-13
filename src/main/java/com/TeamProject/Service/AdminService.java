@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -30,12 +31,15 @@ public class AdminService {
     //create student
     public boolean createStudent() {
 //        System.out.println(adminDao.findAdminById("101"));
-        if (adminDao.findAdminById("101").getStudentAppList().isEmpty()) {
+        HashMap<Integer,StudentApplication> map = new HashMap<>();
+        map = adminDao.findAdminById("101").getStudentAppList();
+        if (map.isEmpty()) {
             return false;
         } else {
             //from the hash map{email:[name,gender,dob,pw,major]} create students
-            for (Map.Entry<String, StudentApplication> entry : adminDao.findAdminById("101").getStudentAppList().entrySet()) {
-                String email = entry.getKey();
+            for (Map.Entry<Integer, StudentApplication> entry : map.entrySet()) {
+                int applicationId = entry.getKey();
+                String email = entry.getValue().getEmail();
                 String name = entry.getValue().getName();
                 String gender = entry.getValue().getGender();
                 LocalDate dob = entry.getValue().getBirthday();
@@ -43,19 +47,22 @@ public class AdminService {
                 String pw = entry.getValue().getPassword();
                 Student student = new Student(name, gender, email, dob, pw, major);
                 studentDao.addStudent(student);
-                adminDao.deleteStudentApplications(email);
+                adminDao.deleteStudentApplications(applicationId);
             }
             return true;
         }
     }
         //create professor
         public boolean createProfessor() {
-            if (adminDao.findAdminById("101").getProfAppList().isEmpty()) {
+            HashMap<Integer,ProfessorApplication> map = new HashMap<>();
+            map = adminDao.findAdminById("101").getProfAppList();
+            if (map.isEmpty()) {
                 return false;
             } else {
                 //from the hash map{email:[name,gender,dob,pw,major]} create students
-                for (Map.Entry<String, ProfessorApplication> entry : adminDao.findAdminById("101").getProfAppList().entrySet()) {
-                    String email = entry.getKey();
+                for (Map.Entry<Integer, ProfessorApplication> entry : map.entrySet()) {
+                    int applicationId = entry.getKey();
+                    String email = entry.getValue().getEmail();
                     String name = entry.getValue().getName();
                     String gender = entry.getValue().getGender();
                     LocalDate dob = entry.getValue().getBirthday();
@@ -63,7 +70,7 @@ public class AdminService {
                     String pw = entry.getValue().getPassword();
                     Professor professor = new Professor(name, gender, email, dob, pw, major);
                     professorDao.addProfessor(professor);
-                    adminDao.deleteProfessorApplications(email);
+                    adminDao.deleteProfessorApplications(applicationId);
                 }
                 return true;
             }

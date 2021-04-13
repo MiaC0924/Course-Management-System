@@ -42,6 +42,7 @@ public class CourseSectionDao {
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
+
         ArrayList<CourseSection> css = getAllCourse();
         System.out.println(css);
         for(CourseSection cs:css){
