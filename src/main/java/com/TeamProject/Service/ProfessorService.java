@@ -33,14 +33,16 @@ public class ProfessorService {
     @Autowired
     private CourseSectionDao courseSectionDao;
 
-    public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
+    public boolean applyForCreation2(String email,String name,String gender,String dob,String pw,String major){
         //put key and value into hashmap in admin database check if application exist
+        System.out.println("lllllllllll");
         LocalDate DOB = LocalDate.parse(dob);
         //check if the application list is empty
         HashMap<Integer, ProfessorApplication> map = new HashMap<>();
         map = adminDao.findAdminById("101").getProfAppList();
         if(map.isEmpty()){
-            int applicationId = adminDao.addProfosserApplications(name,gender,email,DOB,pw,major);
+            System.out.println("eeeeeeeeeeeeeee");
+            adminDao.addProfesserApplications(name,gender,email,DOB,pw,major);
             return true;
         }
         else{
@@ -50,7 +52,7 @@ public class ProfessorService {
                     return false;
                 }
             }
-            adminDao.addProfosserApplications(name,gender,email,DOB,pw,major);
+            adminDao.addProfesserApplications(name,gender,email,DOB,pw,major);
             return true;
         }
     }

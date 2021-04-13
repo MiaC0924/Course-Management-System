@@ -46,6 +46,6 @@ public class stuDropProcessController {
             System.out.println("drop fail");
             model.addAttribute("msg1", "fail");
         }
-        return "dashboardStu";
+        return "DropStu";
     }
 }

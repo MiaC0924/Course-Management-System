@@ -75,12 +75,21 @@ public class StudentService {
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         System.out.println(stu);
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+        System.out.println(cs.getStudentList());
+        for(int i =0;i<cs.getStudentList().size();i++){
+            if(cs.getStudentList().get(i).getStudentNumber()==stu.getStudentNumber()){
+                return false;
+            }
+        }
+
         if(validRegisterPeriod(year,season)){
-            CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
             System.out.println(cs);
-            cs.attachObserver(stu);
-            courseSectionDao.addSection(cs);
-            studentDao.addStudent(stu);
+//            cs.attachObserver(stu);
+//            courseSectionDao.addSection(cs);
+//            studentDao.addStudent(stu);
+            courseSectionDao.addStudentBySectionId(cs.getSectionID(),stu);
+            System.out.println(cs.getStudentList());
             return true;
         }
         else{
@@ -95,6 +104,7 @@ public class StudentService {
             cs.detachObserver(stu);
             courseSectionDao.addSection(cs);
             studentDao.addStudent(stu);
+            courseSectionDao.deleteStudentBySectionId(cs.getSectionID(),stu);
             return true;
         }
         else{
@@ -109,10 +119,11 @@ public class StudentService {
 
     public boolean validRegisterPeriod(int tY , String tS){
         if(tY == Calendar.getInstance().get(Calendar.YEAR)){
-            if(tS =="Fall"){
+            if(tS .equals("Fall")){
                 return true;
-            }else if(tS =="Summer"){
+            }else if(tS.equals("Summer") || tS.equals("Winter")){
                 return true;
+
             }else{
                 return false;
             }

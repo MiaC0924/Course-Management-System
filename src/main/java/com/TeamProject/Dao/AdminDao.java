@@ -78,13 +78,13 @@ public class AdminDao {
         return stuApp.getId();
     }
 
-    public int addProfosserApplications(String name, String gender, String email,
+    public boolean addProfesserApplications(String name, String gender, String email,
                                           LocalDate dob, String pw, String major) {
         Admin admin = findAdminById("101");
         ProfessorApplication proApp = new ProfessorApplication(name, gender, email, dob, pw, major);
-        admin.addProfessorApp(proApp);
+        boolean added =  admin.addProfessorApp(proApp);
         mongoTemplate.save(admin);
-        return proApp.getId();
+        return added;
     }
 
     public boolean deleteStudentApplications(int applicationId) {
