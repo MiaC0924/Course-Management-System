@@ -44,15 +44,13 @@ public abstract class Data {
         int year2 = cal1.get(Calendar.YEAR);
         int month2 = cal1.get(Calendar.MONTH);
         int day2 = cal1.get(Calendar.DAY_OF_MONTH);
-
-        System.out.println("1-y/m/d: " + year1 + month1 + day1);
-        System.out.println("2-y/m/d: " + year2 + month2 +day2);
+     //  System.out.println("2-y/m/d: " + year2 + month2 +day2);
         return year1 == year2 && month1 == month2 && day1 == day2;
     }
 
 
     public String toString(){
-        return "Action: " + action + " Student : " + ((Person)stu).toString() + " Date: " + date + " Value :"+ getValue() + " [size : " + size + "]";
+        return "Action: " + action + " Student : " + ((Person)stu).toString() + " Date: " + date + "  Color: "+ color + "Value :"+ getValue() + " [size : " + size + "]";
     }
 
     public boolean equalValue(Data d){
