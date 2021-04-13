@@ -4,6 +4,7 @@ import com.TeamProject.Course.*;
 import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Dao.StudentDao;
+import com.TeamProject.Observer.Observer;
 import com.TeamProject.Person.Professor;
 import com.TeamProject.Person.Student;
 import com.TeamProject.Person.StudentApplication;
@@ -75,12 +76,17 @@ public class StudentService {
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         System.out.println(stu);
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+        for(Student s:cs.getStudentList()){
+            if (s.getStudentNumber()==stu.getStudentNumber()){
+                return false;
+            }
+        }
         if(validRegisterPeriod(year,season)){
-            CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
-            System.out.println(cs);
-            cs.attachObserver(stu);
-            courseSectionDao.addSection(cs);
-            studentDao.addStudent(stu);
+
+            System.out.println(cs.getObservers());
+//            cs.attachObserver(stu);
+            courseSectionDao.addStudentBySectionId(cs.getSectionID(),stu);
             return true;
         }
         else{
@@ -109,12 +115,12 @@ public class StudentService {
 
     public boolean validRegisterPeriod(int tY , String tS){
         if(tY == Calendar.getInstance().get(Calendar.YEAR)){
-            if(tS =="Fall"){
+            if(tS .equals("Fall")){
                 return true;
-            }else if(tS =="Summer"){
-                return true;
-            }else{
+            }else if(tS .equals("Summer")){
                 return false;
+            }else{
+                return true;
             }
         }else{
             return false;

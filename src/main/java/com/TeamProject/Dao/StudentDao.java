@@ -20,6 +20,10 @@ public class StudentDao {
         mongoTemplate.save(stu);
     }
 
+//    public void update(Student stu){
+//        mongoTemplate.update(stu);
+//    }
+
     //find
     public Student findStudentByStuId(int id){
         Query query = new Query((Criteria.where("studentNumber").is(id)));

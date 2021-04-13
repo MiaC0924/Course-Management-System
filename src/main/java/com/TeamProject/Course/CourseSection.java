@@ -127,9 +127,11 @@ public class CourseSection implements Subject {
     @Override
     public void attachObserver(Observer o) {
         if(observers.contains(o)){
+            System.out.println("Contain");
             return;
         }
         observers.add(o);
+        System.out.println(observers);
         o.update(this);
     }
 
