@@ -53,6 +53,7 @@ public class LoginController {
         }
         System.out.println(ApplyFlag);
 
+        System.out.println(ApplyFlag);
         //need database
         if(loginFlag){
             session.setAttribute("loginUser",username);
@@ -60,7 +61,7 @@ public class LoginController {
 
             return "redirect:/"+ btnradio + "/main";
         }else if(ApplyFlag){
-            return "redirect:/Apply";
+            return "applyForRegister";
         }else{
             return "index";
         }
