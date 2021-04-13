@@ -27,7 +27,7 @@ public class StuRegisterProcessController {
 
     @Autowired
     StudentService studentService;
-    @RequestMapping("/Student/Register/Processing")
+    @RequestMapping("/Student/Student/Register/Processing")
     public String submitCourseGrade(@RequestParam("major") String major,
                                     @RequestParam("code") int code,
                                     @RequestParam("section") Character section,

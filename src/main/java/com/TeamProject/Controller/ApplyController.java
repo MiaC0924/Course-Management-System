@@ -12,44 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-@Controller
+@RestController
 public class ApplyController {
 
     @Autowired
     StudentService studentService;
     ProfessorService professorService;
 
-    @RequestMapping("/Apply/Processing")
-    public String apply(@RequestParam("btnradio") String btnradio,
-                        @RequestParam("email") String email,
-                        @RequestParam("password") String password,
-                        @RequestParam("firstN") String firstN,
-                        @RequestParam("lastN") String lastN,
-                        @RequestParam("gender") String gender,
-                        @RequestParam("major") String major,
-                        @RequestParam("birthDay") String birthDay,
-                        Model model, HttpSession session){
-
-        System.out.println("Apply Account:  firstN: " + firstN + " , lastN: " + lastN + " , gender: " + gender  + " ,major: " + major + " birthDay: " + birthDay);
+    @RequestMapping("/Apply/")
+    public String apply(Model model, HttpSession session){
+        return "good";
 
 
-        Boolean ApplyFlag = false;
-        if(btnradio.equals("Professor")){
-            if(professorService.applyForCreation(email,firstN+lastN,gender,birthDay,password,major)){
-                ApplyFlag=true;
-            }
-        }else if(btnradio.equals("Student")){
-            if(studentService.applyForCreation(email,firstN+lastN,gender,birthDay,password,major)){
-                ApplyFlag=true;
-            }
-        }
 
-        if(ApplyFlag){
-            model.addAttribute("msg","Apply successful");
-            return "index";
-        }else{
-            model.addAttribute("msg","wrong username/password");
-            return "index";
-        }
     }
+
+
 }

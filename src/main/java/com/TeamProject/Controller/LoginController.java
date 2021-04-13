@@ -51,6 +51,7 @@ public class LoginController {
                 ApplyFlag = true;
             }
         }
+        System.out.println(ApplyFlag);
 
         //need database
         if(loginFlag){
