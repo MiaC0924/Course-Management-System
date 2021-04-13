@@ -19,6 +19,8 @@ public class DataArray {
         dataArr = new ArrayList<>();
     }
 
+
+
     public Data get(int i){
         return dataArr.get(i);
     }
