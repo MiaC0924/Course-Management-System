@@ -48,21 +48,19 @@ public class ObserverTest {
         expectOs2.add(s1);
         expectOs2.add(s2);//[s2,s1]
 
-        //check course correct store into observer;
+        //check courseSection correctly store by observer - student;
         assertTrue(s1.containCourse(mathA));
         assertTrue(s1.containCourse(mathB));//several added-in
         assertTrue(s2.containCourse(mathB));//single added
 
-        //check observer correct store into subject
+        //check observer correct store into subject - courseSection
         assertEquals(expectOs1,mathA.getObservers());//several added-in
         assertEquals(expectOs2,mathB.getObservers());//single added
         assertEquals(expectOs3,mathC.getObservers());//empty check
 
-        //Duplicate attach event;
+        //Add duplicate student (observer) into a courseSection
         mathA.attachObserver(s1);
         mathA.attachObserver(s1);
-
-        //check duplicate observer added-in
         assertEquals(expectOs1,mathA.getObservers());//duplicate added-in no change.
     }
 
