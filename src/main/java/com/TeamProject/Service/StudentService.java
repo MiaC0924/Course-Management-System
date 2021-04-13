@@ -31,9 +31,8 @@ public class StudentService {
     public Student findStuByEmail(String email){
         return studentDao.findStudentByEmail(email);
     }
-    public ArrayList<CourseSection> getAllCoursebyStu(String stu){
-        courseSectionDao.getAllCourseByStu(studentDao.findStudentByEmail(stu));
-        return null;
+    public ArrayList<CourseSection> getAllCourse(){
+        return courseSectionDao.getAllCourse();
     }
 
     public boolean applyForCreation(String email,String name,String gender,String dob,String pw,String major){
@@ -71,44 +70,31 @@ public class StudentService {
             }
         }
         return s;
-//        Student s=studentDao.findStudentByStuId(stu.getStudentNumber());
-//        ArrayList<Integer> sectionIds = new ArrayList<>();
-//        ArrayList<CourseSection> courseSections = new ArrayList<>();
-//        for (int i=0;i<stu.getTerms().size();i++){
-//            for(int j=0;j<stu.getTerms().get(i).getSectionIds().size();j++){
-//                sectionIds.add(stu.getTerms().get(i).getSectionIds().get(j));
-//            }
-//        }
-//        for (int i=0;i<sectionIds.size();i++){
-//            courseSections.add(courseSectionDao.findSectionById(sectionIds.get(i)));
-//        }
-//        return courseSections;
     }
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
+        System.out.println(stu);
         if(validRegisterPeriod(year,season)){
-            CourseBuilding department = new Department();
-            Course course = department.orderTheCourse(majorcode,code);
-            CourseSection courseSection = new CourseSection(course,section,year,season);
-            //courseSection.attachObserver(stu);
-            studentDao.addCourseSectionByStuId(id,courseSection);
+            CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+            System.out.println(cs);
+            cs.attachObserver(stu);
+            courseSectionDao.addSection(cs);
+            studentDao.addStudent(stu);
             return true;
         }
         else{
             return false;
         }
-
     }
 
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         if(validRegisterPeriod(year,season)){
-            CourseBuilding department = new Department();
-            Course course = department.orderTheCourse(majorcode,code);
-            CourseSection courseSection = new CourseSection(course,section,year,season);
-            //courseSection.attachObserver(stu);
-            studentDao.deleteCourseSectionByStuId(id,courseSection);
+            CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
+            cs.detachObserver(stu);
+            courseSectionDao.addSection(cs);
+            studentDao.addStudent(stu);
             return true;
         }
         else{

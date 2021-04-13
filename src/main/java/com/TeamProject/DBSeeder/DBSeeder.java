@@ -91,11 +91,6 @@ public class DBSeeder implements CommandLineRunner {
 
         courseSectionRepository.deleteAll();
 
-        ArrayList<CourseSection> courseSectionList = new ArrayList<>();
-        courseSectionList.add(comp3004A);
-        courseSectionList.add(comp3004B);
-        courseSectionList.add(math2000A);
-        courseSectionRepository.saveAll(courseSectionList);
 
         /**Professor*/
         Professor jp = new Professor(
@@ -103,13 +98,10 @@ public class DBSeeder implements CommandLineRunner {
                 "Male",
                 "jp@fack.com",
                 LocalDate.now(),
-                "Professor",
+                    "Professor",
                 "COMP"
         );
 
-        jp.addSection(comp3004A);
-        jp.addSection(math2000A);
-        jp.addPassRates(comp3004A, 0.6);
 
         Professor matthew = new Professor(
                 "Matthew",
@@ -121,11 +113,10 @@ public class DBSeeder implements CommandLineRunner {
         );
 
         professorRepository.deleteAll();
-
         ArrayList<Professor> profList = new ArrayList<>();
         profList.add(jp);
         profList.add(matthew);
-        professorRepository.saveAll(profList);
+
 
         /**Student*/
         Student mia = new Student(
@@ -136,9 +127,6 @@ public class DBSeeder implements CommandLineRunner {
                 "student",
                 "COMP"
         );
-
-        mia.addSection(comp3004A);
-        mia.addSection(math2000A);
 
         Student kevin = new Student(
                 "Kevin",
@@ -151,9 +139,22 @@ public class DBSeeder implements CommandLineRunner {
 
         studentRepository.deleteAll();
 
+        comp3004A.attachObserver(mia);
+        math2000A.attachObserver(mia);
+        comp3004A.attachObserver(jp);
+        math2000A.attachObserver(jp);
+        jp.addPassRates(comp3004A, 0.6);
+
+        ArrayList<CourseSection> courseSectionList = new ArrayList<>();
+        courseSectionList.add(comp3004A);
+        courseSectionList.add(comp3004B);
+        courseSectionList.add(math2000A);
+
         ArrayList<Student> stuList = new ArrayList<>();
         stuList.add(mia);
         stuList.add(kevin);
+        professorRepository.saveAll(profList);
         studentRepository.saveAll(stuList);
+        courseSectionRepository.saveAll(courseSectionList);
     }
 }

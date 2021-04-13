@@ -42,12 +42,6 @@ public class StudentDao {
         return false;
     }
 
-    public void addCourseSectionByStuId(int id, CourseSection courseSection) {
-        Student stu = findStudentByStuId(id);
-        stu.addSection(courseSection);
-        mongoTemplate.save(stu);
-    }
-
     public void deleteCourseSectionByStuId(int id, CourseSection courseSection) {
         Student stu = findStudentByStuId(id);
         stu.removeSection(courseSection);

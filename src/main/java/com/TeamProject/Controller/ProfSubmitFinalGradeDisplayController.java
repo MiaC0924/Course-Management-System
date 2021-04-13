@@ -25,7 +25,7 @@ public class ProfSubmitFinalGradeDisplayController {
 
     @Autowired
     StudentService studentService;
-    @RequestMapping("Professor/SubmitFinal")
+    @RequestMapping("Professor/Grades/SubmitFinal")
     public String submitCourseGrade(Model model,  HttpSession session){
         String major = (String)session.getAttribute("major");
         int code = (int)session.getAttribute("code");

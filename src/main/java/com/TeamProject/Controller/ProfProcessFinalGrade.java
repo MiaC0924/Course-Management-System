@@ -37,7 +37,7 @@ public class ProfProcessFinalGrade {
         int courseId = 0;
 
         //need test
-        if( true /*professorService.submitFinalGradeForOne(profId , id ,courseId, grade)*/ ){
+        if( professorService.submitFinalGradeForOne(profId , id ,courseId, grade)){
             System.out.println("submit Final success");
             model.addAttribute("msg1","success");
         }else {

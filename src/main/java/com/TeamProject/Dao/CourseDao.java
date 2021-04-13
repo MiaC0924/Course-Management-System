@@ -40,9 +40,9 @@ public class CourseDao {
         return mongoTemplate.findOne(query, Course.class,"Courses");
     }
 
-
-    public void deleteCourseByNameAndCode(String name, int code){
-        Query query=new Query(Criteria.where("name").is(name).and("code").is(code));
-        mongoTemplate.remove(query, Course.class, "Courses");
-    }
+//
+//    public void deleteCourseByNameAndCode(String name, int code){
+//        Query query=new Query(Criteria.where("name").is(name).and("code").is(code));
+//        mongoTemplate.remove(query, Course.class, "Courses");
+//    }
 }

@@ -25,8 +25,10 @@ public class CourseSectionDao {
             mongoTemplate.save(section,"Sections");
             System.out.println("added success");
             return true;
+        }else{
+            mongoTemplate.save(section,"Sections");
+            return false;
         }
-        return false;
     }
 
     //create
@@ -42,8 +44,8 @@ public class CourseSectionDao {
     }
 
     public ArrayList<CourseSection> getAllCourseByStu (Student stu){
-
         ArrayList<CourseSection> css = getAllCourse();
+        System.out.println(css);
         for(CourseSection cs:css){
             if(!cs.getObservers().contains(stu)){
                 css.remove(cs);
@@ -65,7 +67,6 @@ public class CourseSectionDao {
                 css.add(cs);
             }
         }
-        System.out.println(css);
         return css;
     }
 //
@@ -77,7 +78,18 @@ public class CourseSectionDao {
         return c;
     }
 
-
+    public CourseSection findSectionByAllInfo(String major,int code, Character section,int year,String season){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("section").is(section).and("cYear").is(year).and("cSeason").is(season));
+        List<CourseSection> cl= mongoTemplate.find(query,CourseSection.class,"Sections");
+        for(CourseSection c:cl){
+            if(c.getSectionName().equals(""+major+code+section)){
+                return c;
+            }
+        }
+//        System.out.println("null");
+        return null;
+    }
 
     //update
     public boolean updateProfessorBySectionId(int id, Professor professor){

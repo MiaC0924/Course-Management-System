@@ -85,8 +85,8 @@ public class AdminService {
                 Course c = cb.orderTheCourse(major,code);
                 courseDao.addCourse(c);
                 CourseSection cs = new CourseSection(c,section,year,season);
-                courseSectionDao.findSectionById(cs.getSectionID());
                 Professor pro = professorDao.findProfByMajor(major);
+                courseSectionDao.addSection(cs);
                 courseSectionDao.updateProfessorBySectionId(cs.getSectionID(), pro);
                 professorDao.addCourseSectionByProfId(pro.getProfID(),cs);
                 return true;

@@ -46,7 +46,7 @@
 
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" href="/signOut">Sign out</a>
         </li>
     </ul>
 </header>
@@ -197,7 +197,25 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary float-right">Confirm</button>
+                <div class="form-group row">
+                    <label for= "Year" class="col-1 col-form-label">Year</label>
+                    <div class="col-1">
+                        <input style="margin:10px" type="text" name="year" class="form-control" id ="Year" placeholder="2020" maxlength="4" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="season" class="col-1 col-form-label">Season</label>
+                    <div class="col-2">
+                        <select style="margin:10px" class="form-control" id="season" name="season" required>
+                            <option value="">Chooses...</option>
+                            <option>Fall</option>
+                            <option>Summer</option>
+                            <option>Winter</option>
+                        </select>
+                    </div>
+                </div>
+
             </form>
 
             <button type="button" class="btn btn-primary float-right">Confirm</button>

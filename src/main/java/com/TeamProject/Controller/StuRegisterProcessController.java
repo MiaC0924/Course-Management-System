@@ -27,17 +27,23 @@ public class StuRegisterProcessController {
 
     @Autowired
     StudentService studentService;
-    @RequestMapping("/Student/Register/Processing")
+    @RequestMapping("/Student/Student/Register/Processing")
     public String submitCourseGrade(@RequestParam("major") String major,
                                     @RequestParam("code") int code,
                                     @RequestParam("section") Character section,
+                                    @RequestParam("year") int year,
+                                    @RequestParam("season") String season,
                                     Model model, HttpSession session){
         String email = (String)session.getAttribute("loginUser");
        //!!!!!!!!!!!!!!!!!!!!   need find student by email
+        Student stu = studentService.findStuByEmail(email);
+        System.out.println(email);
+        System.out.println(stu);
+        System.out.println(""+major+code+section+year+season);
 
 
        //!!!!!!!!!!!!!!!!          cannot get year and season
-        if( true /*studentService.registerCourse()*/ ){
+        if( studentService.registerCourse(stu.getStudentNumber(),year,season,section,major,code) ){
             System.out.println("register success");
             model.addAttribute("msg1","success");
         }else {

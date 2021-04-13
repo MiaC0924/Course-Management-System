@@ -31,13 +31,15 @@ public class stuDropProcessController {
     public String submitCourseGrade(@RequestParam("major") String major,
                                     @RequestParam("code") int code,
                                     @RequestParam("section") Character section,
+                                    @RequestParam("year") int year,
+                                    @RequestParam("season") String season,
                                     Model model, HttpSession session){
         String email = (String)session.getAttribute("loginUser");
         //!!!!!!!!!!!!!!!!!!!!   need find student by email
-
+        Student stu = studentService.findStuByEmail(email);
 
         //!!!!!!!!!!!!!!!!          cannot get year and season
-        if( true /*studentService.dropCourse()*/ ){
+        if( studentService.dropCourse(stu.getStudentNumber(),year,season,section,major,code)){
             System.out.println("drop success");
             model.addAttribute("msg1","success");
         }else {

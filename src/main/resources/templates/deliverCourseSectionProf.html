@@ -46,7 +46,7 @@
 
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" href="/signOut">Sign out</a>
         </li>
     </ul>
 </header>
@@ -127,10 +127,7 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 style="color:red" >[[${session.major}]]</h1>
-                <h1 style="color:red">[[${session.code}]]</h1>
-                <h1 style="color:red" >[[${session.section}]]</h1>
-                <h1 class="h2">Edit a grade of Course</h1>
+                <h1 class="h2">Select a Course</h1>
             </div>
 
             <form class="was-validated">
@@ -139,14 +136,21 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>StudentName</th>
-                            <th>Grade</th>
+                            <th>Course</th>
+                            <th>Code</th>
+                            <th>Section</th>
+                            <th>year</th>
+                            <th>Season</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="stu:${student}">
-                            <td th:text="${stu.getStudentNumber()}"></td>
-                            <td th:text="${stu.getName()}"></td>
+                        <tr th:each="cour:${courses}">
+                            <td th:text="${cour.getSectionID()}"></td>
+                            <td th:text="${cour.getMajor()}"></td>
+                            <td th:text="${cour.getCode()}"></td>
+                            <td th:text="${cour.getSection()}"></td>
+                            <td th:text="${cour.getTermYear()}"></td>
+                            <td th:text="${cour.getTermSeason()}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -167,6 +171,16 @@
                 </div>
                 <button class="btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit"> Submit </button>
             </form>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  value="Submit" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">Submit</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Edit" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">Edit</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" value="Delete" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio3">Delete</label>
+            </div>
         </main>
     </div>
 </div>

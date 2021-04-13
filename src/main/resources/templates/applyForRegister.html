@@ -37,104 +37,18 @@
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand fab fa-accessible-icon"> School</a>
-    <a class="navbar-brand  me-0 px-3" href="#">Admin</a>
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">[[${session.loginUser}]]</a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="/signOut">Sign out</a>
-        </li>
-    </ul>
 </header>
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Admin/main">
-                            <i class="fas fa-home"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Admin/Courses">
-                            <i class="fas fa-book"></i>
-                            Courses
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Admin/Section">
-                            <i class="fas fa-project-diagram"></i>
-                            Section
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Admin/Students">
-                            <i class="fas fa-user-graduate"></i>
-                            Students
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Admin/Professor">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            Professor
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Admin/Reports">
-                            <i class="fas fa-chart-bar"></i>
-                            Reports
-                        </a>
-                    </li>
-
-                </ul>
-
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Saved reports</span>
-                    <a class="link-secondary" href="#" aria-label="Add a new report">
-                        <span data-feather="plus-circle"></span>
-                    </a>
-                </h6>
-                <ul class="nav flex-column mb-2">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Current month
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Last quarter
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Social engagement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Year-end sale
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Create a Person</h1>
+                <h1 class="h2">Information</h1>
             </div>
-            <form class="was-validated" action="/Admin/Person/Create/Processing">
+            <form class="was-validated" action="/Apply">
                 <p style="color:red" th:text="${msg}"></p>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1"  value="Student" autocomplete="off" checked>
@@ -142,6 +56,20 @@
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Professor" autocomplete="off">
                     <label class="btn btn-outline-primary" for="btnradio2">Professor</label>
+                </div>
+
+                <div class="form-group row">
+                    <label for= "email" class="col-1 col-form-label">Email</label>
+                    <div class="col-2">
+                        <input style="margin:10px" type="text" name="email" class="form-control" id ="email" placeholder="XXX" required>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for= "password" class="col-1 col-form-label">password</label>
+                    <div class="col-2">
+                        <input style="margin:10px" type="text" name="password" class="form-control" id ="password" placeholder="XXX" required>
+                    </div>
                 </div>
 
                 <div class="form-group row">
@@ -179,13 +107,6 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for= "address" class="col-1 col-form-label">Address</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="address" class="form-control" id ="address" placeholder="XXXX" required>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
@@ -195,7 +116,7 @@
                     </div>
 
                 </div>
-                <button style="margin:10px" class=" btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit"> Create a person </button>
+                <button style="margin:10px" class=" btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit"> Apply for Creation </button>
             </form>
         </main>
     </div>
