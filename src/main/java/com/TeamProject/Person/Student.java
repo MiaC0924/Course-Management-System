@@ -7,11 +7,13 @@ import com.TeamProject.Evaluator.OverallVisitor;
 import com.TeamProject.Evaluator.Visitable;
 import com.TeamProject.Evaluator.Visitor;
 import com.TeamProject.Observer.Subject;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Document(collection = "Student_table")
 public class Student extends Person implements Visitable {
     private static int countID = 100000001;
     private int studentNumber;
