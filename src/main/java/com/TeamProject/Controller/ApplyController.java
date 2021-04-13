@@ -19,7 +19,7 @@ public class ApplyController {
     StudentService studentService;
     ProfessorService professorService;
 
-    @RequestMapping("/Apply/Processing")
+    @RequestMapping("/Apply")
     public String apply(@RequestParam("btnradio") String btnradio,
                         @RequestParam("email") String email,
                         @RequestParam("password") String password,
