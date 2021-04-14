@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<button id="open-btn"></button>
+
+<script src="https://media-library.cloudinary.com/global/all.js"></script>
+<script type="text/javascript">
+
+       window.ml = cloudinary.createMediaLibrary({
+        cloud_name: 'dagmvba7u',
+  api_key: '353542388691932',
+         username: 'kevinkong0530@gmail.com',
+         button_class: 'myBtn',
+         button_caption: 'Select Image or Video',
+         insert_transformation: true,
+       }, {
+         insertHandler: function (data) {
+           console.log("Hello World");
+           data.assets.forEach(asset => { console.log("Inserted asset:",
+              JSON.stringify(asset, null, 2)) })
+           }
+       },
+       document.getElementById("open-btn")
+      )
+    </script>
+
+</body>
+</html>
