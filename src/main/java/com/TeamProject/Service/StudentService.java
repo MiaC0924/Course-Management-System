@@ -110,20 +110,36 @@ public class StudentService {
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
-        if(validRegisterPeriod(year,season)){
+        System.out.println(cs);
+        ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
+        csList = getAllCourseByStu(stu.getEmail());
+        System.out.println(stu.containCourse(cs));
+        ArrayList<Integer> containId = new ArrayList<>();
+        for(int i=0;i<cs.getStudentList().size();i++){
+            containId.add(cs.getStudentList().get(i).getStudentNumber());
+        }
+        boolean contain = containId.contains(id);
+        if(cs.getStudentList().isEmpty()){return false;}
+        if(contain==false){
+            return false;
+        }
 
-            cs.removeStudent(stu);
-//            System.out.println(cs.getObservers());
-//            System.out.println(cs.getSectionID());
-//            System.out.println(stu.getTerms().get(0).getSectionIds());
-            courseSectionDao.addSection(cs);
-            studentDao.addStudent(stu);
+        if(validRegisterPeriod(year,season)){
+            System.out.println("first student list"+cs.getStudentList());
+            System.out.println(stu);
+            System.out.println(cs.getStudentList().contains(stu));
+            cs.detachObserver(stu);
+            courseSectionDao.deleteStudentBySectionId(cs.getSectionID(),stu);
+            System.out.println("second student list"+cs.getStudentList());
+            System.out.println(cs.getStudentList().contains(stu));
             return true;
         }
         else{
             return false;
         }
     }
+
+
 
     public void submitDeliver(){
 
