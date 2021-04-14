@@ -113,34 +113,21 @@ public class StudentService {
         System.out.println(cs);
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = getAllCourseByStu(stu.getEmail());
-        //if(cs.getObservers().get(0)!=stu){return false;}
         System.out.println(stu.containCourse(cs));
-        boolean contain = cs.getStudentList().contains(stu);
-        boolean a=true;
-//        if(contain==false){
-//            return false;
-//        }
-//        for(int i=0;i<cs.getStudentList().size();i++){
-//            if(cs.getStudentList().get(i).getStudentNumber()==stu.getStudentNumber()){
-//                a=true;
-//                break;
-//            }
-//            else{a=false;}
-//
-//        }
-//        if(a==false){return false;}
+        ArrayList<Integer> containId = new ArrayList<>();
+        for(int i=0;i<cs.getStudentList().size();i++){
+            containId.add(cs.getStudentList().get(i).getStudentNumber());
+        }
+        boolean contain = containId.contains(id);
         if(cs.getStudentList().isEmpty()){return false;}
+        if(contain==false){
+            return false;
+        }
 
         if(validRegisterPeriod(year,season)){
             System.out.println("first student list"+cs.getStudentList());
             System.out.println(stu);
             System.out.println(cs.getStudentList().contains(stu));
-            //cs.removeStudent(stu);
-//            System.out.println(cs.getObservers());
-//            System.out.println(cs.getSectionID());
-//            System.out.println(stu.getTerms().get(0).getSectionIds());
-//            courseSectionDao.addSection(cs);
-//            studentDao.addStudent(stu);
             cs.detachObserver(stu);
             courseSectionDao.deleteStudentBySectionId(cs.getSectionID(),stu);
             System.out.println("second student list"+cs.getStudentList());
@@ -151,46 +138,6 @@ public class StudentService {
             return false;
         }
     }
-//        for(int i=0;i<stu.getTerms().size();i++){
-//            for(int j=0;j<stu.getTerms().get(i).getSectionIds().size();j++){
-//                if(cs.getSectionID()==stu.getTerms().get(i).getSectionIds().get(j)){
-//
-//                    return false;
-//
-//                }
-//                return false;
-//            }
-//            for(Student s:cs.getStudentList()){
-//                System.out.println(s);
-//                if (s.getStudentNumber()==stu.getStudentNumber()){
-//                    return false;
-//                }
-//            }
-
-//        for(CourseSection s:csList){
-//            System.out.println(s);
-//            for(int j=0;j<s.getStudentList().size();j++){
-//                if(s.getStudentList().get(j).getStudentNumber()!=stu.getStudentNumber()){
-//                    return false;
-//                }
-//            }
-//        }
-        //if(cs==null){return false;}
-//        if(validRegisterPeriod(year,season)){
-//
-//            //cs.removeStudent(stu);
-////            System.out.println(cs.getObservers());
-////            System.out.println(cs.getSectionID());
-////            System.out.println(stu.getTerms().get(0).getSectionIds());
-////            courseSectionDao.addSection(cs);
-////            studentDao.addStudent(stu);
-//            cs.detachObserver(stu);
-//            courseSectionDao.deleteStudentBySectionId(cs.getSectionID(),stu);
-//            return true;
-//        }
-//        else{
-//            return false;
-//        }
 
 
 
