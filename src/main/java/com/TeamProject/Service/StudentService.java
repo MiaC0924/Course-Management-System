@@ -113,16 +113,25 @@ public class StudentService {
         System.out.println(cs);
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = getAllCourseByStu(stu.getEmail());
-        System.out.println(stu.containCourse(cs));
+        //System.out.println(stu.containCourse(cs));
         ArrayList<Integer> containId = new ArrayList<>();
+        ArrayList<Integer> containSectionId = new ArrayList<>();
+        if(cs==null){
+            return false;
+        }
         for(int i=0;i<cs.getStudentList().size();i++){
             containId.add(cs.getStudentList().get(i).getStudentNumber());
         }
+        for(int i=0;i<csList.size();i++){
+            containSectionId.add(csList.get(i).getSectionID());
+        }
         boolean contain = containId.contains(id);
+
         if(cs.getStudentList().isEmpty()){return false;}
         if(contain==false){
             return false;
         }
+
 
         if(validRegisterPeriod(year,season)){
             System.out.println("first student list"+cs.getStudentList());
