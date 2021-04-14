@@ -80,6 +80,9 @@ public class StudentService {
         System.out.println(stu);
         CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
         System.out.println(cs);
+        if(cs==null){
+            return false;
+        }
 
 //         if(cs.getObservers().contains(stu)){
 //             return false;
@@ -93,6 +96,7 @@ public class StudentService {
         for(Student s:cs.getStudentList()){
             System.out.println(s);
             if (s.getStudentNumber()==stu.getStudentNumber()){
+                System.out.println("False");
                 return false;
             }
         }
@@ -110,10 +114,10 @@ public class StudentService {
     public boolean dropCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
         CourseSection cs = courseSectionDao.findSectionByAllInfo(majorcode,code,section,year,season);
-        System.out.println(cs);
+//        System.out.println(cs);
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = getAllCourseByStu(stu.getEmail());
-        System.out.println(stu.containCourse(cs));
+//        System.out.println(stu.containCourse(cs));
         ArrayList<Integer> containId = new ArrayList<>();
         for(int i=0;i<cs.getStudentList().size();i++){
             containId.add(cs.getStudentList().get(i).getStudentNumber());
