@@ -29,7 +29,6 @@ public class Deliverable {
     public void getGrade(String name){
         grades.get(name);
     }
-    public String getName(){ return name; }
 
     public void removeStu(String name){
         grades.remove(name);
@@ -42,4 +41,14 @@ public class Deliverable {
     public void setGrades(String name,Character grade){
         grades.replace(name,grade);
     }
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public String getDeadlineString() {
+        return deadline.toString();
+    }
+
+    public String getName(){ return name; }
 }

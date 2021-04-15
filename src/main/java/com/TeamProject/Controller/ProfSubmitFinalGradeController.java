@@ -38,7 +38,7 @@ public class ProfSubmitFinalGradeController {
             for(CourseSection courseSection: cslist){
                 if(cs.getSectionID()==courseSection.getSectionID()){
                     System.out.println("Success Id");
-                    model.addAttribute("msg1" ,"Success");
+                    model.addAttribute("msg" ,"Success");
                     session.setAttribute("major" , cs.getMajor());
                     session.setAttribute("code" , cs.getCode());
                     session.setAttribute("section" , cs.getSection());

@@ -92,7 +92,7 @@ public class ProfessorService {
                 if(professorDao.findProfById(profId).getTerms().get(i).getCourseSections().get(j)==courseSectionId){
                     for(int k=0;k<stuIds.size();k++){
                         //studentDao.setFinalGrade(stu,courseSectionId,grade);
-                        courseSectionDao.setGradeBySectionId(courseSectionId,studentDao.findStudentByStuId(stuIds.get(k)),finalGrades.get(k));
+                        courseSectionDao.setFinalGrade(courseSectionId,stuIds.get(k),finalGrades.get(k));
                         return true;
                     }
 
@@ -114,7 +114,7 @@ public class ProfessorService {
                             //set the grade for that student
                             Student stu = studentDao.findStudentByStuId(stuId);
                             studentDao.setFinalGrade(stu.getStudentNumber(),courseSection.getSectionID(),grade);
-                            courseSectionDao.setGradeBySectionId(courseSection.getSectionID(),stu,grade);
+                            courseSectionDao.setFinalGrade(courseSection.getSectionID(),stu.getStudentNumber(),grade);
                             return true;
                         }
                     }
@@ -130,5 +130,19 @@ public class ProfessorService {
 
     public ArrayList<Deliverable> findAllDeliverable(){
         return null;
+    }
+
+    public boolean removeDeliverable(CourseSection cs,String name){
+        CourseSection courseSection =courseSectionDao.findSectionById(cs.getSectionID());
+        if(cs == null){
+            System.out.println("cs no found");
+            return false;
+        }else{
+            System.out.println(cs);
+            boolean added = courseSection.removeDeliverable(name);
+            courseSectionDao.addSection(cs);
+            return added;
+        }
+
     }
 }

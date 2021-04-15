@@ -24,11 +24,27 @@ public class CourseSectionDao {
     public void addSection(CourseSection section){
         if(findSectionById(section.getSectionID()) == null){
             mongoTemplate.save(section);
-            System.out.println("added success");
+            System.out.println("CourseSection added success");
         }else{
             Query query = new Query(Criteria.where("sectionID").is(section.getSectionID()));
             mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(section);
+            System.out.println("CourseSection update success");
+        }
+    }
+
+    public boolean setFinalGrade(int courseId,int stuId,Character grade){
+        CourseSection cs = findSectionById(courseId);
+        if(cs==null){
+            System.out.println("CourseSection no found");
+            return false;
+        }else{
+            cs.setFinalGrade(stuId,grade);
+            Query query = new Query(Criteria.where("sectionID").is(courseId));
+            mongoTemplate.remove(query,CourseSection.class);
+            mongoTemplate.save(cs);
+            System.out.println("CourseSection update success");
+            return true;
         }
     }
 
@@ -44,7 +60,6 @@ public class CourseSectionDao {
         Query query = new Query(Criteria.where("sectionID").is(id));
         return mongoTemplate.findOne(query, CourseSection.class);
     }
-
 
 //    public CourseSection findCourseSection(String major,int code){
 //        Query query = new Query(Criteria.where("sectionID").is(id));
@@ -139,6 +154,7 @@ public class CourseSectionDao {
         if(section != null) {
             section.setProfessor(professor);
             mongoTemplate.save(section);
+            System.out.println("CourseSection update success");
             return true;
         }
         return false;
@@ -154,8 +170,10 @@ public class CourseSectionDao {
             Query query =new Query(Criteria.where("sectionID").is(id));
             mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(section);
+            System.out.println("CourseSection update success");
             return true;
         }
+        System.out.println("CourseSection no found");
         return false;
     }
 
@@ -169,16 +187,7 @@ public class CourseSectionDao {
             Query query =new Query(Criteria.where("sectionID").is(id));
             mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(section);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean setGradeBySectionId(int id, Student stu, Character grade){
-        CourseSection section = findSectionById(id);
-        if(section != null) {
-            section.setGrade(stu, grade);
-            mongoTemplate.save(section);
+            System.out.println("CourseSection update success");
             return true;
         }
         return false;
@@ -193,4 +202,13 @@ public class CourseSectionDao {
 //        }
 //        return false;
 //    }
+
+    public void updateSection(CourseSection cs){
+        CourseSection courseSection = findSectionById(cs.getSectionID());
+        if(courseSection != null) {
+            Query query =new Query(Criteria.where("sectionID").is(cs.getSectionID()));
+            mongoTemplate.remove(query,CourseSection.class);
+            mongoTemplate.save(courseSection);
+        }
+    }
 }

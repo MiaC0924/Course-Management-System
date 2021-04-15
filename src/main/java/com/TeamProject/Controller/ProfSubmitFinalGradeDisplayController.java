@@ -27,6 +27,8 @@ public class ProfSubmitFinalGradeDisplayController {
         String major = (String)session.getAttribute("major");
         int code = (int)session.getAttribute("code");
         String section = (String)session.getAttribute("section");
+        int year = (int)session.getAttribute("year");
+        String season = (String)session.getAttribute("season");
 
         System.out.println("This course is : major : " + major + code + section);
 
