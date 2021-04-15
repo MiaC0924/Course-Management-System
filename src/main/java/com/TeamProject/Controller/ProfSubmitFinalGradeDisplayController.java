@@ -65,7 +65,7 @@ public class ProfSubmitFinalGradeDisplayController {
     public String submitCourseGrade(Model model,  HttpSession session){
         String major = (String)session.getAttribute("major");
         int code = (int)session.getAttribute("code");
-        String section = (String)session.getAttribute("section");
+        Character section = (Character) session.getAttribute("section");
 
         System.out.println("This course is : major : " + major + code + section);
 

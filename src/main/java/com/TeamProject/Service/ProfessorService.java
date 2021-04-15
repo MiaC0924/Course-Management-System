@@ -102,7 +102,12 @@ public class ProfessorService {
     }
 
     public boolean submitFinalGradeForOne(String email,CourseSection courseSection,int stuId,Character grade){
+        //System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
         //check if prof have this course section by coursesectionid
+        if(courseSection==null){return false;}
+        Professor pro = professorDao.findProfByEmail(email);
+        ArrayList<CourseSection> proCourse = courseSectionDao.getAllCourseByProf(pro);
+        studentDao.setFinalGrade(stuId,courseSection,grade);
         for(int i=0;i<professorDao.findProfByEmail(email).getTerms().size();i++){
             for(int j=0;j<professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().size();j++){
                 if(professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().get(j)==courseSection.getSectionID()){
@@ -111,14 +116,16 @@ public class ProfessorService {
                         if(courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().get(k).getStudentNumber()==stuId){
                             //set the grade for that student
                             Student stu = studentDao.findStudentByStuId(stuId);
-                            studentDao.setFinalGrade(stu.getStudentNumber(),courseSection.getSectionID(),grade);
+                            studentDao.setFinalGrade(stu.getStudentNumber(),courseSection,grade);
                             courseSectionDao.setGradeBySectionId(courseSection.getSectionID(),stu,grade);
+                            System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
                             return true;
                         }
                     }
                 }
             }
         }
+//        System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
         return false;
     }
 

@@ -42,7 +42,10 @@ public class StudentDao {
         return mongoTemplate.findOne(query, Student.class);
     }
 
-    public boolean setFinalGrade(int id, int courseSectionId,Character grade){
+    public boolean setFinalGrade(int id, CourseSection cs,Character grade){
+        Student stu = findStudentByStuId(id);
+        stu.addFinalGrade(cs,grade);
+        mongoTemplate.save(stu);
         return true;
     }
 

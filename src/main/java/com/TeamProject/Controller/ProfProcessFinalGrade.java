@@ -54,7 +54,8 @@ public class ProfProcessFinalGrade {
         int year = (int) session.getAttribute("year");
         String season = (String) session.getAttribute("season");
 
-        CourseSection cs = courseSectionDao.findSectionByAllInfo(major,code,section,2021,"Winter");
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(major,code,section,year,season);
+        System.out.println(major+code+section+year+season);
 
 
 

@@ -35,7 +35,7 @@ public class ProfCreateDeliverController {
         /*       need findProcessorBy email                   */
          Professor prof = professorService.findProfessorByEmail(email);
          System.out.println(""+prof.getFaculty());
-         System.out.println(prof.getTerms().get(0).getCourseSections());
+         //System.out.println(prof.getTerms().get(0).getCourseSections());
         /*       need findAllCourseSectionByProfessor                                */
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = courseSectionDao.getAllCourseByProf(prof);
