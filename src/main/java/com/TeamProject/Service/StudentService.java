@@ -74,6 +74,22 @@ public class StudentService {
         return s;
     }
 
+//    public ArrayList<CourseSection> getAllCourseByProf (String email){
+//        ArrayList<CourseSection> s = new ArrayList<>();
+//        ArrayList<CourseSection> c = courseSectionDao.getAllCourse();
+//        for (int i =0;i<c.size();i++){
+//            System.out.println(c.get(i).getProfessor());
+//            //for(int j=0;j<c.get(i).getStudentList().size();j++){
+//            System.out.println(email);
+//           // System.out.println(c.get(i).getStudentList().get(j).getEmail());
+//            if(c.get(i).getProfessor().getEmail() .equals(email)){
+//                s.add(c.get(i));
+//            }
+//           // }
+//        }
+//        return s;
+//    }
+
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
