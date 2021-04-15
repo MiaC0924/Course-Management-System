@@ -44,11 +44,15 @@ public class ProfProcessFinalGrade {
         session.getAttribute("major");
         session.getAttribute("code");
         session.getAttribute("section");
+        session.getAttribute("year");
+        session.getAttribute("season");
         //need a function to get all course of this student put in csList
         String email = (String)session.getAttribute("loginUser");
         String major = (String)session.getAttribute("major");
         int code = (int)session.getAttribute("code");
         Character section = (Character) session.getAttribute("section");
+        int year = (int) session.getAttribute("year");
+        String season = (String) session.getAttribute("season");
 
         CourseSection cs = courseSectionDao.findSectionByAllInfo(major,code,section,2021,"Winter");
 

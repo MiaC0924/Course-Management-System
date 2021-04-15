@@ -53,10 +53,10 @@ public class ProfSubmitFinalGradeController {
     @RequestMapping("/Professor/FinalGrade")
     public String submitFinalGrade(@RequestParam("course") String major,
                                    @RequestParam("code") int code,
-                                   @RequestParam("section") String section,
+                                   @RequestParam("section") Character section,
+                                   @RequestParam("year") int year,
+                                   @RequestParam("season") String season,
                                    Model model, HttpSession session){
-
-
 
         System.out.println("Professor submit finalGrade :  Major: " + major + " , Code: " + code + " , Section: " + section);
 //        courseSectionService.findCourseSection(major,code)!=null
@@ -64,6 +64,8 @@ public class ProfSubmitFinalGradeController {
             session.setAttribute("major" , major);
             session.setAttribute("code" , code);
             session.setAttribute("section" , section);
+            session.setAttribute("year" , year);
+            session.setAttribute("season" , season);
             return "redirect:/Professor/SubmitFinal";
         }else{
 

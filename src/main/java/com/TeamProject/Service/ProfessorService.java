@@ -114,7 +114,6 @@ public class ProfessorService {
                             studentDao.setFinalGrade(stu.getStudentNumber(),courseSection.getSectionID(),grade);
                             courseSectionDao.setGradeBySectionId(courseSection.getSectionID(),stu,grade);
                             return true;
-
                         }
                     }
                 }
