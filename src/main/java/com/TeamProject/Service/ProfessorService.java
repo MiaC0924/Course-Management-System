@@ -101,18 +101,18 @@ public class ProfessorService {
         return false;
     }
 
-    public boolean submitFinalGradeForOne(int profId,int courseSectionId,int stuId,Character grade){
+    public boolean submitFinalGradeForOne(String email,CourseSection courseSection,int stuId,Character grade){
         //check if prof have this course section by coursesectionid
-        for(int i=0;i<professorDao.findProfById(profId).getTerms().size();i++){
-            for(int j=0;j<professorDao.findProfById(profId).getTerms().get(i).getCourseSections().size();j++){
-                if(professorDao.findProfById(profId).getTerms().get(i).getCourseSections().get(j)==courseSectionId){
+        for(int i=0;i<professorDao.findProfByEmail(email).getTerms().size();i++){
+            for(int j=0;j<professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().size();j++){
+                if(professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().get(j)==courseSection.getSectionID()){
                     //check if the student is in this course section
-                    for(int k=0;k<courseSectionDao.findSectionById(courseSectionId).getStudentList().size();k++){
-                        if(courseSectionDao.findSectionById(courseSectionId).getStudentList().get(k).getStudentNumber()==stuId){
+                    for(int k=0;k<courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().size();k++){
+                        if(courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().get(k).getStudentNumber()==stuId){
                             //set the grade for that student
                             Student stu = studentDao.findStudentByStuId(stuId);
-                           // studentDao.setFinalGrade(stu,courseSectionId,grade);
-                            courseSectionDao.setGradeBySectionId(courseSectionId,stu,grade);
+                            studentDao.setFinalGrade(stu.getStudentNumber(),courseSection.getSectionID(),grade);
+                            courseSectionDao.setGradeBySectionId(courseSection.getSectionID(),stu,grade);
                             return true;
 
                         }

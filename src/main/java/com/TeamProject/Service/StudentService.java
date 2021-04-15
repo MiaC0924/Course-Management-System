@@ -74,6 +74,22 @@ public class StudentService {
         return s;
     }
 
+//    public ArrayList<CourseSection> getAllCourseByProf (String email){
+//        ArrayList<CourseSection> s = new ArrayList<>();
+//        ArrayList<CourseSection> c = courseSectionDao.getAllCourse();
+//        for (int i =0;i<c.size();i++){
+//            System.out.println(c.get(i).getProfessor());
+//            //for(int j=0;j<c.get(i).getStudentList().size();j++){
+//            System.out.println(email);
+//           // System.out.println(c.get(i).getStudentList().get(j).getEmail());
+//            if(c.get(i).getProfessor().getEmail() .equals(email)){
+//                s.add(c.get(i));
+//            }
+//           // }
+//        }
+//        return s;
+//    }
+
 
     public boolean registerCourse(int id,int year,String season, Character section,String majorcode,int code){
         Student stu = studentDao.findStudentByStuId(id);
@@ -117,16 +133,24 @@ public class StudentService {
 //        System.out.println(cs);
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = getAllCourseByStu(stu.getEmail());
-//        System.out.println(stu.containCourse(cs));
         ArrayList<Integer> containId = new ArrayList<>();
+        ArrayList<Integer> containSectionId = new ArrayList<>();
+        if(cs==null){
+            return false;
+        }
         for(int i=0;i<cs.getStudentList().size();i++){
             containId.add(cs.getStudentList().get(i).getStudentNumber());
         }
+        for(int i=0;i<csList.size();i++){
+            containSectionId.add(csList.get(i).getSectionID());
+        }
         boolean contain = containId.contains(id);
+
         if(cs.getStudentList().isEmpty()){return false;}
         if(contain==false){
             return false;
         }
+
 
         if(validRegisterPeriod(year,season)){
             System.out.println("first student list"+cs.getStudentList());

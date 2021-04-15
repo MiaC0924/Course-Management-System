@@ -27,18 +27,37 @@ public class ProfProcessFinalGrade {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    CourseSectionDao courseSectionDao;
+
     @RequestMapping("Professor/SubmitFinal/Processing")
     public String submitCourseGrade(@RequestParam("id") int id,
                                     @RequestParam("grade") Character grade,
                                     Model model, HttpSession session){
         //need professor find by email
         //need find courseId by course major+code+section
+
         int profId = 0;
         int courseId = 0;
+        session.getAttribute("loginUser");
+        session.getAttribute("major");
+        session.getAttribute("code");
+        session.getAttribute("section");
+        //need a function to get all course of this student put in csList
+        String email = (String)session.getAttribute("loginUser");
+        String major = (String)session.getAttribute("major");
+        int code = (int)session.getAttribute("code");
+        Character section = (Character) session.getAttribute("section");
+
+        CourseSection cs = courseSectionDao.findSectionByAllInfo(major,code,section,2021,"Winter");
+
+
 
         //need test
-        if( professorService.submitFinalGradeForOne(profId , id ,courseId, grade)){
+        if( professorService.submitFinalGradeForOne(email , cs ,id, grade)){
             System.out.println("submit Final success");
+            System.out.println("Professor submit finalGrade for id: "+id+" : "+grade);
             model.addAttribute("msg1","success");
         }else {
             System.out.println("submit Final fail");

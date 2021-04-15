@@ -147,12 +147,13 @@
                         <tr th:each="stu:${student}">
                             <td th:text="${stu.getStudentNumber()}"></td>
                             <td th:text="${stu.getName()}"></td>
+
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </form>
-            <form class="was-validated" action="/Professor/Grades/SubmitFinal/Processing">
+            <form class="was-validated" action="/Professor/SubmitFinal/Processing">
                 <div class="form-group row">
                     <label for= "id" class="col-1 col-form-label">id</label>
                     <div class="col-2">

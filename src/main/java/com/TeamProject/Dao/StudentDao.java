@@ -42,6 +42,10 @@ public class StudentDao {
         return mongoTemplate.findOne(query, Student.class);
     }
 
+    public boolean setFinalGrade(int id, int courseSectionId,Character grade){
+        return true;
+    }
+
     public boolean updateStudentMajorGPAByStuId(int id,Double majorGPA){
         Student stu = findStudentByStuId(id);
         if(stu != null) {
