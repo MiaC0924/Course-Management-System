@@ -2,10 +2,11 @@ package com.TeamProject.Course;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Deliverable {
-    private Map<String,Float> grades;
+    private HashMap<String,Character> grades;
     private boolean submit;
     private LocalDate deadline;
     private String name;
@@ -13,6 +14,7 @@ public class Deliverable {
     public Deliverable(String name,LocalDate deadline){
         this.name=name;
         this.deadline = deadline;
+        grades = new HashMap<String,Character>();
         submit = true;
     }
 
@@ -34,6 +36,10 @@ public class Deliverable {
     }
 
     public void addStu(String name){
-        grades.put(name,0f);
+        grades.put(name,' ');
+    }
+
+    public void setGrades(String name,Character grade){
+        grades.replace(name,grade);
     }
 }

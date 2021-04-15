@@ -38,7 +38,6 @@ public class StuDropCourse {
 //        csList.add(comp3005A);
         /*             Test Area                  */
 
-
         model.addAttribute("courses" , csList);
 
         return"DropStu";

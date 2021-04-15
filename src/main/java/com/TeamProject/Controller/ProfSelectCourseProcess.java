@@ -24,7 +24,7 @@ public class ProfSelectCourseProcess {
     @Autowired
     CourseSectionService courseSectionService;
 
-    @RequestMapping("/Professor/Grades/SelectCourse/Processing")
+    @RequestMapping("/Professor/Grades/SelectCourse/")
     public String selectCourse(Model model, HttpSession session){
         String email =(String) session.getAttribute("loginUser");
         Professor prof = professorService.findProfessorByEmail(email);

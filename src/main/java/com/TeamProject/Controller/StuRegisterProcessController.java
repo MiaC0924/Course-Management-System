@@ -36,11 +36,12 @@ public class StuRegisterProcessController {
        //!!!!!!!!!!!!!!!!          cannot get year and season
         if( studentService.registerCourse(stu.getStudentNumber(),year,season,section,major,code) ){
             System.out.println("register success");
-            model.addAttribute("msg1","success");
+            model.addAttribute("msg","success");
+            return "dashboardStu";
         }else {
             System.out.println("register fail");
-            model.addAttribute("msg1", "fail");
+            model.addAttribute("msg", "fail");
+            return "RegisterStu";
         }
-        return "dashboardStu";
     }
 }
