@@ -25,7 +25,7 @@ public class CourseSection implements Subject {
     private String building;
 
     private ArrayList<Observer> observers;
-    private Map<Student, Character> gradeList;
+    private HashMap<Student, Character> gradeList;
     private ArrayList<Deliverable> deliverables;
     private int state;
 
@@ -44,7 +44,7 @@ public class CourseSection implements Subject {
 
         observers = new ArrayList<>();
         deliverables = new ArrayList<>();
-        gradeList = new HashMap<>();
+        gradeList = new HashMap<Student, Character>();
     }
 
     public boolean sameTerm(Term t){
@@ -127,7 +127,6 @@ public class CourseSection implements Subject {
         }
         deliverables.add(new Deliverable(name,inputLocalDate));
         return true;
-
     }
 
 
@@ -166,10 +165,24 @@ public class CourseSection implements Subject {
         //gradeList.remove(stu);
     }
 
+    public boolean removeDeliverable(String  name){
+            for(Deliverable d:deliverables){
+                if(d.getName().equals(name)){
+                    boolean b = deliverables.remove(d);
+                    System.out.println(b);
+                    return true;
+                }
+            }
+            return false;
+    }
+
     @Override
     public void notifyAllObserver() {
         for(Observer o: observers){
             o.update(this);
         }
+    }
+
+    public void setFinalGrade(int stuId, Character grade) {
     }
 }
