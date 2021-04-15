@@ -34,10 +34,8 @@ public class ProfSubmitFinalGradeController {
             model.addAttribute("msg" ,"fail");
             return "courseSelectGradeFinalProf";
         }else{
-            ArrayList<CourseSection> cslist = (ArrayList<CourseSection>) model.getAttribute("courses");
-            for(CourseSection courseSection: cslist){
-                if(cs.getSectionID()==courseSection.getSectionID()){
-                    System.out.println("Success Id");
+                    System.out.println("Student list"+cs.getStudentList());
+                    model.addAttribute("student",cs.getStudentList());
                     model.addAttribute("msg" ,"Success");
                     session.setAttribute("major" , cs.getMajor());
                     session.setAttribute("code" , cs.getCode());
@@ -45,11 +43,6 @@ public class ProfSubmitFinalGradeController {
                     session.setAttribute("year" , cs.getTermYear());
                     session.setAttribute("season" , cs.getTermSeason());
                     return "redirect:/Professor/SubmitFinal";
-                }
-            }
-            System.out.println("Find Course fail");
-            model.addAttribute("msg","fail");
-            return "courseSelectGradeFinalProf";
         }
     }
 

@@ -28,15 +28,6 @@ public class ProfProcessFinalGrade {
                                     Model model, HttpSession session){
         //need professor find by email
         //need find courseId by course major+code+section
-
-        int profId = 0;
-        int courseId = 0;
-        session.getAttribute("loginUser");
-        session.getAttribute("major");
-        session.getAttribute("code");
-        session.getAttribute("section");
-        session.getAttribute("year");
-        session.getAttribute("season");
         //need a function to get all course of this student put in csList
         String email = (String)session.getAttribute("loginUser");
         String major = (String)session.getAttribute("major");
@@ -46,22 +37,24 @@ public class ProfProcessFinalGrade {
         String season = (String) session.getAttribute("season");
 
         CourseSection cs = courseSectionDao.findSectionByAllInfo(major,code,section,year,season);
-        System.out.println(major+code+section+year+season);
-        System.out.println(cs);
+        if(cs!= null){
+            if( professorService.submitFinalGradeForOne(email , cs ,id, grade)){
+                System.out.println("submit Final success");
 
+                System.out.println("Professor submit finalGrade for id: "+id+" : "+grade);
+                model.addAttribute("msg","success");
 
-
-        //need test
-        if( professorService.submitFinalGradeForOne(email , cs ,id, grade)){
-            System.out.println("submit Final success");
-
-            System.out.println("Professor submit finalGrade for id: "+id+" : "+grade);
-            model.addAttribute("msg","success");
-
-        }else {
+            }else {
+                System.out.println("submit Final fail");
+                model.addAttribute("msg", "fail");
+            }
+        }else{
             System.out.println("submit Final fail");
             model.addAttribute("msg", "fail");
         }
+
+        //need test
+
         return "dashboardProf";
     }
 }

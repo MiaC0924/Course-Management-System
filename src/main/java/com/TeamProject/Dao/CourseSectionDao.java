@@ -33,20 +33,7 @@ public class CourseSectionDao {
         }
     }
 
-    public boolean setFinalGrade(int courseId,int stuId,Character grade){
-        CourseSection cs = findSectionById(courseId);
-        if(cs==null){
-            System.out.println("CourseSection no found");
-            return false;
-        }else{
-            cs.setFinalGrade(stuId,grade);
-            Query query = new Query(Criteria.where("sectionID").is(courseId));
-            mongoTemplate.remove(query,CourseSection.class);
-            mongoTemplate.save(cs);
-            System.out.println("CourseSection update success");
-            return true;
-        }
-    }
+
 
 
     //create
@@ -80,15 +67,11 @@ public class CourseSectionDao {
     public ArrayList<CourseSection> getAllCourseByProf(Professor prof){
         ArrayList<CourseSection> css = getAllCourse();
         ArrayList<CourseSection> c = new ArrayList<CourseSection>();
-
         for(CourseSection cs:css){
-            System.out.println(cs.getSectionID());
+//            System.out.println(cs.getSectionID());
             if(cs.getProfessor()==null){
-                System.out.println("No Prof");
+//                System.out.println("No Prof");
                 continue;
-            }else{
-                System.out.println(cs.getProfessor().getName());
-                System.out.println(prof.getName());
             }
             if(cs.getProfessor().getName().equals(prof.getName())){
                 c.add(cs);
@@ -106,26 +89,19 @@ public class CourseSectionDao {
             return false;
         }
         else{
-            cs.setFinalgrades(stuId,grade);
+            boolean added = cs.setFinalgrades(stuId,grade);
             Query query = new Query(Criteria.where("sectionID").is(courseId));
             mongoTemplate.remove(query,CourseSection.class);
             mongoTemplate.save(cs);
             System.out.println("course section update success");
-            return true;
+            return added;
         }
     }
 
-    public ArrayList<CourseSection> getAllCourseByCourseSection (Course co,Character ch){
-        ArrayList<CourseSection> c = new ArrayList<>();
-
-        ArrayList<CourseSection> s = getAllCourse();
-        for (int i =0;i<s.size();i++){
-            if(s.get(i).getSectionName().equals(co
-                    .getCourseName())&&s.get(i).getSection()==ch){
-                c.add(s.get(i));
-            }
-        }
-        return c;
+    public ArrayList<Student> getStudentbyCourse (CourseSection cs){
+        ArrayList<Student> css = new ArrayList<Student>();
+        css = cs.getStudentList();
+        return css;
     }
 
     public ArrayList<CourseSection> getAllCourse (){

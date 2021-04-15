@@ -48,6 +48,8 @@ public class CourseSectionService {
         courseSectionDao.updateSection(cs);
     }
 
+    public ArrayList<Student> getStudentbyCourse(CourseSection cs){ return courseSectionDao.getStudentbyCourse(cs);}
+
 
 
 

@@ -66,8 +66,6 @@ public class CourseSection implements Subject {
     public String getTermSeason()     { return cSeason; }
     public String getTerm() { return cSeason + cYear;}
     public int getCode() {return course.getCode();}
-    public int    getRoom()        { return room;     }
-    public String getBuilding()    { return building; }
     public String getMajor() { return course.getMajor(); }
     public ArrayList<Observer> getObservers() { return observers; }
     public ArrayList<Deliverable> getDeliverables() { return deliverables; }
@@ -97,15 +95,17 @@ public class CourseSection implements Subject {
 
     public Map<Student,Character> getGradeList() { return gradeList;   }
     public HashMap<Integer,Character> getFinalgrades(){ return finalgrades; }
-    //public Character getGradeByName(String name){ return gradeList.get(name); }
-
-    //setters
-//    public void setBuilding(String inputBuilding) { building = inputBuilding;  }
-//    public void setRoom(int inputRoom)            { room = inputRoom;          }
 
     public boolean setFinalgrades(int stuId,Character grade){
-        finalgrades.put(stuId,grade);
-        return true;
+        if(finalgrades.containsKey(stuId)){
+            System.out.println(finalgrades.containsKey(stuId));
+            System.out.println(finalgrades);
+            finalgrades.replace(stuId,grade);
+            return true;
+        }else{
+            System.out.println(finalgrades);
+            return false;
+        }
     }
     public void setProfessor(Professor inputProf) {
         for(Observer o:observers){
@@ -120,7 +120,7 @@ public class CourseSection implements Subject {
 
     public void addStudent(Student inputStu) {
         observers.add(inputStu);
-//        gradeList.put(inputStu,'F');
+        finalgrades.put(inputStu.getStudentNumber(),' ');
     }
 
 

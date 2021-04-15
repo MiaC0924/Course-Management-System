@@ -82,7 +82,6 @@ public class DBSeeder implements CommandLineRunner {
         ArrayList<Course> courseList = new ArrayList<>();
         courseList.add(comp3004);
         courseList.add(math2000);
-        courseRepository.saveAll(courseList);
 
         /**CourseSection*/
         CourseSection comp3004A = new CourseSection(comp3004, 'A', 2021, "Winter");
@@ -157,5 +156,6 @@ public class DBSeeder implements CommandLineRunner {
         professorRepository.saveAll(profList);
         studentRepository.saveAll(stuList);
         courseSectionRepository.saveAll(courseSectionList);
+        courseRepository.saveAll(courseList);
     }
 }
