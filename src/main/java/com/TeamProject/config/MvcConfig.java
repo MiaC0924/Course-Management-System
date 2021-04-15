@@ -21,14 +21,14 @@ public class MvcConfig implements WebMvcConfigurer {
         //Admin Course
         registry.addViewController("/Admin/Courses").setViewName("coursesAdm");
         registry.addViewController("/Admin/Courses/Create").setViewName("createCourseAdmin");
-        //👇 In AdminDeleteCourseController
         registry.addViewController("/Admin/Courses/Delete").setViewName("deleteCourseAdmin");
         //Admin Person
-        registry.addViewController("/Admin/Person").setViewName("404Page");
+        registry.addViewController("/Admin/Person").setViewName("personAdmin");
         registry.addViewController("/Admin/Person/Create").setViewName("createPersonAdmin");
         registry.addViewController("/Admin/Person/Delete").setViewName("deletePersonAdmin");
         //Student Course
-        registry.addViewController("/Admin/Person").setViewName("404Page");
+        registry.addViewController("/Student/Account").setViewName("accountStu");
+        registry.addViewController("/Student/Reports").setViewName("reportStu");
 //        registry.addViewController("/Student/Register/").setViewName("RegisterStu");
 
 
@@ -36,6 +36,8 @@ public class MvcConfig implements WebMvcConfigurer {
        // registry.addViewController("/Professor/Deliver/Delete").setViewName("deletedeliverableProf");
          registry.addViewController("/Professor/Grades").setViewName("gradeProf");
         registry.addViewController("/Professor/Deliverable").setViewName("deliverableProf");
+        registry.addViewController("/Professor/Account").setViewName("accountProf");
+        registry.addViewController("/Professor/Reports").setViewName("reportProf");
     }
 
 
