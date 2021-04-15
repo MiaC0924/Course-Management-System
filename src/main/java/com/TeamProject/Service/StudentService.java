@@ -150,8 +150,6 @@ public class StudentService {
         if(contain==false){
             return false;
         }
-
-
         if(validRegisterPeriod(year,season)){
             System.out.println("first student list"+cs.getStudentList());
             System.out.println(stu);

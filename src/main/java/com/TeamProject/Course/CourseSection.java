@@ -25,7 +25,11 @@ public class CourseSection implements Subject {
     private String building;
 
     private ArrayList<Observer> observers;
-    private HashMap<Student, Character> gradeList;
+
+    private Map<Student, Character> gradeList;
+    private HashMap<Integer,Character> finalgrades;
+
+
     private ArrayList<Deliverable> deliverables;
     private int state;
 
@@ -44,7 +48,10 @@ public class CourseSection implements Subject {
 
         observers = new ArrayList<>();
         deliverables = new ArrayList<>();
-        gradeList = new HashMap<Student, Character>();
+        gradeList = new HashMap<>();
+        finalgrades = new HashMap<>();
+
+       
     }
 
     public boolean sameTerm(Term t){
@@ -89,11 +96,17 @@ public class CourseSection implements Subject {
     }
 
     public Map<Student,Character> getGradeList() { return gradeList;   }
+    public HashMap<Integer,Character> getFinalgrades(){ return finalgrades; }
     //public Character getGradeByName(String name){ return gradeList.get(name); }
 
     //setters
 //    public void setBuilding(String inputBuilding) { building = inputBuilding;  }
 //    public void setRoom(int inputRoom)            { room = inputRoom;          }
+
+    public boolean setFinalgrades(int stuId,Character grade){
+        finalgrades.put(stuId,grade);
+        return true;
+    }
     public void setProfessor(Professor inputProf) {
         for(Observer o:observers){
             if(o instanceof Professor){

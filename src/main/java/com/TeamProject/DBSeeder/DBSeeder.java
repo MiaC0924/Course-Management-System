@@ -143,6 +143,7 @@ public class DBSeeder implements CommandLineRunner {
         math2000A.attachObserver(mia);
         comp3004A.attachObserver(jp);
         math2000A.attachObserver(jp);
+        //comp3004A.setFinalgrades(mia.getStudentNumber(),'A');
         jp.addPassRates(comp3004A, 0.6);
 
         ArrayList<CourseSection> courseSectionList = new ArrayList<>();
