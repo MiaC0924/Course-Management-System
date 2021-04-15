@@ -1,11 +1,6 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
-import com.TeamProject.Course.Term;
-import com.TeamProject.Course.University;
-import com.TeamProject.Dao.CourseDao;
-import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Service.CourseSectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +16,7 @@ public class AdminDeletePageShowCourseController {
 
 
     @RequestMapping("Admin/Courses/Delete")
-    public String DeleteCourse(Model model){
+    public String deleteCourse(Model model){
         ArrayList<CourseSection> csList = new ArrayList<CourseSection>();
         csList = sectionservice.getAllCourse();
 

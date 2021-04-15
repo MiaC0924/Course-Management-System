@@ -75,13 +75,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Professor/Account">
+                        <a class="nav-link" href="/Professor/Account/Processing">
                             <i class="fas fa-user-graduate"></i>
                             Account
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Professor/Reports">
+                        <a class="nav-link" href="/Professor/Reports/Processing">
                             <i class="fas fa-chart-bar"></i>
                             Reports
                         </a>
@@ -129,202 +129,22 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Dashboard</h1>
             </div>
-
-
-            <h1 style="color:red" th:text="${msg1}"></h1>
-
+            <h1 style="color:red" th:text="${msg}"></h1>
 
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit" onclick="window.location.href='/Professor/Deliver/Create'">  Create a deliverable </button>
-            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/Professor/Deliver/Delete'">  Delete a deliverable </button>
-
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/Professor/Deliver/Select_Edit/Processing'">  Edit a deliverable </button>
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/Professor/Deliver/Select_Delete/Processing'">  Delete a deliverable </button>
 
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Submit a list of grade of deliverable </button>
 
-
-
-            <form class="was-validated" action="/Professor/FinalGrade">
-                <div class="form-group row">
-                    <label for= "course" class="col-1 col-form-label">major</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="course" class="form-control" id ="course" placeholder="COMP" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for= "code" class="col-1 col-form-label">code</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="code" class="form-control" id ="code" placeholder="1000" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for= "section" class="col-1 col-form-label">section</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="section" class="form-control" id ="section" placeholder="A" maxlength="1" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for= "year" class="col-1 col-form-label">year</label>
-                    <div class="col-2">
-                        <input style="margin:10px" type="text" name="year" class="form-control" id ="year" placeholder="2020" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="season" class="col-1 col-form-label">season</label>
-                    <div class="col-2">
-                        <select style="margin:10px" class="form-control" id="season" name="season" required>
-                            <option value="">Chooses...</option>
-                            <option>Fall</option>
-                            <option>Summer</option>
-                            <option>Winter</option>
-                        </select>
-                    </div>
-                </div>
-                <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Submit a final grade </button>
-            </form>
-
-
-
-
-
+            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit" onclick="window.location.href='/Professor/Grades/SelectCourse/'">  Submit a final grade </button>
 
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit" onclick="location.href='/test2'">  download a file </button>
-
-
-
 
 
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Change a final grade </button>
             <button class="w-100 btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit">  Change a deliverable grade </button>
 
-            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-            <h2>Section title</h2>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                        <td>text</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                        <td>visual</td>
-                        <td>layout</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>data</td>
-                        <td>rich</td>
-                        <td>dashboard</td>
-                        <td>tabular</td>
-                    </tr>
-                    <tr>
-                        <td>1,003</td>
-                        <td>information</td>
-                        <td>placeholder</td>
-                        <td>illustrative</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,004</td>
-                        <td>text</td>
-                        <td>random</td>
-                        <td>layout</td>
-                        <td>dashboard</td>
-                    </tr>
-                    <tr>
-                        <td>1,005</td>
-                        <td>dashboard</td>
-                        <td>irrelevant</td>
-                        <td>text</td>
-                        <td>placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>1,006</td>
-                        <td>dashboard</td>
-                        <td>illustrative</td>
-                        <td>rich</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,007</td>
-                        <td>placeholder</td>
-                        <td>tabular</td>
-                        <td>information</td>
-                        <td>irrelevant</td>
-                    </tr>
-                    <tr>
-                        <td>1,008</td>
-                        <td>random</td>
-                        <td>data</td>
-                        <td>placeholder</td>
-                        <td>text</td>
-                    </tr>
-                    <tr>
-                        <td>1,009</td>
-                        <td>placeholder</td>
-                        <td>irrelevant</td>
-                        <td>visual</td>
-                        <td>layout</td>
-                    </tr>
-                    <tr>
-                        <td>1,010</td>
-                        <td>data</td>
-                        <td>rich</td>
-                        <td>dashboard</td>
-                        <td>tabular</td>
-                    </tr>
-                    <tr>
-                        <td>1,011</td>
-                        <td>information</td>
-                        <td>placeholder</td>
-                        <td>illustrative</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,012</td>
-                        <td>text</td>
-                        <td>placeholder</td>
-                        <td>layout</td>
-                        <td>dashboard</td>
-                    </tr>
-                    <tr>
-                        <td>1,013</td>
-                        <td>dashboard</td>
-                        <td>irrelevant</td>
-                        <td>text</td>
-                        <td>visual</td>
-                    </tr>
-                    <tr>
-                        <td>1,014</td>
-                        <td>dashboard</td>
-                        <td>illustrative</td>
-                        <td>rich</td>
-                        <td>data</td>
-                    </tr>
-                    <tr>
-                        <td>1,015</td>
-                        <td>random</td>
-                        <td>tabular</td>
-                        <td>information</td>
-                        <td>text</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </main>
     </div>
 </div>

@@ -1,6 +1,5 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Person.Admin;
 import com.TeamProject.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,10 +37,10 @@ public class AdminDeletePersonController {
         }
         if(flag1){
             System.out.println("delete success");
-            model.addAttribute("msg1" ,"success");
+            model.addAttribute("msg" ,"success");
         }else{
             System.out.println("delete course fail");
-            model.addAttribute("msg1", "fail");
+            model.addAttribute("msg", "fail");
         }
         return "dashboardAdm";
     }

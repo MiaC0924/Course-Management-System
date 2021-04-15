@@ -71,7 +71,9 @@ public class ProfessorService {
             return false;
         }else{
             System.out.println(cs);
-            return cs.addDeliverable(deliver, DL);
+            boolean added = cs.addDeliverable(deliver, DL);
+            courseSectionDao.addSection(cs);
+            return added;
         }
     }
 
@@ -91,7 +93,9 @@ public class ProfessorService {
                 if(professorDao.findProfById(profId).getTerms().get(i).getCourseSections().get(j)==courseSectionId){
                     for(int k=0;k<stuIds.size();k++){
                         //studentDao.setFinalGrade(stu,courseSectionId,grade);
+
                        // courseSectionDao.setFinalGrade(courseSectionId,studentDao.findStudentByStuId(stuIds.get(k)),finalGrades.get(k));
+
                         return true;
                     }
 
@@ -105,6 +109,7 @@ public class ProfessorService {
     public boolean submitFinalGradeForOne(String email,CourseSection courseSection,int stuId,Character grade){
         //System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
         //check if prof have this course section by coursesectionid
+
         //System.out.println(studentDao.findStudentByStuId(100000001));
         //System.out.println(studentDao.findStudentByStuId(100000002));
         System.out.println("in service cs is "+courseSection);
@@ -141,6 +146,7 @@ public class ProfessorService {
 //        }
 //        System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
         return true;
+
     }
 
     public Professor findProfessorByEmail(String email){
@@ -149,5 +155,19 @@ public class ProfessorService {
 
     public ArrayList<Deliverable> findAllDeliverable(){
         return null;
+    }
+
+    public boolean removeDeliverable(CourseSection cs,String name){
+        CourseSection courseSection =courseSectionDao.findSectionById(cs.getSectionID());
+        if(cs == null){
+            System.out.println("cs no found");
+            return false;
+        }else{
+            System.out.println(cs);
+            boolean added = courseSection.removeDeliverable(name);
+            courseSectionDao.addSection(cs);
+            return added;
+        }
+
     }
 }

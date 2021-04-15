@@ -1,14 +1,8 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
-import com.TeamProject.Course.Term;
-import com.TeamProject.Course.University;
-import com.TeamProject.Dao.CourseDao;
 import com.TeamProject.Dao.CourseSectionDao;
-import com.TeamProject.Person.Admin;
 import com.TeamProject.Person.Professor;
-import com.TeamProject.Service.AdminService;
 import com.TeamProject.Service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +20,8 @@ public class ProfCreateDeliverController {
      CourseSectionDao courseSectionDao;
     @Autowired
     ProfessorService professorService;
-    @Autowired
-    AdminService adminService;
     @RequestMapping("Professor/Deliver/Create")
-    public String DeleteCourse(Model model, HttpSession session){
+    public String addCourse(Model model, HttpSession session){
         String email = (String)session.getAttribute("loginUser");
         System.out.println("this professor Email: " + email);
         /*       need findProcessorBy email                   */

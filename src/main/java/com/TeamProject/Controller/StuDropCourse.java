@@ -1,10 +1,6 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Course.Course;
 import com.TeamProject.Course.CourseSection;
-import com.TeamProject.Course.Term;
-import com.TeamProject.Course.University;
-import com.TeamProject.Person.Student;
 import com.TeamProject.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +37,6 @@ public class StuDropCourse {
 //        csList.add(comp3004B);
 //        csList.add(comp3005A);
         /*             Test Area                  */
-
 
         model.addAttribute("courses" , csList);
 

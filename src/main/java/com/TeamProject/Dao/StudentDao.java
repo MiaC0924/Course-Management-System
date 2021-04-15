@@ -22,7 +22,7 @@ public class StudentDao {
             System.out.println("added success");
         }else{
             Query query = new Query(Criteria.where("studentNumber").is(stu.getStudentNumber()));
-            mongoTemplate.remove(query,CourseSection.class);
+            mongoTemplate.remove(query,Student.class);
             mongoTemplate.save(stu);
         }
     }
