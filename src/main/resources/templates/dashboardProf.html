@@ -158,11 +158,30 @@
                 <div class="form-group row">
                     <label for= "section" class="col-1 col-form-label">section</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="section" class="form-control" id ="section" placeholder="A" required>
+                        <input style="margin:10px" type="text" name="section" class="form-control" id ="section" placeholder="A" maxlength="1" required>
                     </div>
                 </div>
-            <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Submit a final grade </button>
+                <div class="form-group row">
+                    <label for= "year" class="col-1 col-form-label">year</label>
+                    <div class="col-2">
+                        <input style="margin:10px" type="text" name="year" class="form-control" id ="year" placeholder="2020" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="season" class="col-1 col-form-label">season</label>
+                    <div class="col-2">
+                        <select style="margin:10px" class="form-control" id="season" name="season" required>
+                            <option value="">Chooses...</option>
+                            <option>Fall</option>
+                            <option>Summer</option>
+                            <option>Winter</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary mb-3 far fa-plus-square" type="submit">  Submit a final grade </button>
             </form>
+
+
 
 
 
