@@ -4,6 +4,7 @@ import com.TeamProject.Course.*;
 import com.TeamProject.Dao.CourseDao;
 import com.TeamProject.Dao.CourseSectionDao;
 import com.TeamProject.Person.Student;
+import com.TeamProject.Service.CourseSectionService;
 import com.TeamProject.Service.ProfessorService;
 import com.TeamProject.Service.StudentService;
 import org.apache.tomcat.jni.Local;
@@ -57,6 +58,9 @@ public class ProfSubmitFinalGradeDisplayController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    CourseSectionService courseService;
     @RequestMapping("Professor/SubmitFinal")
     public String submitCourseGrade(Model model,  HttpSession session){
         String major = (String)session.getAttribute("major");
@@ -71,10 +75,6 @@ public class ProfSubmitFinalGradeDisplayController {
 
         //                 test         Area                                    //
         ArrayList<Student> stuList = new ArrayList<Student>();
-        Student mia2 = new Student("Mia2","Female","123 Ottawa St", LocalDate.now(), "","MATH");
-        Student mia = new Student("Mia","Female","123 Ottawa St", LocalDate.now(), "","MATH");
-        stuList.add(mia);
-        stuList.add(mia2);
 
 
         //                  test        Area                                    //
