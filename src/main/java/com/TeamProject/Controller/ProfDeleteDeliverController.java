@@ -20,7 +20,7 @@ public class ProfDeleteDeliverController {
 
 
     @RequestMapping("Professor/Deliver/Delete")
-    public String DeleteCourse(Model model,  HttpSession session){
+    public String deleteCourse(Model model,  HttpSession session){
 
         //！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！ cannot identify each ddeliverable , this function&html not done.
 

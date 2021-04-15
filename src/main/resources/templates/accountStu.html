@@ -75,19 +75,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/Account">
-                            <i class="fas fa-user-graduate"></i>
-                            Account
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/Student/Deliverable">
                             <i class="fas fa-chalkboard-teacher"></i>
                             Deliverable
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/Reports">
+                        <a class="nav-link" href="/Student/Account/Processing">
+                            <i class="fas fa-user-graduate"></i>
+                            Account
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Student/Reports/Processing">
                             <i class="fas fa-chart-bar"></i>
                             Reports
                         </a>
@@ -137,35 +137,33 @@
 
             <form class="was-validated">
                 <div class="form-group row">
-                    <label for= "Name" class="col-1 col-form-label">Name</label>
+                    <label class="col-1 col-form-label">Name</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="Name" class="form-control" id ="Name" placeholder="XXX" required>
+                        <div style="margin:10px" type="text" name="Name" class="form-control" required>[[${session.Name}]]</div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="Gender" class="col-1 col-form-label">Gender</label>
+                    <label class="col-1 col-form-label">Gender</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="text" name="Gender" class="form-control" id = "Gender" placeholder="M" required>
+                        <div style="margin:10px" type="text" name="Gender" class="form-control" required>[[${session.Gender}]]</div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="Address" class="col-1 col-form-label">Address</label>
+                    <label class="col-1 col-form-label">StudentID</label>
                     <div class="col-1">
-                        <input style="margin:10px" type="text" name="Address" class="form-control" id = "Address" placeholder="A" required>
+                        <div style="margin:10px" type="text" name="StudentID" class="form-control" required>[[${session.StudentID}]]</div>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="Birthday" class="col-1 col-form-label">Birthday</label>
+                    <label class="col-1 col-form-label">Birthday</label>
                     <div class="col-2">
-                        <input style="margin:10px" type="date" name="Birthday" class="form-control" id = "Birthday" required>
+                        <div style="margin:10px" type="text" name="Birthday" class="form-control" required>[[${session.Birthday}]]</div>
                     </div>
                 </div>
             </form>
-
-            <button class="btn btn-lg btn-primary mb-3 far fa-minus-square" type="submit"> Submit </button>
         </main>
     </div>
 </div>

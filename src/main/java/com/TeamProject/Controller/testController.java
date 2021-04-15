@@ -1,17 +1,9 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Course.Course;
-import com.TeamProject.Course.CourseSection;
-import com.TeamProject.Course.Term;
-import com.TeamProject.Course.University;
 import com.TeamProject.Dao.AdminDao;
 import com.TeamProject.Dao.CourseDao;
 import com.TeamProject.Dao.StudentDao;
-import com.TeamProject.Person.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;

@@ -71,7 +71,9 @@ public class ProfessorService {
             return false;
         }else{
             System.out.println(cs);
-            return cs.addDeliverable(deliver, DL);
+            boolean added = cs.addDeliverable(deliver, DL);
+            courseSectionDao.addSection(cs);
+            return added;
         }
     }
 

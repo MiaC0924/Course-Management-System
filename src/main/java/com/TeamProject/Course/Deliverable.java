@@ -10,9 +10,9 @@ public class Deliverable {
     private LocalDate deadline;
     private String name;
 
-    public Deliverable(String name,LocalDate dl){
+    public Deliverable(String name,LocalDate deadline){
         this.name=name;
-        deadline = dl;
+        this.deadline = deadline;
         submit = true;
     }
 

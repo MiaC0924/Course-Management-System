@@ -1,6 +1,5 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Person.Admin;
 import com.TeamProject.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -121,12 +121,13 @@ public class CourseSection implements Subject {
     public void setGrade(Student s,Character inputGrade)    { gradeList.replace(s,inputGrade); }
     public boolean addDeliverable(String name,LocalDate inputLocalDate)      {
         for(Deliverable d:deliverables){
-            if(!d.getName().equals(name)){
-                deliverables.add(new Deliverable(name,inputLocalDate));
-                return true;
+            if(d.getName().equals(name)){
+                return false;
             }
         }
-        return false;
+        deliverables.add(new Deliverable(name,inputLocalDate));
+        return true;
+
     }
 
 
