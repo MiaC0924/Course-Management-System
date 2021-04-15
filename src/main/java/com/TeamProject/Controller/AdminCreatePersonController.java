@@ -58,7 +58,6 @@ public class AdminCreatePersonController {
         }
 
 
-
         if(flag1){
             System.out.println("Create Person Success");
             model.addAttribute("msg","success");
