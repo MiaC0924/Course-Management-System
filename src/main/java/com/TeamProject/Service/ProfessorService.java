@@ -85,12 +85,13 @@ public class ProfessorService {
 
     public boolean submitListOfFinalGrades(int profId, int courseSectionId, ArrayList<Integer> stuIds, ArrayList<Character> finalGrades){
         //check if prof have this course
+
         for(int i=0;i<professorDao.findProfById(profId).getTerms().size();i++){
             for(int j=0;j<professorDao.findProfById(profId).getTerms().get(i).getCourseSections().size();j++){
                 if(professorDao.findProfById(profId).getTerms().get(i).getCourseSections().get(j)==courseSectionId){
                     for(int k=0;k<stuIds.size();k++){
                         //studentDao.setFinalGrade(stu,courseSectionId,grade);
-                        courseSectionDao.setGradeBySectionId(courseSectionId,studentDao.findStudentByStuId(stuIds.get(k)),finalGrades.get(k));
+                       // courseSectionDao.setFinalGrade(courseSectionId,studentDao.findStudentByStuId(stuIds.get(k)),finalGrades.get(k));
                         return true;
                     }
 
@@ -104,29 +105,42 @@ public class ProfessorService {
     public boolean submitFinalGradeForOne(String email,CourseSection courseSection,int stuId,Character grade){
         //System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
         //check if prof have this course section by coursesectionid
+        //System.out.println(studentDao.findStudentByStuId(100000001));
+        //System.out.println(studentDao.findStudentByStuId(100000002));
+        System.out.println("in service cs is "+courseSection);
         if(courseSection==null){return false;}
+
         Professor pro = professorDao.findProfByEmail(email);
+        Student stu = studentDao.findStudentByStuId(stuId);
+        System.out.println("student:   "+stu);
         ArrayList<CourseSection> proCourse = courseSectionDao.getAllCourseByProf(pro);
-        studentDao.setFinalGrade(stuId,courseSection,grade);
-        for(int i=0;i<professorDao.findProfByEmail(email).getTerms().size();i++){
-            for(int j=0;j<professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().size();j++){
-                if(professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().get(j)==courseSection.getSectionID()){
-                    //check if the student is in this course section
-                    for(int k=0;k<courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().size();k++){
-                        if(courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().get(k).getStudentNumber()==stuId){
-                            //set the grade for that student
-                            Student stu = studentDao.findStudentByStuId(stuId);
-                            studentDao.setFinalGrade(stu.getStudentNumber(),courseSection,grade);
-                            courseSectionDao.setGradeBySectionId(courseSection.getSectionID(),stu,grade);
-                            System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
+        System.out.println(proCourse);
+        System.out.println(courseSection.getFinalgrades());
+        //courseSection.setFinalgrades(100000001,'A');
+        System.out.println(courseSection.getFinalgrades());
+        courseSectionDao.setFinalGrade(courseSection.getSectionID(),stuId,grade);
+        courseSectionDao.addSection(courseSection);
+        System.out.println(courseSection.getFinalgrades());
+
+//        for(int i=0;i<professorDao.findProfByEmail(email).getTerms().size();i++){
+//            for(int j=0;j<professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().size();j++){
+//                if(professorDao.findProfByEmail(email).getTerms().get(i).getCourseSections().get(j)==courseSection.getSectionID()){
+//                    //check if the student is in this course section
+//                    for(int k=0;k<courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().size();k++){
+//                        if(courseSectionDao.findSectionById(courseSection.getSectionID()).getStudentList().get(k).getStudentNumber()==stuId){
+//                            //set the grade for that student
+//                            Student stu = studentDao.findStudentByStuId(stuId);
+//                            studentDao.setFinalGrade(stu.getStudentNumber(),courseSection,grade);
+//                            courseSectionDao.setGradeBySectionId(courseSection.getSectionID(),stu,grade);
+//                            System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
+//                            return true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
 //        System.out.println(studentDao.findStudentByStuId(stuId).getFinalGrades().get(courseSection.getMajor()));
-        return false;
+        return true;
     }
 
     public Professor findProfessorByEmail(String email){

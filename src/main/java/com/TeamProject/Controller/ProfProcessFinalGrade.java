@@ -56,13 +56,14 @@ public class ProfProcessFinalGrade {
 
         CourseSection cs = courseSectionDao.findSectionByAllInfo(major,code,section,year,season);
         System.out.println(major+code+section+year+season);
+        System.out.println(cs);
 
 
 
         //need test
         if( professorService.submitFinalGradeForOne(email , cs ,id, grade)){
             System.out.println("submit Final success");
-            System.out.println("Professor submit finalGrade for id: "+id+" : "+grade);
+            System.out.println("Professor submit finalGrade for id: "+id+" Grade : "+grade);
             model.addAttribute("msg1","success");
         }else {
             System.out.println("submit Final fail");

@@ -83,6 +83,23 @@ public class CourseSectionDao {
         return c;
     }
 
+    public boolean setFinalGrade(int courseId,int stuId,Character grade){
+        CourseSection cs = findSectionById(courseId);
+        System.out.println("in dao cs is  "+cs);
+        if(cs==null){
+            System.out.println("coursesection no found");
+            return false;
+        }
+        else{
+            cs.setFinalgrades(stuId,grade);
+            Query query = new Query(Criteria.where("sectionID").is(courseId));
+            mongoTemplate.remove(query,CourseSection.class);
+            mongoTemplate.save(cs);
+            System.out.println("course section update success");
+            return true;
+        }
+    }
+
     public ArrayList<CourseSection> getAllCourseByCourseSection (Course co,Character ch){
         ArrayList<CourseSection> c = new ArrayList<>();
 
@@ -174,15 +191,7 @@ public class CourseSectionDao {
         return false;
     }
 
-    public boolean setGradeBySectionId(int id, Student stu, Character grade){
-        CourseSection section = findSectionById(id);
-        if(section != null) {
-            section.setGrade(stu, grade);
-            mongoTemplate.save(section);
-            return true;
-        }
-        return false;
-    }
+
 
 //    public boolean addDeliverableBySectionId(int id, LocalDate date){
 //        CourseSection section = findSectionById(id);

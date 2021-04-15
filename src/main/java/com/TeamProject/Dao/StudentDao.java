@@ -42,12 +42,18 @@ public class StudentDao {
         return mongoTemplate.findOne(query, Student.class);
     }
 
-    public boolean setFinalGrade(int id, CourseSection cs,Character grade){
-        Student stu = findStudentByStuId(id);
-        stu.addFinalGrade(cs,grade);
-        mongoTemplate.save(stu);
-        return true;
-    }
+//    public boolean setFinalGrade(int id, CourseSection cs,Character grade){
+//        Student stu = findStudentByStuId(id);
+//
+////        mongoTemplate.save(stu);
+//        Query query = new Query(Criteria.where("studentNumber").is(id));
+//        stu.addFinalGrade(cs,grade);
+//        mongoTemplate.remove(query,Student.class);
+//        mongoTemplate.save(stu);
+//
+//
+//        return true;
+//    }
 
     public boolean updateStudentMajorGPAByStuId(int id,Double majorGPA){
         Student stu = findStudentByStuId(id);

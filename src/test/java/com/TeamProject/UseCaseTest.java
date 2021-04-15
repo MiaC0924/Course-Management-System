@@ -39,7 +39,7 @@ public class UseCaseTest {
                             // studentDao.setFinalGrade(stu,courseSectionId,grade);
 
                             if(comp3004A != null) {
-                                comp3004A.setGrade(mia, 'A');
+                                //comp3004A.setGrade(mia, 'A');
                                 System.out.println(true);
                                 return;
                             }
