@@ -1,15 +1,9 @@
 package com.TeamProject.Controller;
 
 import com.TeamProject.Course.*;
-import com.TeamProject.Dao.CourseDao;
 import com.TeamProject.Dao.CourseSectionDao;
-import com.TeamProject.Person.Professor;
-import com.TeamProject.Person.Student;
 import com.TeamProject.Service.ProfessorService;
-import com.TeamProject.Service.StudentService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +20,10 @@ public class ProfProcessFinalGrade {
     ProfessorService professorService;
 
     @Autowired
-    StudentService studentService;
-
-    @Autowired
     CourseSectionDao courseSectionDao;
 
     @RequestMapping("Professor/SubmitFinal/Processing")
-    public String submitCourseGrade(@RequestParam("id") int id,
+    public String deleteCourse(@RequestParam("id") int id,
                                     @RequestParam("grade") Character grade,
                                     Model model, HttpSession session){
         //need professor find by email

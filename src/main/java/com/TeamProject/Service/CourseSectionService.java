@@ -36,6 +36,10 @@ public class CourseSectionService {
         return courseSectionDao.getAllCourseByProf(prof);
     }
 
+    public CourseSection getCourseById(int id){
+        return courseSectionDao.findSectionById(id);
+    }
+
 //    public CourseSection findCourseSection(String major,int code){
 //        return courseSectionDao.findCourseSection(major,code);
 //    }

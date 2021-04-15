@@ -1,16 +1,11 @@
 package com.TeamProject.Controller;
 
-import com.TeamProject.Dao.AdminDao;
-import com.TeamProject.Dao.StudentDao;
-import com.TeamProject.Person.Student;
 import com.TeamProject.Service.LoginService;
-import com.TeamProject.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -20,10 +15,6 @@ public class LoginController {
 
     @Autowired
     LoginService loginService;
-
-    @Autowired
-    StudentService studentService;
-
 
     @RequestMapping("/user/login")
     public String login(@RequestParam("username") String username,
