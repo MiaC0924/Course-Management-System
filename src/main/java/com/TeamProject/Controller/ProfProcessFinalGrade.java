@@ -53,10 +53,10 @@ public class ProfProcessFinalGrade {
         if( professorService.submitFinalGradeForOne(email , cs ,id, grade)){
             System.out.println("submit Final success");
             System.out.println("Professor submit finalGrade for id: "+id+" : "+grade);
-            model.addAttribute("msg1","success");
+            model.addAttribute("msg","success");
         }else {
             System.out.println("submit Final fail");
-            model.addAttribute("msg1", "fail");
+            model.addAttribute("msg", "fail");
         }
         return "dashboardProf";
     }

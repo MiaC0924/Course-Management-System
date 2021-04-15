@@ -37,10 +37,10 @@ public class AdminDeletePersonController {
         }
         if(flag1){
             System.out.println("delete success");
-            model.addAttribute("msg1" ,"success");
+            model.addAttribute("msg" ,"success");
         }else{
             System.out.println("delete course fail");
-            model.addAttribute("msg1", "fail");
+            model.addAttribute("msg", "fail");
         }
         return "dashboardAdm";
     }

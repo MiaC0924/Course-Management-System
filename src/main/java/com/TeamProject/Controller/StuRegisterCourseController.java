@@ -40,9 +40,7 @@ public class StuRegisterCourseController {
 //        csList.add(comp3005A);
         /*             Test Area                  */
 
-
         model.addAttribute("courses" , csList);
-
         return"RegisterStu";
     }
 }
