@@ -21,6 +21,7 @@ public class Student extends Person implements Visitable {
     private ArrayList<Term> terms; //terms contain courseSectionIds
     private HashMap<String, ArrayList<Character>> finalGrades; //k-Major, v-list of finalGrade
     private double majorGPA, overallGPA;
+    private HashMap<String,Character> finals;
 
     public Student(){
         super();
@@ -31,6 +32,7 @@ public class Student extends Person implements Visitable {
         ++countID;
         terms = new ArrayList<>();
         finalGrades = new HashMap<>();
+        finals = new HashMap<>();
     }
 
     public Student(String inputName, String inputGender, String inputEmail,
@@ -43,6 +45,7 @@ public class Student extends Person implements Visitable {
         ++countID;
         terms = new ArrayList<>();
         finalGrades = new HashMap<>();
+        finals = new HashMap<>();
     }
 
     //getters
@@ -52,12 +55,17 @@ public class Student extends Person implements Visitable {
     public double getOverallGPA(){ return overallGPA;    }
     public ArrayList<Term> getTerms(){ return terms; }
     public HashMap<String, ArrayList<Character>> getFinalGrades(){ return finalGrades; }
+    public HashMap<String,Character> getFinals(){ return finals;}
 
 
     //setters
     public void setMajor(String inputMajor){ major = inputMajor; }
     public void setMajorGPA(double gpa){ majorGPA = gpa; }
     public void setOverallGPA(double gpa){ overallGPA = gpa; }
+
+    public void addFinals(CourseSection c,Character grade){
+        finals.put(c.getSectionName(),grade);
+    }
 
     public void addFinalGrade(CourseSection c, Character grade){
         if(finalGrades.containsKey(c.getMajor())){
