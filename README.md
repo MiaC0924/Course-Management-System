@@ -1,12 +1,12 @@
 # Comp3004 Project - Team 4
 
 ### Team 4 member: ###
-Name          | Prefer        | Student Number | GitHub ID
-:------------ | :-----------: | :-------------:| :----------
-Wenwen Chen   | Mia           | 100882644      | MiaC0924
-Qinming Guo   | Allen         | 101085735      | qinmingguo
-Xiangfei Kong | Kevin         | 101117300      | DeusPio
-Chao Wu       | Charles       | 101042669      | ChaoWu0405
+Name          | Prefer        | GitHub ID
+:------------ | :-----------: | :----------
+Wenwen Chen   | Mia           | MiaC0924
+Qinming Guo   | Allen         | qinmingguo
+Xiangfei Kong | Kevin         | DeusPio
+Chao Wu       | Charles       | ChaoWu0405
 
 ---------
 ### How to run the "HelloWorld" demo: ###
